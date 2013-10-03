@@ -284,3 +284,6 @@ http://docs.python.jp/2.5/tut/node8.html
 http://www.jetbrains.com/idea/webhelp/file-and-code-templates.html
 ●テンプレートを便利に
 http://d.hatena.ne.jp/absj31/20130318/1363619322
+●科学技術計算
+http://turbare.net/transl/scipy-lecture-notes/intro/
+

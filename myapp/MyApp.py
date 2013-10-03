@@ -1,22 +1,21 @@
-import myapp.common.Utility
+from myapp.common.Utility import debug_print
+from myapp.common.application import Application
 
 
 def application(environ, start_response):
-	myapp.common.Utility.debug_print(environ)
+	debug_print(environ)
 	response = main()
 	start_response(response.status, response.headers)
 	return [response.body.encode("utf-8")]
 
 
 def main():
-	response = myapp.common.Utility.Response()
-	conf = myapp.common.Utility.load_conf()
-	output_str = conf['section']['key']
-	output_str += ' Hello world!'
-	response.body = output_str
-	return response
+	app = Application()
+	return app.main()
 
 
 if __name__ == '__main__':
-	print(main())
-
+	res = main()
+	print(res.status)
+	print(res.headers)
+	print(res.body)
