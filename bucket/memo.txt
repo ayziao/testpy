@@ -277,3 +277,10 @@ queryに全部突っ込むか 共通クラスのSingletonをスタック出来�
 http://kannokanno.hatenablog.com/entry/20130503/1367571825
 パッケージ
 http://docs.python.jp/2.5/tut/node8.html
+
+
+■参考
+●IDEのテンプレートの変数とか
+http://www.jetbrains.com/idea/webhelp/file-and-code-templates.html
+●テンプレートを便利に
+http://d.hatena.ne.jp/absj31/20130318/1363619322
