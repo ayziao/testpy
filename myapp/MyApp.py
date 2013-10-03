@@ -1,5 +1,4 @@
 import configparser
-from wsgiref import simple_server
 
 
 def load_conf():
@@ -11,26 +10,32 @@ def load_conf():
 def debug_print(environ):
 	if environ['PATH_INFO'] != '/favicon.ico':
 		from pprint import pprint
-
 		pprint(environ)
 
 
 def application(environ, start_response):
 	debug_print(environ)
 
-	conf = load_conf()
-	output_str = conf['section']['key']
-	output_str += " Hello world!"
+	response = Response()
+	response.body = main()
 
-	start_response("200 OK", [('Content-Type', 'text/plain; charset=utf-8')])
-	return [output_str.encode("utf-8")]
+	start_response(response.status, response.headers)
+	return [response.body.encode("utf-8")]
+
+
+class Response():
+	status = '200 OK'
+	headers = [('Content-Type', 'text/plain; charset=utf-8')]
+	body = ''
 
 
 def main():
-	server = simple_server.make_server('', 8080, application)
-	server.serve_forever()
+	conf = load_conf()
+	output_str = conf['section']['key']
+	output_str += ' Hello world!'
+	return output_str
 
 
 if __name__ == '__main__':
-	main()
+	print(main())
 
