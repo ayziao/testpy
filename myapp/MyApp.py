@@ -1,12 +1,29 @@
-#from pprint import pprint
+from pprint import pprint
 from wsgiref import simple_server
 
 #import common.Utility
 
 
 def application(environ, start_response):
-	start_response('200 OK', [('Content-type', 'text/plain')])
-	return 'Hello world'
+	#stdout = StringIO()
+	#print("Hello world!", file=stdout)
+	#print(file=stdout)
+	#h = sorted(environ.items())
+	#for k, v in h:
+	#	print(k, '=', repr(v), file=stdout)
+	start_response("200 OK", [('Content-Type', 'text/plain; charset=utf-8')])
+
+	if (environ['PATH_INFO'] != '/favicon.ico'):
+		pprint(environ)
+
+	return ["Hello world!".encode("utf-8")]
+
+#return [stdout.getvalue().encode("utf-8")]
+
+#start_response('200 OK', [('Content-type', 'text/plain')])
+#	return 'a'
+
+#return 'Hello world'
 
 
 #def run(app):
