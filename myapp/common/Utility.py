@@ -1,5 +1,12 @@
 import configparser
 
+mypath = ''
+
+
+def setmypath(str):
+	global mypath
+	mypath = str
+
 
 def debug_print(environ):
 	if environ['PATH_INFO'] != '/favicon.ico':
@@ -10,7 +17,7 @@ def debug_print(environ):
 
 def load_conf():
 	conf = configparser.ConfigParser()
-	conf.read('../config/setting.ini.sample')
+	conf.read(mypath + 'config/setting.ini.sample')
 	return conf
 
 

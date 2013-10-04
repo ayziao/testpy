@@ -1,6 +1,11 @@
 import configparser
 from pprint import pprint
 
+print(sys.path)
+#path = os.path.dirname(os.path.abspath(__file__)) + '/../'
+
+pprint(globals())
+
 
 def hoge():
 	return 'piyo'
