@@ -1,6 +1,8 @@
 import configparser
+from datetime import datetime
 
 mypath = ''
+start_time = datetime.utcnow()
 
 
 def set_mypath(str):
@@ -8,11 +10,29 @@ def set_mypath(str):
 	mypath = str
 
 
-def debug_print(environ):
-	if environ['PATH_INFO'] != '/favicon.ico':
-		from pprint import pprint
+def set_start_time(datetime_):
+	global start_time
+	start_time = datetime_
 
+
+def debug_print(environ):
+	from pprint import pprint
+
+	if environ['PATH_INFO'] != '/favicon.ico':
 		pprint(environ)
+
+		now = datetime.utcnow()
+		dif = now - start_time
+		pprint(start_time)
+		pprint(now)
+		pprint(dif)
+
+	if environ['debug'] == True:
+		now = datetime.utcnow()
+		dif = now - start_time
+		pprint(start_time)
+		pprint(now)
+		pprint(dif)
 
 
 def load_conf():
