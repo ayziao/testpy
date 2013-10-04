@@ -3,7 +3,7 @@ import configparser
 mypath = ''
 
 
-def setmypath(str):
+def set_mypath(str):
 	global mypath
 	mypath = str
 
