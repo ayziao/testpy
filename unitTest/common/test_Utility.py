@@ -1,6 +1,7 @@
 import unittest
 from myapp.common import Utility
 
+#PENDING テスト書くかちゃんと置くとこ考える
 
 class MyTestCase(unittest.TestCase):
 	def test_load_conf(self):
