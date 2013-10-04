@@ -1,3 +1,5 @@
+import sys
+
 from myapp.common.Utility import debug_print
 from myapp.common.application import Application
 
@@ -16,6 +18,10 @@ def main():
 
 if __name__ == '__main__':
 	res = main()
-	print(res.status)
-	print(res.headers)
+	argvs = sys.argv
+	if 'iroiro' in argvs:
+		print(argvs)
+		print(res.status)
+		print(res.headers)
+
 	print(res.body)

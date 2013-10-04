@@ -21,7 +21,7 @@
 
 import unittest
 
-import myapp.MyApp
+from myapp.myapp_main import application
 
 
 class MyTestCase(unittest.TestCase):
@@ -29,14 +29,13 @@ class MyTestCase(unittest.TestCase):
 		def st(aaa, bbb):
 			pass
 
-		env = {'PATH_INFO': ''}
-
 		self.assertEqual(True, True)
 		self.assertEqual(False, False)
 
-		app = myapp.MyApp
-		f = app.application
-		f(env, st)
+		env = {'PATH_INFO': '/favicon.ico'}
+		ref = application(env, st)
+
+		self.assertEqual(ref, ['value Hello world!'.encode("utf-8")])
 
 
 if __name__ == '__main__':

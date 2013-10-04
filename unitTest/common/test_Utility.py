@@ -1,10 +1,10 @@
 import unittest
-import myapp.common.Utility
+from myapp.common import Utility
 
 
 class MyTestCase(unittest.TestCase):
 	def test_something(self):
-		myapp.common.Utility.pppp()
+		Utility.pppp()
 		self.assertEqual(True, True)
 		self.assertEqual(False, False)
 
