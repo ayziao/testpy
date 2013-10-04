@@ -6,6 +6,10 @@ def hoge():
 	return 'piyo'
 
 
+def pppp():
+	pprint(globals())
+
+
 if __name__ == '__main__':
 	conf = configparser.ConfigParser()
 	conf.read('conf.ini')
