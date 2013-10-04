@@ -13,9 +13,9 @@ set_mypath(path)
 
 def application(environ, start_response):
 	"""
-	WSGI application
-
-	WSGIサーバから呼ばれるところ
+	# WSGI application
+	#
+	# WSGIサーバから呼ばれるところ
 	"""
 	debug_print(environ)
 	response = main()
