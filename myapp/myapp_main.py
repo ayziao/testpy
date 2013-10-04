@@ -38,9 +38,9 @@ def main():
 if __name__ == '__main__':
 	res = main()
 
-	argvs = sys.argv
-	if 'iroiro' in argvs:
-		print(argvs)
+	argument_list = sys.argv
+	if 'iroiro' in argument_list:
+		print(argument_list)
 		print(res.status)
 		print(res.headers)
 		env = {'PATH_INFO': '/favicon.ico', 'debug': True}  # TODO デバッグ表示オフ機能つける
