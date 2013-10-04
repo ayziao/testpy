@@ -34,13 +34,14 @@ top_body = 'value Hello world!'  # PENDING パラメータなんもなしの時�
 class MyTestCase(unittest.TestCase):
 	def test_main(self):
 		ref = main()
+		self.assertEqual(ref.status, '200 OK')
 		self.assertEqual(ref.body, top_body)
 
 	def test_application(self):
 		def st(aaa, bbb):
 			pass
 
-		env = {'PATH_INFO': '/favicon.ico'}  # TODO デバッグ表示オフ機能つける
+		env = {'PATH_INFO': '/favicon.ico', 'debug': False}  # TODO デバッグ表示オフ機能つける
 		ret = application(env, st)
 		self.assertEqual(ret, [top_body.encode("utf-8")])
 

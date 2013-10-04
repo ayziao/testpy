@@ -27,7 +27,7 @@ def debug_print(environ):
 		pprint(now)
 		pprint(dif)
 
-	if environ['debug']:
+	if environ.get('debug') and environ['debug']:
 		now = datetime.utcnow()
 		dif = now - start_time
 		pprint(start_time)
