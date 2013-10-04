@@ -2,6 +2,7 @@ import unittest
 from myapp.common import Utility
 
 #PENDING テスト書くかちゃんと置くとこ考える
+#TODO エラーなおす パス関連？
 
 class MyTestCase(unittest.TestCase):
 	def test_load_conf(self):
