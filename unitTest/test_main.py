@@ -24,7 +24,7 @@
 
 import unittest
 
-from myapp.myapp_main import application
+from myapp.wsgiclient import application
 from myapp.myapp_main import main
 
 
