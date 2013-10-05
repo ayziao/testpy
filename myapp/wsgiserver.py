@@ -1,5 +1,5 @@
 from wsgiref import simple_server
-from myapp.myapp_main import application
+from myapp.wsgi_client import application
 
 
 def make_server():

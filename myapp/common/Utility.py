@@ -3,6 +3,8 @@ from datetime import datetime
 
 mypath = ''
 start_time = datetime.utcnow()
+environ = {}
+conf = {}
 
 
 def set_mypath(str):
@@ -13,6 +15,11 @@ def set_mypath(str):
 def set_start_time(datetime_):
 	global start_time
 	start_time = datetime_
+
+
+def set_environ(environ_):
+	global environ
+	environ = environ_
 
 
 def debug_print(environ):
@@ -36,9 +43,13 @@ def debug_print(environ):
 
 
 def load_conf():
-	conf = configparser.ConfigParser()
-	conf.read(mypath + 'config/setting.ini.sample')
-	return conf
+	global conf
+	if conf:
+		return conf
+	else:
+		conf = configparser.ConfigParser()
+		conf.read(mypath + 'config/setting.ini.sample')
+		return conf
 
 
 class Response():

@@ -17,21 +17,9 @@ set_mypath(path)
 set_start_time(now)
 
 
-def application(environ, start_response):
-	"""
-	# WSGI application
-	#
-	# WSGIサーバから呼ばれるところ
-	"""
-	set_start_time(datetime.utcnow())
-	debug_print(environ)
-	response = main()
-	start_response(response.status, response.headers)
-	return [response.body.encode("utf-8")]
-
-
 def main():
 	app = Application()
+
 	return app.main()
 
 
@@ -39,11 +27,14 @@ if __name__ == '__main__':
 	res = main()
 
 	argument_list = sys.argv
-	if 'iroiro' in argument_list:
+	if '-debugprint' in argument_list:
 		print(argument_list)
-		print(res.status)
 		print(res.headers)
-		env = {'PATH_INFO': '/favicon.ico', 'debug': True}  # TODO デバッグ表示オフ機能つける
-		debug_print(env)
 
 	print(res.body)
+
+	if '-debugprint' in argument_list:
+		env = {'PATH_INFO': '/favicon.ico', 'debug': True}  # TODO デバッグ表示オフ機能つける
+		debug_print(env)
+		print(res.status)
+
