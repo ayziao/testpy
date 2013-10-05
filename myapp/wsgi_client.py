@@ -5,12 +5,11 @@ from datetime import datetime
 path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
 sys.path.append(path)
 
-from myapp.common.Utility import set_mypath
-from myapp.common.Utility import set_environ
-from myapp.common.Utility import set_start_time
+from myapp.common import Utility
 from myapp.myapp_main import main
 
-set_mypath(path)
+
+Utility.set_mypath(path)
 
 
 def application(environ, start_response):
@@ -19,8 +18,8 @@ def application(environ, start_response):
 	#
 	# WSGIサーバから呼ばれるところ
 	"""
-	set_start_time(datetime.utcnow())
-	set_environ(environ)
+	Utility.set_start_time(datetime.utcnow())
+	Utility.set_environ(environ)
 	response = main()
 	start_response(response.status, response.headers)
 	return [response.body.encode("utf-8")]

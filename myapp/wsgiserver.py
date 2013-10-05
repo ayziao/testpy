@@ -1,4 +1,10 @@
+import sys
+import os
 from wsgiref import simple_server
+
+path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
+sys.path.append(path)
+
 from myapp.wsgi_client import application
 
 
