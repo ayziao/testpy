@@ -16,12 +16,11 @@
 # PENDING
 # PENDING ユニットテストもコンソールから実行できるようにパス解決するか
 # PENDING myappディレクトリ以下を一切弄らずに設定は変えられるように 設定パスをmain.pyに引数で渡せるようにすべきか？
-# PENDING mysql使う前にsqliteやる？
+# PENDING mysql使う前にSQLiteやる？
 # PENDING テンプレートエンジン使うか全部DOM操作でやるか
 # PENDING
 # PENDING
-# PENDING wsgiclientテストするか考える
-#from myapp.wsgiclient import application
+# PENDING wsgi clientテストするか考える
 #def test_application(self):
 #	def st(aaa, bbb):
 #		pass

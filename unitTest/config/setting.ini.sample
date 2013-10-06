@@ -1,2 +1,5 @@
-[section]
-key = values
+[application]
+debug = false
+
+[test]
+test = test

@@ -13,3 +13,6 @@ def count():  # PENDING プラグイン化
 	to = datetime.now()
 	return from_ - to
 
+
+if __name__ == '__main__':
+	print(count())
