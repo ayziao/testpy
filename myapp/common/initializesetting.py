@@ -9,6 +9,7 @@ conf = {}
 def set_path(str):
 	global config_path
 	config_path = str
+	_load_conf()
 
 
 def _load_conf():
