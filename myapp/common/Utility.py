@@ -1,15 +1,7 @@
-import configparser
 from datetime import datetime
 
-mypath = ''
 start_time = datetime.utcnow()
 environ = {}
-conf = {}
-
-
-def set_mypath(str):
-	global mypath
-	mypath = str
 
 
 def set_start_time(datetime_):
@@ -40,16 +32,6 @@ def debug_print(environ):
 		pprint(start_time)
 		pprint(now)
 		pprint(dif)
-
-
-def load_conf():
-	global conf
-	if conf:
-		return conf
-	else:
-		conf = configparser.ConfigParser()
-		conf.read(mypath + 'config/setting.ini.sample')
-		return conf
 
 
 class Response():

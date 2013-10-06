@@ -10,8 +10,9 @@ sys.path.append(path)
 
 from myapp.common import Utility
 from myapp.common.application import Application
+import myapp.common.initializesetting as ini
 
-Utility.set_mypath(path)
+ini.set_path(path + 'config/')
 
 
 def main():

@@ -1,3 +1,4 @@
+from pprint import pprint
 from datetime import datetime
 
 
@@ -9,9 +10,13 @@ class debug:
 		count = from_ - to
 		return count
 
+	def print(self):
+		pprint(globals())
+
 
 if __name__ == '__main__':
 	c = debug()
 	count = c.count()
 	print(count)
+	c.print()
 
