@@ -26,8 +26,7 @@ if __name__ == '__main__':
 	import sys
 	from pprint import pprint
 
-	a = {}
-	a['a'] = 2
+	a = {'a': 2}
 	m = a.get('b')
 	n = None
 	pprint(a)

@@ -9,7 +9,8 @@ class Debug:
 	# デバッグ用 単体テストは書かない
 	"""
 
-	def print(self):
+	@staticmethod
+	def print():
 	#		g = globals()
 	#		del g['__builtins__']
 		pprint(globals())

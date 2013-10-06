@@ -3,7 +3,7 @@ import unittest
 from myapp.common.application import Application
 
 
-class application(unittest.TestCase):
+class TestApplication(unittest.TestCase):
 	def something(self):
 		self.assertEqual(True, False)
 

@@ -8,9 +8,9 @@ config_path = '../config/'
 conf = None
 
 
-def set_config_directory(str):
+def set_config_directory(str_):
 	global config_path
-	config_path = str
+	config_path = str_
 
 
 def get_ini(section=None):

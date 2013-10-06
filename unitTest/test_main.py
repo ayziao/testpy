@@ -38,17 +38,17 @@ import os
 path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(path)
 
-import myapp.common.initializesetting as ini
+from myapp.common import initializesetting
 
-ini.set_config_directory(path + '/config/')
-ini.get_ini()
+initializesetting.set_config_directory(path + '/config/')
+initializesetting.get_ini()
 
 from myapp.myapp_main import main
 
 top_body = 'Hello world!'  # PENDING パラメータなんもなしの時の表示考える
 
 
-class myapp(unittest.TestCase):
+class TestMyapp(unittest.TestCase):
 	def test_main(self):
 		ref = main()
 		self.assertEqual(ref.status, '200 OK')

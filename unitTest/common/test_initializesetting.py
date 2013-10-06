@@ -3,13 +3,13 @@ import os
 
 path = os.path.dirname(os.path.abspath(__file__))
 
-import myapp.common.initializesetting as ini
+from myapp.common import initializesetting
 
 
-class initializesetting(unittest.TestCase):
+class TestInitializeSetting(unittest.TestCase):
 	def test_ini(self):
-		ini.set_config_directory(path + '/../config/')
-		conf = ini.get_ini('test')
+		initializesetting.set_config_directory(path + '/../config/')
+		conf = initializesetting.get_ini('test')
 		self.assertEqual(conf['test'], 'test')
 
 

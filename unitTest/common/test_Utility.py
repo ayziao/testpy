@@ -3,7 +3,7 @@ import unittest
 #PENDING テスト書くかちゃんと置くとこ考える
 #TODO エラーなおす パス関連？
 
-class Utility(unittest.TestCase):
+class TestUtility(unittest.TestCase):
 	def test_load_conf(self):
 		pass
 

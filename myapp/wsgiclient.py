@@ -6,10 +6,11 @@ path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
 sys.path.append(path)
 
 from myapp.common import Utility
-import myapp.common.initializesetting as ini
+from myapp.common import initializesetting
 from myapp.myapp_main import main
 
-ini.set_config_directory(path.join('config/'))
+path += '/config/'
+initializesetting.set_config_directory(path)
 
 
 def application(environ, start_response):
