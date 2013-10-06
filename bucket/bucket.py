@@ -1,5 +1,7 @@
 import configparser
+from datetime import datetime
 from pprint import pprint
+from common import settings
 
 print(sys.path)
 #path = os.path.dirname(os.path.abspath(__file__)) + '/../'
@@ -16,9 +18,9 @@ def pppp():
 
 
 if __name__ == '__main__':
-	conf = configparser.ConfigParser()
-	conf.read('conf.ini')
-	pprint(conf['aaa']['bbb'])
+	ini = configparser.ConfigParser()
+	ini.read('ini.ini')
+	pprint(ini['aaa']['bbb'])
 	pprint(globals())
 
 	exit()
@@ -49,6 +51,9 @@ if __name__ == '__main__':
 
 #return 'Hello world'
 
+#g = globals().copy()
+#del g['__builtins__']
+#pprint(g)
 
 #def run(app):
 #	server = simple_server.make_server('', 8080, app)
@@ -80,3 +85,10 @@ if __name__ == '__main__':
 #
 
 #ppp()
+def debug_print(environ_):
+	if environ_.get('debug') and environ_['debug']:
+		now = datetime.utcnow()
+		dif = now - settings.start_time
+		pprint(settings.start_time)
+		pprint(now)
+		pprint(dif)

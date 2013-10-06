@@ -1,16 +1,16 @@
 """
 # myapp.common.application
 """
-from myapp.common.Utility import Response
+from myapp.common.response import Response
 from myapp.common.debug import Debug
-from myapp.common import initializesetting
+from myapp.common import settings
 
 
 class Application():
 	debug = None
 
 	def __init__(self):
-		conf = initializesetting.get_ini('application')
+		conf = settings.get_ini('application')
 		if conf['debug'] == 'true':
 			self.debug = Debug()
 

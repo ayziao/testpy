@@ -38,12 +38,10 @@ import os
 path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(path)
 
-from myapp.common import initializesetting
-
-initializesetting.set_config_directory(path + '/config/')
-initializesetting.get_ini()
-
+from myapp.common import settings
 from myapp.myapp_main import main
+
+settings.config_path = path + '/config/'
 
 top_body = 'Hello world!'  # PENDING パラメータなんもなしの時の表示考える
 
