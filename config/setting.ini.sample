@@ -1,6 +1,5 @@
 [application]
 debug = false
 
-[section]
-key = value
-debug = true
+
+

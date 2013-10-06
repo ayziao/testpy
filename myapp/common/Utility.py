@@ -3,6 +3,16 @@ from datetime import datetime
 start_time = datetime.utcnow()
 environ = {}
 
+#TODO それぞれクラス作って移動する
+
+
+def count(self):  # PENDING プラグイン化
+	tstr = '2013-10-06 23:59:59'  # TODO 設定ファイルからとる
+	from_ = datetime.strptime(tstr, '%Y-%m-%d %H:%M:%S')
+	to = datetime.now()
+	count = from_ - to
+	return count
+
 
 def set_start_time(datetime_):
 	global start_time

@@ -1,29 +1,24 @@
-# initializesetting
+"""
+# myapp.common.initializesetting
+"""
 
 import configparser
 
 config_path = '../config/'
-conf = {}
+conf = None
 
 
-def set_path(str):
+def set_config_directory(str):
 	global config_path
 	config_path = str
-	_load_conf()
 
 
-def _load_conf():
+def get_ini(section=None):
 	global conf
-	if conf:
-		return conf
-	else:
+	if conf is None:
 		conf = configparser.ConfigParser()
 		conf.read(config_path + 'setting.ini')
+	if section is None:
 		return conf
-
-
-def get_ini(section):
-	if section:
-		return _load_conf()[section]
 	else:
-		return _load_conf()
+		return conf[section]

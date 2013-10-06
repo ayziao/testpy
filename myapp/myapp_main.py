@@ -12,7 +12,7 @@ from myapp.common import Utility
 from myapp.common.application import Application
 import myapp.common.initializesetting as ini
 
-ini.set_path(path + 'config/')
+ini.set_config_directory(path.join('config/'))
 
 
 def main():
