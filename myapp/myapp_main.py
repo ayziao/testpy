@@ -12,16 +12,15 @@ from myapp.common import Utility
 from myapp.common.application import Application
 
 Utility.set_mypath(path)
-Utility.set_start_time(now)
 
 
 def main():
 	app = Application()
-
 	return app.main()
 
 
 if __name__ == '__main__':
+	Utility.set_start_time(now)
 	res = main()
 
 	argument_list = sys.argv
