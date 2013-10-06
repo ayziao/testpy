@@ -1,9 +1,14 @@
+"""
+# myapp.common.Utili
+"""
+#TODO ファイル名頭文字大文字なので作りなおす
+#TODO それぞれクラス作って移動する
+
 from datetime import datetime
 
 start_time = datetime.utcnow()
 environ = {}
 
-#TODO それぞれクラス作って移動する
 
 
 def count(self):  # PENDING プラグイン化

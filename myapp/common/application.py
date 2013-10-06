@@ -1,3 +1,6 @@
+"""
+# myapp.common.application
+"""
 from myapp.common.Utility import Response
 from myapp.common.debug import Debug
 import myapp.common.initializesetting as ini

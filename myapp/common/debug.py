@@ -1,4 +1,6 @@
+"""
 # myapp.common.debug
+"""
 from pprint import pprint
 
 
