@@ -16,8 +16,19 @@ class Application():
 
 
 	def main(self):
+
+		def my_import(module, class_):
+			mod = __import__(module)
+			components = module.split('.')
+			for c in components[1:]:
+				mod = getattr(mod, c)
+			return getattr(mod, class_)
+
+		class_ = my_import('myapp.controller.data', "Data")
+		ccc = class_()
+
 		response = Response()
-		response.body = 'Hello world!'
+		response.body = ccc.run()
 
 		self._debug_print()
 

@@ -1,3 +1,38 @@
+def my_import(module, class_):
+	mod = __import__(module)
+	components = module.split('.')
+	for c in components[1:]:
+		mod = getattr(mod, c)
+	return getattr(mod, class_)
+
+#m = __import__('myapp.controller.data')
+#m = __import__('myapp.controller.data')
+#mod = __import__('sys', {}, {}, [])
+class_ = my_import('myapp.controller.data', "Data")
+ccc = class_()
+print(dir(ccc))
+
+#mod = __import__('myapp.controller', globals(), locals(), ['data'], 0)
+#print(data)
+#print(dir(data))
+#Data = data.Data
+#clas = getattr(data,"Data")
+#ccc = clas()
+#print(ccc)
+#ddd = Data()
+#print(ddd)
+#print(dir(m.controller.data))
+#print(dir(mod))
+#d = mod.data.Data()
+#print(d)
+
+#i = m.controller.data.Data()
+#i = m.data.Data()
+#i = m.Data()
+#print(i.aaa())
+
+#m.controller.data.myfunc()
+
 #
 #print(sys.path)
 ##path = os.path.dirname(os.path.abspath(__file__)) + '/../'
