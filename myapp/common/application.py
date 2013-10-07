@@ -27,5 +27,3 @@ class Application():
 	def _debug_print(self):
 		if self.debug:
 			self.debug.print()
-
-

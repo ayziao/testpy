@@ -5,6 +5,21 @@
 	タスクは//TODOで該当テストへ
 	コードがないTODOはmain.phpへ
 
+■未分類
+/mogemoge.html?hoge/piyo.muge=%7B%22fegege%22%3A%22ge%26gee%22%7D
+
+/パス.出力形式?名前空間/クラス.メソッド={json}
+
+/名前空間/クラス が省略されていた場合 dataモデルとして呼び出す
+
+/名前空間がpluginで始まってたらプラグインフォルダからインポート
+
+/パス.出力形式#名前空間/クラス.メソッド={json}
+
+/?名前空間/クラス.メソッド={json,パス}
+
+
+
 ■ディレクトリ構成考
 アプリフォルダ 設置時にいじらない 1ファイルアーカイブ化できるならしたい
 プラグイン プラグイン入れるとこ
@@ -302,3 +317,6 @@ http://docs.python.jp/2.5/tut/node8.html
 動的
 http://d.hatena.ne.jp/themorthem/20110125/1295937346
 http://boli.boo.jp/boli_wiki/index.php?%E9%80%86%E5%BC%95%E3%81%8DPython%E3%83%A1%E3%83%A2%2F%E5%8B%95%E7%9A%84%E3%81%AB%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%82%92import%E3%81%99%E3%82%8B
+
+
+
