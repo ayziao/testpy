@@ -4,13 +4,11 @@
 from myapp.common.response import Response
 from myapp.common.debug import Debug
 from myapp.common import settings
+from myapp.common import utility
 
 
 def _controller_dispatcher(module_name, class_name):
-	mod = __import__(module_name)
-	components = module_name.split('.')
-	for c in components[1:]:
-		mod = getattr(mod, c)
+	mod = utility.import_(module_name)
 	return getattr(mod, class_name)
 
 
