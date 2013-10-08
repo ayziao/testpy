@@ -5,6 +5,7 @@ def my_import(module, class_):
 		mod = getattr(mod, c)
 	return getattr(mod, class_)
 
+
 #m = __import__('myapp.controller.data')
 #m = __import__('myapp.controller.data')
 #mod = __import__('sys', {}, {}, [])
