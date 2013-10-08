@@ -6,6 +6,14 @@ from myapp.common.debug import Debug
 from myapp.common import settings
 
 
+def _controller_dispatcher(module_name, class_name):
+	mod = __import__(module_name)
+	components = module_name.split('.')
+	for c in components[1:]:
+		mod = getattr(mod, c)
+	return getattr(mod, class_name)
+
+
 class Application():
 	debug = None
 
@@ -17,15 +25,8 @@ class Application():
 
 	def main(self):
 
-		def my_import(module, class_):
-			mod = __import__(module)
-			components = module.split('.')
-			for c in components[1:]:
-				mod = getattr(mod, c)
-			return getattr(mod, class_)
-
-		class_ = my_import('myapp.controller.data', "Data")
-		ccc = class_()
+		controller = _controller_dispatcher('myapp.controller.data', "Data")
+		ccc = controller()
 
 		response = Response()
 		response.body = ccc.run()
