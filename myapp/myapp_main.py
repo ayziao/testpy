@@ -21,6 +21,7 @@ def main():
 
 
 if __name__ == '__main__':
+	print(__name__)
 	settings.start_time = now
 	res = main()
 	print(res.headers)

@@ -3,7 +3,6 @@
 """
 import sys
 import resource
-from io import StringIO
 from pprint import pprint
 from datetime import datetime
 
@@ -15,25 +14,38 @@ class Debug:
 	# デバッグ用
 	"""
 
-	@staticmethod
-	def print():
-		stdout = StringIO()
-		pprint({'arg': sys.argv}, stream=stdout)
+	def __init__(self):
+		self.list = []
+
+	def append_message(self, name, obj):
+		if name == '':
+			self.list.append(obj)
+		else:
+			self.list.append({name: obj})
+
+
+	def collect(self):
+		now = datetime.utcnow()
+		self.append_message('debug', settings.get_ini('application')['debug'])
+		self.append_message('arg', sys.argv)
 		if settings.environ is not None:
 			if settings.environ['PATH_INFO'] != '/favicon.ico':
-				pprint(settings.environ, stream=stdout)
+				self.append_message('env', settings.environ)
 		ru = resource.getrusage(resource.RUSAGE_SELF)
-		print('memory : ' + str(ru.ru_maxrss), file=stdout)
-		now = datetime.utcnow()
-		dif = now - settings.start_time
+		self.append_message('memory', ru.ru_maxrss)
+		self.append_message('start_time', settings.start_time)
+		self.append_message('end_time', now)
+		self.append_message('dif', now - settings.start_time)
 
-		print(settings.start_time, file=stdout)
-		print(now, file=stdout)
-		print(dif, file=stdout)
-		val = stdout.getvalue().encode("utf-8")
 
-	#		print(val)
+	def print(self):
+		if settings.environ is None:
+			self.collect()
+			pprint(self.list)
+		elif settings.environ['PATH_INFO'] != '/favicon.ico':
+			self.collect()
+			pprint(self.list)
 
 
 if __name__ == '__main__':
-	Debug.print()
+	Debug().print()

@@ -32,7 +32,7 @@ class Application():
 
 		return response
 
-
+	#TODO HTML内に表示するようにする
 	def _debug_print(self):
 		if self.debug:
 			self.debug.print()
