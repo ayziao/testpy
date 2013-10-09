@@ -15,6 +15,6 @@ class Request():
 		self.system_command = ''  # システムコマンド
 		self.system_parameter = ''  # システムパラメータ
 		self.system_input = ''  # システム入力(コールバック関数？)
-		self.paging = ''
+		self.paging = None
 		self.controller_class_name = ''
 		self.method_name = ''

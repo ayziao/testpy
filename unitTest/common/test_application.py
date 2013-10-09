@@ -1,6 +1,7 @@
 import unittest
 
 from myapp.common.application import Application
+from myapp.common.request import Request
 
 
 class TestApplication(unittest.TestCase):
@@ -14,6 +15,10 @@ class TestApplication(unittest.TestCase):
 		ret = app.main()
 		self.assertEqual(ret.body, 'Hello world!')
 
+
+	def test_request_assemble(self):
+		req = Request()
+		self.assertEqual(req.extension, 'test')
 
 #メインリクエスト取得
 #リクエスト組み立て
