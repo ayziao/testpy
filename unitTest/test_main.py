@@ -3,10 +3,14 @@
 # PENDING 考えること
 
 # タスク
+# TODO debugクラスの単体テスト書く
+# TODO
+# TODO
+# TODO
+# TODO
 # PENDING	全体的な進め方
 # PENDING	準備
-# PENDING		webサーバどうにかする
-# PENDING		ストレージ検討 KVS RDB
+# PENDING		ストレージ検討 KVS RDB SQLite
 # PENDING		プラグインディレクトリ構成
 # PENDING		TwitterAPI関連調べる
 # PENDING	設計

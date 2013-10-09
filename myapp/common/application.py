@@ -13,16 +13,16 @@ def _controller_dispatcher(module_name, class_name):
 
 
 class Application():
-	debug = None
 
 	def __init__(self):
 		conf = settings.get_ini('application')
 		if conf['debug'] == 'true':
 			self.debug = Debug()
+		else:
+			self.debug = None
 
 
 	def main(self):
-
 		controller = _controller_dispatcher('myapp.controller.data', "Data")
 		ccc = controller()
 

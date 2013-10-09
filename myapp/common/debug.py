@@ -11,7 +11,7 @@ from myapp.common import settings
 
 class Debug:
 	"""
-	# デバッグ用 単体テストは書かない
+	# デバッグ用
 	"""
 
 	@staticmethod
@@ -21,7 +21,7 @@ class Debug:
 			'PATH_INFO'] != '/favicon.ico':
 			pprint(settings.environ)
 		ru = resource.getrusage(resource.RUSAGE_SELF)
-		print('メモリ : ' + str(ru.ru_maxrss))
+		print('memory : ' + str(ru.ru_maxrss))
 		now = datetime.utcnow()
 		dif = now - settings.start_time
 		print(settings.start_time)

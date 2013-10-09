@@ -1,6 +1,7 @@
 import unittest
 from myapp.common.response import Response
 
+# TODO __init__のテスト書く
 
 class TestResponse(unittest.TestCase):
 	def test_status_code_404(self):

@@ -1,9 +1,19 @@
+from datetime import datetime
+
+
 def my_import(module, class_):
 	mod = __import__(module)
 	components = module.split('.')
 	for c in components[1:]:
 		mod = getattr(mod, c)
 	return getattr(mod, class_)
+
+
+def count():  # PENDING プラグイン化
+	tstr = '2013-10-06 23:59:59'  # TODO 設定ファイルからとる
+	from_ = datetime.strptime(tstr, '%Y-%m-%d %H:%M:%S')
+	to = datetime.now()
+	return from_ - to
 
 
 #m = __import__('myapp.controller.data')
