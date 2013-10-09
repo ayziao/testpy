@@ -1,14 +1,6 @@
 from datetime import datetime
 
 
-def my_import(module, class_):
-	mod = __import__(module)
-	components = module.split('.')
-	for c in components[1:]:
-		mod = getattr(mod, c)
-	return getattr(mod, class_)
-
-
 def count():  # PENDING プラグイン化
 	tstr = '2013-10-06 23:59:59'  # TODO 設定ファイルからとる
 	from_ = datetime.strptime(tstr, '%Y-%m-%d %H:%M:%S')
@@ -19,9 +11,7 @@ def count():  # PENDING プラグイン化
 #m = __import__('myapp.controller.data')
 #m = __import__('myapp.controller.data')
 #mod = __import__('sys', {}, {}, [])
-class_ = my_import('myapp.controller.data', "Data")
-ccc = class_()
-print(dir(ccc))
+
 
 #mod = __import__('myapp.controller', globals(), locals(), ['data'], 0)
 #print(data)
@@ -44,13 +34,6 @@ print(dir(ccc))
 
 #m.controller.data.myfunc()
 
-#
-#print(sys.path)
-##path = os.path.dirname(os.path.abspath(__file__)) + '/../'
-#
-#pprint(globals())
-#
-#
 #def hoge():
 #	return 'piyo'
 #
@@ -60,10 +43,6 @@ print(dir(ccc))
 #
 #
 #if __name__ == '__main__':
-#	ini = configparser.ConfigParser()
-#	ini.read('ini.ini')
-#	pprint(ini['aaa']['bbb'])
-#	pprint(globals())
 #
 #	exit()
 #
@@ -126,11 +105,3 @@ print(dir(ccc))
 #
 #
 
-#ppp()
-#def debug_print(environ_):
-#	if environ_.get('debug') and environ_['debug']:
-#		now = datetime.utcnow()
-#		dif = now - settings.start_time
-#		pprint(settings.start_time)
-#		pprint(now)
-#		pprint(dif)
