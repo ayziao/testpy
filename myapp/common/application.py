@@ -13,7 +13,6 @@ def _controller_dispatcher(module_name, class_name):
 
 
 class Application():
-
 	def __init__(self):
 		conf = settings.get_ini('application')
 		if conf['debug'] == 'true':
