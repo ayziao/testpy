@@ -11,7 +11,7 @@ _status_messages = {
 }
 
 
-class Response(object):
+class Response():
 	"""
 	# レスポンス
 	"""

@@ -2,6 +2,8 @@ import sys
 import os
 from wsgiref import simple_server
 
+# PENDING 本番運用ではApacheとか使うのでこのファイルはテスト用なのでmyappから出す？
+
 path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
 sys.path.append(path)
 
