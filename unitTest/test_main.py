@@ -4,7 +4,7 @@
 
 # タスク
 # TODO debugクラスの単体テスト書く
-# TODO
+# TODO coverage.py調べる
 # TODO
 # TODO
 # TODO
