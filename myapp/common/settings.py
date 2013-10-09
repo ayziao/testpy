@@ -1,5 +1,7 @@
 """
 # myapp.common.settings
+#
+# 設定データ置き場(グローバル変数的なものとか)
 """
 
 from configparser import ConfigParser
