@@ -4,6 +4,10 @@ from myapp.common.application import Application
 
 
 class TestApplication(unittest.TestCase):
+	def test_init(self):
+		app = Application()
+		self.assertEqual(app.debug, None)
+
 	def test_main(self):
 		app = Application()
 		ret = app.main()

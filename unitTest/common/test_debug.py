@@ -3,7 +3,7 @@ from myapp.common.debug import Debug
 
 
 class TestDebug(unittest.TestCase):
-	def test_aaa(self):
+	def test_print(self):
 		d = Debug()
 		d.print()
 
