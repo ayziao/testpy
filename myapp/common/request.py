@@ -1,3 +1,10 @@
+"""
+# リクエストクラス
+#
+# HTTPリクエストに限らずコマンドラインからの実行でも使う
+"""
+
+
 class Request():
 	def __init__(self):
 		self.path = ''

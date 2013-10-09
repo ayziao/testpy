@@ -11,6 +11,7 @@ class TestRequest(unittest.TestCase):
 		res = Request()
 		self.assertEqual(res.extension, 'html')
 
+#PENDING 値のセットをApplicationでやるか自分で集めてくるか
 
 if __name__ == '__main__':
 	unittest.main()

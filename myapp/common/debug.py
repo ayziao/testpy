@@ -11,7 +11,7 @@ from myapp.common import settings
 
 class Debug:
 	"""
-	# デバッグ用 単体テストは書かない
+	# デバッグ用
 	"""
 
 	@staticmethod
