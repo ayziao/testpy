@@ -25,13 +25,6 @@
 # PENDING
 # PENDING
 # PENDING wsgi clientテストするか考える
-#def test_application(self):
-#	def st(aaa, bbb):
-#		pass
-#
-#	env = {'PATH_INFO': '/favicon.ico', 'debug': False}  # TODO デバッグ表示オフ機能つける
-#	ret = application(env, st)
-#	self.assertEqual(ret, [top_body.encode("utf-8")])
 
 
 import unittest

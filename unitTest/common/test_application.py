@@ -15,5 +15,11 @@ class TestApplication(unittest.TestCase):
 		self.assertEqual(ret.body, 'Hello world!')
 
 
+#メインリクエスト取得
+#リクエスト組み立て
+#リクエストプッシュ
+#アプリ実行
+#コントローラ選択
+
 if __name__ == '__main__':
 	unittest.main()

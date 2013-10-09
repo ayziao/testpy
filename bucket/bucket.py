@@ -7,6 +7,13 @@ def count():  # PENDING プラグイン化
 	to = datetime.now()
 	return from_ - to
 
+#def test_application(self):
+#	def st(aaa, bbb):
+#		pass
+#
+#	env = {'PATH_INFO': '/favicon.ico', 'debug': False}
+#	ret = application(env, st)
+#	self.assertEqual(ret, [top_body.encode("utf-8")])
 
 #m = __import__('myapp.controller.data')
 #m = __import__('myapp.controller.data')
