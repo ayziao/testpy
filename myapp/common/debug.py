@@ -30,4 +30,4 @@ class Debug:
 
 
 if __name__ == '__main__':
-	Debug().print()
+	Debug.print()
