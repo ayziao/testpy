@@ -7,6 +7,23 @@ def count():  # PENDING プラグイン化
 	to = datetime.now()
 	return from_ - to
 
+
+from importtest import piyo
+
+print(piyo.status_code)
+piyo.status_code = 123
+print(piyo.status_code)
+
+
+def aaa():
+	bbb = 0
+	return bbb
+
+
+aaa.bbb = 1
+
+aaa()
+
 #def test_application(self):
 #	def st(aaa, bbb):
 #		pass

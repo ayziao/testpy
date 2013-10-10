@@ -32,8 +32,10 @@ class Application():
 
 		return response
 
+
 	def assemble_request(self):
 		pass
+
 
 	#TODO HTML内に表示するようにする
 	def _debug_print(self):
