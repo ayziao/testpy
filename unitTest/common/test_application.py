@@ -16,7 +16,9 @@ class TestApplication(unittest.TestCase):
 		self.assertEqual(ret.body, 'Hello world!')
 
 
-	def test_request_assemble(self):
+	def test_assemble_request(self):
+		app = Application()
+		app.assemble_request()
 		req = Request()
 		self.assertEqual(req.extension, 'test')
 

@@ -16,6 +16,8 @@ class Debug:
 
 	def __init__(self):
 		self.list = []
+		self.append_message('debug', settings.get_ini('application')['debug'])
+
 
 	def append_message(self, name, obj):
 		if name == '':
@@ -26,7 +28,6 @@ class Debug:
 
 	def collect(self):
 		now = datetime.utcnow()
-		self.append_message('debug', settings.get_ini('application')['debug'])
 		self.append_message('arg', sys.argv)
 		if settings.environ is not None:
 			if settings.environ['PATH_INFO'] != '/favicon.ico':
