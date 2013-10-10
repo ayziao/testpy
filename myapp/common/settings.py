@@ -4,6 +4,7 @@
 # 設定データ置き場(グローバル変数的なものとか)
 """
 
+import sys
 from configparser import ConfigParser
 from datetime import datetime
 
@@ -11,6 +12,7 @@ config_path = '../config/'
 _ini = None  # 初期設定
 environ = None  # WSGIサーバから渡される情報
 start_time = datetime.utcnow()  # 処理開始日時
+arg = sys.argv  # コマンドライン引数
 
 
 def get_ini(section=None):

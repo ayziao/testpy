@@ -8,7 +8,7 @@ def count():  # PENDING プラグイン化
 	return from_ - to
 
 
-from importtest import piyo
+from bucket.importtest import piyo
 
 print(piyo.status_code)
 piyo.status_code = 123

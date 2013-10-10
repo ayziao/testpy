@@ -1,7 +1,6 @@
 """
 # myapp.common.debug
 """
-import sys
 import resource
 from pprint import pprint
 from datetime import datetime
@@ -28,7 +27,7 @@ class Debug:
 
 	def collect(self):
 		now = datetime.utcnow()
-		self.append_message('arg', sys.argv)
+		self.append_message('arg', settings.arg)
 		if settings.environ is not None:
 			if settings.environ['PATH_INFO'] != '/favicon.ico':
 				self.append_message('env', settings.environ)
