@@ -8,16 +8,27 @@
 ■未分類
 ●URI
 /mogemoge.html?hoge/piyo.muge=%7B%22fegege%22%3A%22ge%26gee%22%7D
+/pageTitle.html
+/pageID.html
+
+/2013?timeline
+/?account.login
+/?plugin/twitter.timeline
+/?plugin/twitter.usertimeline
+/?post
+
 
 /パス.出力形式?名前空間/クラス.メソッド={json}
 
-/名前空間/クラス が省略されていた場合 dataモデルとして呼び出す
+/名前空間/クラス が省略されていた場合 dataコントローラとして呼び出す
 
 /名前空間がpluginで始まってたらプラグインフォルダからインポート
 
 /パス.出力形式#名前空間/クラス.メソッド={json}
 
 /?名前空間/クラス.メソッド={json,パス}
+
+
 
 ●
 アプリケーション
