@@ -1,5 +1,8 @@
 [application]
 debug = false
+;debug = head  #HTTPHeader
+;debug = body  #ボディ内
+;debug = std  #標準出力
 
 
 

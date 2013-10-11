@@ -25,3 +25,5 @@ class TestDebug(unittest.TestCase):
 
 if __name__ == '__main__':
 	unittest.main()
+
+	#TODO ;debug = std  #標準出力

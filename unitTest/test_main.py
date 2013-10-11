@@ -3,7 +3,6 @@
 # PENDING 考えること
 
 # タスク
-# TODO debugクラスの単体テスト書く
 # TODO coverage.py調べる
 # TODO
 # TODO
@@ -35,9 +34,10 @@ path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(path)
 
 from myapp.common import settings
-from myapp.myapp_main import main
 
 settings.config_path = path + '/config/'
+
+from myapp.myapp_main import main
 
 top_body = 'Hello world!'  # PENDING パラメータなんもなしの時の表示考える
 

@@ -6,38 +6,38 @@ from myapp.common.debug import Debug
 from myapp.common import settings
 from myapp.common import utility
 
+debug = None
+
 
 def _controller_dispatcher(module_name, class_name):
 	mod = utility.import_(module_name)
 	return getattr(mod, class_name)
 
 
-class Application():
-	def __init__(self):
-		conf = settings.get_ini('application')
-		if conf['debug'] == 'true':
-			self.debug = Debug()
-		else:
-			self.debug = None
+#class Application():
+#	def __init__(self):
+conf = settings.get_ini('application')
+if conf['debug'] == 'true':
+	debug = Debug()
 
 
-	def main(self):
-		controller = _controller_dispatcher('myapp.controller.data', "Data")
-		ccc = controller()
+def main():
+	controller = _controller_dispatcher('myapp.controller.data', "Data")
+	ccc = controller()
 
-		response = Response()
-		response.body = ccc.run()
+	response = Response()
+	response.body = ccc.run()
 
-		self._debug_print()
+	_debug_print()
 
-		return response
-
-
-	def assemble_request(self):
-		pass
+	return response
 
 
-	#TODO HTML内に表示するようにする
-	def _debug_print(self):
-		if self.debug:
-			self.debug.print()
+def assemble_request():
+	pass
+
+
+#TODO HTML内に表示するようにする
+def _debug_print():
+	if debug:
+		debug.print()
