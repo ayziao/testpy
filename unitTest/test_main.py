@@ -5,17 +5,16 @@
 # タスク
 # TODO coverage.py調べる
 # TODO
-# TODO
-# TODO
 # PENDING	全体的な進め方
 # PENDING	準備
 # PENDING		ストレージ検討 KVS RDB SQLite
 # PENDING		プラグインディレクトリ構成
 # PENDING		TwitterAPI関連調べる
-# PENDING	設計
-# PENDING	単体テスト
-# PENDING	実装
+# PENDING	設計 やることコードに書く
+# PENDING	単体テスト 確認することテストコードに書く
+# PENDING	実装 単体テスト先に書く
 # PENDING	結合テスト
+# PENDING デプロイ方法 自動化？
 # PENDING
 # PENDING ユニットテストもコンソールから実行できるようにパス解決するか
 # PENDING myappディレクトリ以下を一切弄らずに設定は変えられるように 設定パスをmain.pyに引数で渡せるようにすべきか？
