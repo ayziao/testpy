@@ -8,7 +8,7 @@ path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
 sys.path.append(path)
 
 from myapp.common import settings
-from myapp.myapp_main import main
+from myapp.main import main
 
 
 def application(environ, start_response):

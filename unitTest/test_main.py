@@ -36,7 +36,7 @@ from myapp.common import settings
 
 settings.set_config_path(path + '/config/')
 
-from myapp.myapp_main import main
+from myapp.main import main
 
 top_body = 'Hello world!'  # PENDING パラメータなんもなしの時の表示考える
 
