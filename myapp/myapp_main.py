@@ -16,7 +16,6 @@ settings.config_path = path
 
 
 def main():
-	#app = Application()
 	return application.main()
 
 
