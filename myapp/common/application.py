@@ -20,12 +20,7 @@ def main():
 	controller_instance = _controller_dispatcher(req.controller_class_name)
 
 	response = Response()
-
-	try:
-		method = getattr(controller_instance, req.method_name)
-		response.body = method()
-	except AttributeError:
-		pass
+	response.body = _run_controller_method(controller_instance, req.method_name)
 
 	_debug_print()
 
@@ -54,6 +49,14 @@ def _assemble_main_request():
 	req.controller_class_name = 'Data'  # TODO 環境から取る
 	req.method_name = 'run'
 	return req
+
+
+def _run_controller_method(controller, method):
+	try:
+		m = getattr(controller, method)
+		return m()
+	except AttributeError:
+		return ''
 
 
 #TODO HTML内に表示するようにする
