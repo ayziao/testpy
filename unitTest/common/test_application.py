@@ -1,7 +1,7 @@
 import unittest
 
 from myapp.common import application
-from myapp.common.request import Request
+from myapp.controller.data import Data
 
 
 class TestApplication(unittest.TestCase):
@@ -9,11 +9,17 @@ class TestApplication(unittest.TestCase):
 		ret = application.main()
 		self.assertEqual(ret.body, 'Hello world!')
 
+	def test_assemble_main_request(self):
+		req = application._assemble_main_request()
+		self.assertEqual(req.controller_class_name, 'Data')
 
-	def test_assemble_request(self):
-		application.assemble_request()
-		req = Request()
-		self.assertEqual(req.extension, 'test')
+	def test_controller_dispatcher(self):
+		controller_instance = application._controller_dispatcher('Data')
+		self.assertTrue(isinstance(controller_instance, Data))
+
+	def test_controller_dispatcher_none(self):
+		controller_instance = application._controller_dispatcher('none')
+		self.assertIsNone(controller_instance)
 
 #メインリクエスト取得
 #リクエスト組み立て
