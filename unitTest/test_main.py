@@ -34,7 +34,7 @@ sys.path.append(path)
 
 from myapp.common import settings
 
-settings.config_path = path + '/config/'
+settings.set_config_path(path + '/config/')
 
 from myapp.myapp_main import main
 

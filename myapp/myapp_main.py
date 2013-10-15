@@ -9,10 +9,11 @@ path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
 sys.path.append(path)
 
 from myapp.common import settings
-from myapp.common import application
 
-path += '/config/'
-settings.config_path = path
+path += 'config/'
+settings.set_config_path(path)
+
+from myapp.common import application
 
 
 def main():

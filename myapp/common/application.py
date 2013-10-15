@@ -20,7 +20,12 @@ def main():
 	controller_instance = _controller_dispatcher(req.controller_class_name)
 
 	response = Response()
-	response.body = controller_instance.run()
+
+	try:
+		method = getattr(controller_instance, req.method_name)
+		response.body = method()
+	except AttributeError:
+		pass
 
 	_debug_print()
 
