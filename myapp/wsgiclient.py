@@ -10,9 +10,6 @@ sys.path.append(path)
 from myapp.common import settings
 from myapp.myapp_main import main
 
-path += '/config/'
-settings.config_path = path
-
 
 def application(environ, start_response):
 	"""
