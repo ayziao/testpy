@@ -19,12 +19,12 @@ def main():
 	req = _assemble_main_request()
 	controller_instance = _controller_dispatcher(req.controller_class_name)
 
-	response = Response()
-	response.body = _run_controller_method(controller_instance, req.method_name)
+	res = Response()
+	res.body = _run_controller_method(controller_instance, req.method_name)
 
 	_debug_print()
 
-	return response
+	return res
 
 
 def _controller_dispatcher(class_name):
@@ -38,6 +38,7 @@ def _controller_dispatcher(class_name):
 		class_object = getattr(mod, class_name)
 		return class_object()
 	except AttributeError:
+		# PENDING 404?
 		return None
 
 
@@ -56,6 +57,7 @@ def _run_controller_method(controller, method):
 		m = getattr(controller, method)
 		return m()
 	except AttributeError:
+		# PENDING 404?
 		return ''
 
 
