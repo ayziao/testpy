@@ -8,12 +8,6 @@ from myapp.common.response import Response
 
 from myapp.common.debug import Debug
 
-debug = None
-
-conf = settings.get_ini('application')
-if conf['debug'] == 'true':
-	debug = Debug()
-
 
 def main():
 	req = _assemble_main_request()
@@ -25,6 +19,17 @@ def main():
 	_debug_print()
 
 	return res
+
+
+#プライベート
+def _assemble_main_request():
+	"""
+	# メインリクエスト組み立て
+	"""
+	req = Request()
+	req.controller_class_name = 'Data'  # TODO 環境から取る
+	req.method_name = 'run'
+	return req
 
 
 def _controller_dispatcher(class_name):
@@ -42,17 +47,10 @@ def _controller_dispatcher(class_name):
 		return None
 
 
-def _assemble_main_request():
-	"""
-	# メインリクエスト組み立て
-	"""
-	req = Request()
-	req.controller_class_name = 'Data'  # TODO 環境から取る
-	req.method_name = 'run'
-	return req
-
-
 def _run_controller_method(controller, method):
+	"""
+	# メソッド実行
+	"""
 	try:
 		m = getattr(controller, method)
 		return m()
@@ -61,7 +59,19 @@ def _run_controller_method(controller, method):
 		return ''
 
 
+_debug = None
+
+
+def _debug_setting():
+	global _debug
+	conf = settings.get_ini('application')
+	if conf['debug'] == 'true':
+		_debug = Debug()
+
 #TODO HTML内に表示するようにする
 def _debug_print():
-	if debug:
-		debug.print()
+	if _debug:
+		_debug.print()
+
+
+_debug_setting()

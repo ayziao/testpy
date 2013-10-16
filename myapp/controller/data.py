@@ -6,8 +6,6 @@ class Data():
 	def __init__(self):
 		self.temp = 'Hello world!'
 
-
 	def run(self):
 		return self.temp
 
-	pass

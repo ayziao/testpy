@@ -17,15 +17,24 @@ class Debug:
 		self.list = []
 		self.append_message('debug', settings.get_ini('application')['debug'])
 
-
 	def append_message(self, name, obj):
 		if name == '':
 			self.list.append(obj)
 		else:
 			self.list.append({name: obj})
 
+	def print(self):
+		if not settings.environ is None \
+			and settings.environ['PATH_INFO'] == '/favicon.ico':
+			pass
+		else:
+			self._collect()
+			pprint(self.list)
+			self.__init__()
 
-	def collect(self):
+		#プライベート
+
+	def _collect(self):
 		now = datetime.utcnow()
 		self.append_message('arg', settings.arg)
 		if settings.environ is not None:
@@ -36,16 +45,6 @@ class Debug:
 		self.append_message('start_time', settings.start_time)
 		self.append_message('end_time', now)
 		self.append_message('dif', now - settings.start_time)
-
-
-	def print(self):
-		if settings.environ is None:
-			self.collect()
-			pprint(self.list)
-		elif settings.environ['PATH_INFO'] != '/favicon.ico':
-			self.collect()
-			pprint(self.list)
-
 
 if __name__ == '__main__':
 	Debug().print()

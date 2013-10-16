@@ -5,7 +5,7 @@ from myapp.common.debug import Debug
 class TestDebug(unittest.TestCase):
 	def test_collect(self):
 		d = Debug()
-		d.collect()
+		d._collect()
 		l = []
 		for v in d.list:
 			if 'memory' in v:
