@@ -1,28 +1,64 @@
-from datetime import datetime
+#from datetime import datetime
+
+b = {}
 
 
-def count():  # PENDING プラグイン化
-	tstr = '2013-10-06 23:59:59'  # TODO 設定ファイルからとる
-	from_ = datetime.strptime(tstr, '%Y-%m-%d %H:%M:%S')
-	to = datetime.now()
-	return from_ - to
+class Test():
+	def __init__(self):
+		pass
+
+	def __del__(self):
+		print('dell')
+		del b[id(self)]
+
+	@property
+	def status_code(self):
+		obj = b[id(self)]
+		return obj['status_code']
+
+	@status_code.setter
+	def status_code(self, val):
+		global b
+		obj = {}
+		obj['status_code'] = val
+		b[id(self)] = obj
 
 
-from bucket.importtest import piyo
+print(b)
+a = Test()
+a.hoge = 'piuo'
+a.status_code = 'gggg'
+print(b)
+print(vars(a))
+print(a.status_code)
+del a
+print(b)
 
-print(piyo.status_code)
-piyo.status_code = 123
-print(piyo.status_code)
 
-
-def aaa():
-	bbb = 0
-	return bbb
-
-
-aaa.bbb = 1
-
-aaa()
+#
+#
+#def count():  # PENDING プラグイン化
+#	tstr = '2013-10-06 23:59:59'  # TODO 設定ファイルからとる
+#	from_ = datetime.strptime(tstr, '%Y-%m-%d %H:%M:%S')
+#	to = datetime.now()
+#	return from_ - to
+#
+#
+#from bucket.importtest import piyo
+#
+#print(piyo.status_code)
+#piyo.status_code = 123
+#print(piyo.status_code)
+#
+#
+#def aaa():
+#	bbb = 0
+#	return bbb
+#
+#
+#aaa.bbb = 1
+#
+#aaa()
 
 #def test_application(self):
 #	def st(aaa, bbb):

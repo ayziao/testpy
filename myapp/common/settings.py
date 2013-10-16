@@ -43,9 +43,7 @@ def get_ini(section=None):
 def _get_ini_path():
 	if _config_path is None:
 		path = os.path.dirname(os.path.abspath(__file__))
-		path = path.replace('myapp/common', '')
-		path += 'config/setting.ini'
-		return path
+		return str(path.replace('myapp/common', '')) + 'config/setting.ini'
 	else:
 		return _config_path + 'setting.ini'
 
