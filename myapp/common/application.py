@@ -59,6 +59,7 @@ def _run_controller_method(controller, method):
 		return ''
 
 
+#デバッグ関連
 _debug = None
 
 
@@ -67,6 +68,7 @@ def _debug_setting():
 	conf = settings.get_ini('application')
 	if conf['debug'] == 'true':
 		_debug = Debug()
+
 
 #TODO HTML内に表示するようにする
 def _debug_print():

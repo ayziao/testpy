@@ -39,6 +39,7 @@ def get_ini(section=None):
 		return _ini[section]
 
 
+#プライベート
 def _get_ini_path():
 	if _config_path is None:
 		path = os.path.dirname(os.path.abspath(__file__))

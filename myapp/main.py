@@ -1,3 +1,6 @@
+"""
+# myapp.main
+"""
 from datetime import datetime
 
 now = datetime.utcnow()
@@ -17,6 +20,7 @@ def main():
 
 
 if __name__ == '__main__':
+	# PENDING コマンドラインで使うときやバッチで使うときのこと考える
 	print(__name__)
 	settings.start_time = now
 	res = main()

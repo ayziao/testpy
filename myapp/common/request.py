@@ -1,11 +1,15 @@
 """
-# リクエストクラス
-#
-# HTTPリクエストに限らずコマンドラインからの実行でも使う
+# myapp.common.request
 """
 
 
 class Request():
+	"""
+	# リクエスト
+	#
+	# HTTPリクエストに限らずコマンドラインからの実行でも使う
+	"""
+
 	def __init__(self):
 		self.path = ''
 		self.extension = 'html'  # 出力形式(拡張子)

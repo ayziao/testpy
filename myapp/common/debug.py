@@ -12,6 +12,7 @@ class Debug:
 	"""
 	# デバッグ用
 	"""
+	# PENDING クラスにする必要ある？
 
 	def __init__(self):
 		self.list = []
@@ -32,8 +33,7 @@ class Debug:
 			pprint(self.list)
 			self.__init__()
 
-		#プライベート
-
+	#プライベート
 	def _collect(self):
 		now = datetime.utcnow()
 		self.append_message('arg', settings.arg)
@@ -45,6 +45,7 @@ class Debug:
 		self.append_message('start_time', settings.start_time)
 		self.append_message('end_time', now)
 		self.append_message('dif', now - settings.start_time)
+
 
 if __name__ == '__main__':
 	Debug().print()

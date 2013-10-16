@@ -1,3 +1,7 @@
+"""
+# myapp.common.response
+"""
+
 _status_messages = {
 	200: ' OK',
 	302: ' Found',

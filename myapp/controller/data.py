@@ -1,3 +1,8 @@
+"""
+# myapp.controller.data
+"""
+
+
 class Data():
 	"""
 	# データコントローラ
