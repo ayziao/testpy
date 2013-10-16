@@ -8,6 +8,11 @@ class TestUtility(unittest.TestCase):
 		mod = utility.import_('myapp.common.debug')
 		self.assertEqual(mod, debug)
 
+	def test_view_dispatcher(self):
+		mod = utility.view_dispatcher('Hello')
+		ret = mod.view()
+		self.assertEqual(ret, 'Hello world!')
+
 
 if __name__ == '__main__':
 	unittest.main()

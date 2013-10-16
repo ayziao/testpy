@@ -23,3 +23,17 @@ def import_(module_name):
 	except (ImportError, AttributeError):
 		return None
 
+
+def view_dispatcher(class_name):
+	"""
+	# ビュー振り分け
+	"""
+	module_name = 'myapp.view.' + class_name.lower()
+	mod = import_(module_name)
+
+	try:
+		class_object = getattr(mod, class_name)
+		return class_object()
+	except AttributeError:
+		# PENDING 404?
+		return None
