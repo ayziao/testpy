@@ -4,7 +4,7 @@
 from myapp.common import settings
 from myapp.common import utility
 from myapp.common import request
-from myapp.common.response import Response
+from myapp.common import response
 
 from myapp.common.debug import Debug
 
@@ -16,7 +16,7 @@ def main():
 	req = _assemble_main_request()  # メインリクエスト取得
 	controller_instance = _controller_dispatcher(req.controller_class_name)  # コントローラ取得
 
-	res = Response()  # レスポンス組み立て
+	res = response.get_instance()
 	res.body = _run_controller_method(controller_instance, req.method_name)  # コントローラ実行
 
 	_debug_print()
@@ -24,7 +24,7 @@ def main():
 	return res
 
 
-def view_dispatcher(class_name):
+def view_dispatcher(class_name: str):
 	"""
 	# ビュー振り分け
 	@param class_name: クラス名
