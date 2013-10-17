@@ -18,7 +18,7 @@ class Debug:
 		self.list = []
 		self.append_message('debug', settings.get_ini('application')['debug'])
 
-	def append_message(self, name, obj):
+	def append_message(self, name: str, obj):
 		if name == '':
 			self.list.append(obj)
 		else:

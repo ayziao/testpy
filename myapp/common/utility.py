@@ -8,7 +8,7 @@
 """
 
 
-def import_(module_name):
+def import_(module_name: str) -> "module":
 	"""
 	# 動的インポート
 	@param module_name: モジュール名(myapplication.subdirectory.mymodule)

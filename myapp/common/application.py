@@ -24,7 +24,7 @@ def main():
 	return res
 
 
-def view_dispatcher(class_name: str):
+def view_dispatcher(class_name: str) -> "view class":
 	"""
 	# ビュー振り分け
 	@param class_name: クラス名
@@ -41,7 +41,7 @@ def view_dispatcher(class_name: str):
 
 
 #プライベート
-def _assemble_main_request():
+def _assemble_main_request() -> request.Request:
 	"""
 	# メインリクエスト組み立て
 	"""
@@ -51,7 +51,7 @@ def _assemble_main_request():
 	return req
 
 
-def _controller_dispatcher(class_name):
+def _controller_dispatcher(class_name: str) -> "controller class":
 	"""
 	# コントローラ振り分け
 	@param class_name:
@@ -67,7 +67,7 @@ def _controller_dispatcher(class_name):
 		return None
 
 
-def _run_controller_method(controller, method):
+def _run_controller_method(controller: str, method: str):
 	"""
 	# メソッド実行
 	@param controller:

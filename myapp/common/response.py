@@ -29,11 +29,11 @@ class Response():
 		self.body = ''
 
 	@property
-	def status_code(self):
+	def status_code(self) -> int:
 		return self.__status_code
 
 	@status_code.setter
-	def status_code(self, val):
+	def status_code(self, val: int):
 		self.status = str(val) + _status_messages.get(val)
 		self.__status_code = val
 
