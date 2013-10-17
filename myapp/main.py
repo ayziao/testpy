@@ -7,7 +7,10 @@ now = datetime.utcnow()
 
 import sys
 import os
+import io
 
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+sys.stdin = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
 sys.path.append(path)
 
