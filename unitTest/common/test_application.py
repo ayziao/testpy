@@ -31,6 +31,3 @@ if __name__ == '__main__':
 	unittest.main()
 
 
-
-	#TODO ;debug = head  #HTTPHeader
-	#TODO ;debug = body  #ボディ内

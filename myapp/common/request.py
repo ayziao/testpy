@@ -2,6 +2,8 @@
 # myapp.common.request
 """
 
+# スタックする
+#
 
 class Request():
 	"""

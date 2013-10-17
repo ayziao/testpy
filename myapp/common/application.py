@@ -14,10 +14,12 @@ def main():
 	# メイン
 	"""
 	req = _assemble_main_request()  # メインリクエスト取得
-	controller_instance = _controller_dispatcher(req.controller_class_name)  # コントローラ取得
+	controller_instance = _controller_dispatcher(
+		req.controller_class_name)  # コントローラ取得
 
 	res = Response()  # レスポンス組み立て
-	res.body = _run_controller_method(controller_instance, req.method_name)  # コントローラ実行
+	res.body = _run_controller_method(controller_instance,
+																		req.method_name)  # コントローラ実行
 
 	_debug_print()
 
@@ -74,6 +76,9 @@ def _debug_setting():
 
 
 #TODO HTML内に表示するようにする
+#TODO ;debug = head  #HTTPHeader
+#TODO ;debug = body  #ボディ内
+#TODO ;debug = std 現状
 def _debug_print():
 	if _debug:
 		_debug.print()
