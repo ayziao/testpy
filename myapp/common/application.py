@@ -3,7 +3,7 @@
 """
 from myapp.common import settings
 from myapp.common import utility
-from myapp.common.request import Request
+from myapp.common import request
 from myapp.common.response import Response
 
 from myapp.common.debug import Debug
@@ -45,7 +45,7 @@ def _assemble_main_request():
 	"""
 	# メインリクエスト組み立て
 	"""
-	req = Request()
+	req = request.get_instance()
 	req.controller_class_name = 'Data'  # TODO 環境から取る
 	req.method_name = 'run'
 	return req

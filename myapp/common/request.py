@@ -2,8 +2,8 @@
 # myapp.common.request
 """
 
-# TODO スタックする
-# TODO POPする
+_instance = []
+
 
 class Request():
 	"""
@@ -24,3 +24,33 @@ class Request():
 		self.paging = None
 		self.controller_class_name = ''
 		self.method_name = ''
+
+
+def get_instance() -> Request:
+	"""
+	# 最新のスタックを返す 空なら作ってセット
+	"""
+	if not _instance:
+		_instance.append(Request())
+
+	return _instance[-1]
+
+
+def create_instance() -> Request:
+	"""
+	# 新しくスタック積んで返す
+	"""
+	_instance.append(Request())
+
+	return _instance[-1]
+
+
+def pop_instance() -> Request:
+	"""
+	# 最新のスタックを取り出して返す
+	"""
+	if _instance:
+		return _instance.pop()
+	else:
+		return None
+
