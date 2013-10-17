@@ -9,6 +9,15 @@ class TestApplication(unittest.TestCase):
 		ret = application.main()
 		self.assertEqual(ret.body, 'Hello world!')
 
+	def test_view_dispatcher(self):
+		view_instance = application.view_dispatcher('Hello')
+		ret = view_instance.view()
+		self.assertEqual(ret, 'Hello world!')
+
+	def test_view_dispatcher_none(self):
+		view_instance = application.view_dispatcher('none')
+		self.assertIsNone(view_instance)
+
 	def test_assemble_main_request(self):
 		req = application._assemble_main_request()
 		self.assertEqual(req.controller_class_name, 'Data')

@@ -4,12 +4,14 @@
 # ユーティリティ
 #
 # Pythonのめんどくさいとこ簡単にするのとか
+# アプリケーションに依存しないもの
 """
 
 
 def import_(module_name):
 	"""
 	# 動的インポート
+	@param module_name: モジュール名(myapplication.subdirectory.mymodule)
 	"""
 	try:
 
@@ -23,17 +25,3 @@ def import_(module_name):
 	except (ImportError, AttributeError):
 		return None
 
-
-def view_dispatcher(class_name):
-	"""
-	# ビュー振り分け
-	"""
-	module_name = 'myapp.view.' + class_name.lower()  # PENDING 名前空間を動的に取る？
-	mod = import_(module_name)
-
-	try:
-		class_object = getattr(mod, class_name)
-		return class_object()
-	except AttributeError:
-		# PENDING 404?
-		return None

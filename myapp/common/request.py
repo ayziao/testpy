@@ -2,8 +2,8 @@
 # myapp.common.request
 """
 
-# スタックする
-#
+# TODO スタックする
+# TODO POPする
 
 class Request():
 	"""

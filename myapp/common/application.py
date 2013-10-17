@@ -14,16 +14,30 @@ def main():
 	# メイン
 	"""
 	req = _assemble_main_request()  # メインリクエスト取得
-	controller_instance = _controller_dispatcher(
-		req.controller_class_name)  # コントローラ取得
+	controller_instance = _controller_dispatcher(req.controller_class_name)  # コントローラ取得
 
 	res = Response()  # レスポンス組み立て
-	res.body = _run_controller_method(controller_instance,
-																		req.method_name)  # コントローラ実行
+	res.body = _run_controller_method(controller_instance, req.method_name)  # コントローラ実行
 
 	_debug_print()
 
 	return res
+
+
+def view_dispatcher(class_name):
+	"""
+	# ビュー振り分け
+	@param class_name: クラス名
+	"""
+	module_name = 'myapp.view.' + class_name.lower()  # PENDING 名前空間を動的に取る？
+	mod = utility.import_(module_name)
+
+	try:
+		class_object = getattr(mod, class_name)
+		return class_object()
+	except AttributeError:
+		# PENDING 404?
+		return None
 
 
 #プライベート
@@ -40,6 +54,7 @@ def _assemble_main_request():
 def _controller_dispatcher(class_name):
 	"""
 	# コントローラ振り分け
+	@param class_name:
 	"""
 	module_name = 'myapp.controller.' + class_name.lower()
 	mod = utility.import_(module_name)
@@ -55,6 +70,8 @@ def _controller_dispatcher(class_name):
 def _run_controller_method(controller, method):
 	"""
 	# メソッド実行
+	@param controller:
+	@param method:
 	"""
 	try:
 		m = getattr(controller, method)

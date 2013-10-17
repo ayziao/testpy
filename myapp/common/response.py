@@ -2,6 +2,9 @@
 # myapp.common.response
 """
 
+# TODO スタックする
+# TODO POPする
+
 _status_messages = {
 	200: ' OK',
 	302: ' Found',
