@@ -15,6 +15,8 @@ from myapp.common import settings
 from myapp.main import main
 
 
+# PENDING セッションとかwebサーバのあれこれの処理はここでやる？
+
 def application(environ, start_response):
 	"""
 	# WSGI application

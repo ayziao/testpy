@@ -10,11 +10,14 @@ from myapp.common.debug import Debug
 
 
 def main():
-	req = _assemble_main_request()
-	controller_instance = _controller_dispatcher(req.controller_class_name)
+	"""
+	# メイン
+	"""
+	req = _assemble_main_request()  # メインリクエスト取得
+	controller_instance = _controller_dispatcher(req.controller_class_name)  # コントローラ取得
 
-	res = Response()
-	res.body = _run_controller_method(controller_instance, req.method_name)
+	res = Response()  # レスポンス組み立て
+	res.body = _run_controller_method(controller_instance, req.method_name)  # コントローラ実行
 
 	_debug_print()
 
