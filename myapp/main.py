@@ -9,12 +9,16 @@ import sys
 import os
 import io
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-sys.stdin = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
 sys.path.append(path)
 
 from myapp.common import settings
+
+sys_ini = settings.get_ini('system')
+if not sys_ini is None and sys_ini['text_encoding']:
+	sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
+	sys.stdin = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
+
 from myapp.common import application
 
 

@@ -25,7 +25,7 @@ def set_config_path(config_path: str):
 		_config_path = config_path
 
 
-def get_ini(section:str=None) -> ConfigParser:
+def get_ini(section: str=None) -> ConfigParser:
 	"""
 	# 初期設定取得(セクション別取得)
 	"""
@@ -36,7 +36,10 @@ def get_ini(section:str=None) -> ConfigParser:
 	if section is None:
 		return _ini
 	else:
-		return _ini[section]
+		try:
+			return _ini[section]
+		except KeyError:
+			return None
 
 
 #プライベート

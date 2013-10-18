@@ -24,4 +24,3 @@ def import_(module_name: str) -> "module":
 
 	except (ImportError, AttributeError):
 		return None
-
