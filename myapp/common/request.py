@@ -12,7 +12,7 @@ class Request():
 	# HTTPリクエストに限らずコマンドラインからの実行でも使う
 	"""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		self.path = ''
 		self.extension = 'html'  # 出力形式(拡張子)
 		self.command = ''  # ユーザーコマンド

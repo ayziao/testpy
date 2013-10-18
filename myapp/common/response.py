@@ -22,7 +22,10 @@ class Response():
 	# レスポンス
 	"""
 
-	def __init__(self):
+	def __init__(self) -> None:
+		"""
+		# 初期化
+		"""
 		self.__status_code = 0
 		self.status = '200 OK'
 		self.headers = [('Content-Type', 'text/plain; charset=utf-8')]
@@ -33,7 +36,7 @@ class Response():
 		return self.__status_code
 
 	@status_code.setter
-	def status_code(self, val: int):
+	def status_code(self, val: int) -> None:
 		self.status = str(val) + _status_messages.get(val)
 		self.__status_code = val
 

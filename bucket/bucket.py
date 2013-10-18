@@ -1,5 +1,15 @@
 #from datetime import datetime
 
+def aaa():
+	return aaa
+	pass
+
+
+x = aaa()
+
+print(x)
+exit()
+
 b = {}
 
 

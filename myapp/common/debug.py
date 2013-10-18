@@ -14,17 +14,17 @@ class Debug:
 	"""
 	# PENDING クラスにする必要ある？
 
-	def __init__(self):
+	def __init__(self) -> None:
 		self.list = []
 		self.append_message('debug', settings.get_ini('application')['debug'])
 
-	def append_message(self, name: str, obj):
+	def append_message(self, name: str, obj) -> None:
 		if name == '':
 			self.list.append(obj)
 		else:
 			self.list.append({name: obj})
 
-	def print(self):
+	def print(self) -> None:
 		if not settings.environ is None \
 			and settings.environ['PATH_INFO'] == '/favicon.ico':
 			pass
@@ -34,7 +34,7 @@ class Debug:
 			self.__init__()
 
 	#プライベート
-	def _collect(self):
+	def _collect(self) -> None:
 		now = datetime.utcnow()
 		self.append_message('arg', settings.arg)
 		if settings.environ is not None:

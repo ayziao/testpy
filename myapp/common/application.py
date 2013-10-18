@@ -9,7 +9,7 @@ from myapp.common import response
 from myapp.common.debug import Debug
 
 
-def main():
+def main() -> response.Response:
 	"""
 	# メイン
 	"""
@@ -67,7 +67,7 @@ def _controller_dispatcher(class_name: str) -> "controller class":
 		return None
 
 
-def _run_controller_method(controller: str, method: str):
+def _run_controller_method(controller: str, method: str) -> "method":
 	"""
 	# メソッド実行
 	@param controller:
@@ -85,7 +85,7 @@ def _run_controller_method(controller: str, method: str):
 _debug = None
 
 
-def _debug_setting():
+def _debug_setting() -> None:
 	global _debug
 	conf = settings.get_ini('application')
 	if conf['debug'] == 'true':
@@ -96,7 +96,7 @@ def _debug_setting():
 #TODO ;debug = head  #HTTPHeader
 #TODO ;debug = body  #ボディ内
 #TODO ;debug = std 現状
-def _debug_print():
+def _debug_print() -> None:
 	if _debug:
 		_debug.print()
 
