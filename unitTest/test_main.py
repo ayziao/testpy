@@ -20,7 +20,7 @@
 # PENDING myappディレクトリ以下を一切弄らずに設定は変えられるように 設定パスをmain.pyに引数で渡せるようにすべきか？
 # PENDING mysql使う前にSQLiteやる？
 # PENDING テンプレートエンジン使うか全部DOM操作でやるか
-# PENDING
+# PENDING loggingモジュール調べる
 # PENDING
 # PENDING wsgi clientテストするか考える
 
