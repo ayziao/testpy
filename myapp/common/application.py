@@ -1,4 +1,6 @@
 """
+# アプリケーション共通
+#
 # myapp.common.application
 """
 from myapp.common import settings
