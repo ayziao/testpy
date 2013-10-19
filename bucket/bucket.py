@@ -1,4 +1,18 @@
-#from datetime import datetime
+from datetime import datetime
+from myapp.common import settings
+
+
+def count():  # PENDING プラグイン化
+	a = settings.get_ini('count')
+
+	tstr = a['to_time_str']  # TODO 設定ファイルからとる
+	to = datetime.strptime(tstr, '%Y-%m-%d %H:%M:%S')
+	from_ = datetime.now()
+	return to - from_
+
+
+print(count())
+
 
 def aaa():
 	return aaa
@@ -45,13 +59,6 @@ del a
 print(b)
 
 
-#
-#
-#def count():  # PENDING プラグイン化
-#	tstr = '2013-10-06 23:59:59'  # TODO 設定ファイルからとる
-#	from_ = datetime.strptime(tstr, '%Y-%m-%d %H:%M:%S')
-#	to = datetime.now()
-#	return from_ - to
 #
 #
 #from bucket.importtest import piyo
