@@ -5,7 +5,7 @@ from myapp.common import settings
 def count():  # PENDING プラグイン化
 	a = settings.get_ini('count')
 
-	tstr = a['to_time_str']  # TODO 設定ファイルからとる
+	tstr = a['to_time_str']
 	to = datetime.strptime(tstr, '%Y-%m-%d %H:%M:%S')
 	from_ = datetime.now()
 	return to - from_
