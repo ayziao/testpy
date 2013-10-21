@@ -15,15 +15,26 @@ def main() -> response.Response:
 	"""
 	# メイン
 	"""
-	req = _assemble_main_request()  # メインリクエスト取得
-	controller_instance = _controller_dispatcher(req.controller_class_name)  # コントローラ取得
+	_debug_setting()
 
-	res = response.get_instance()
-	res.body = _run_controller_method(controller_instance, req.method_name)  # コントローラ実行
+	_assemble_main_request()  # メインリクエスト組み立て
+	run()
+
+	res = response.pop_instance()
+
+	#TODO エラー処理
 
 	_debug_print()
 
 	return res
+
+
+def run():
+	req = request.get_instance()
+	controller_instance = _controller_dispatcher(req.controller_class_name)  # コントローラ取得
+
+	res = response.create_instance()
+	res.body = _run_controller_method(controller_instance, req.method_name)  # コントローラ実行
 
 
 def view_dispatcher(class_name: str) -> "view class":
@@ -103,4 +114,3 @@ def _debug_print() -> None:
 		_debug.print()
 
 
-_debug_setting()

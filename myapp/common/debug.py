@@ -1,4 +1,6 @@
 """
+# デバッグ
+#
 # myapp.common.debug
 """
 import resource
