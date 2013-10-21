@@ -12,6 +12,9 @@ path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
 sys.path.append(path)
 
 from myapp.common import settings
+
+settings.setting_encode()
+
 from myapp.main import main
 
 

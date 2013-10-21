@@ -6,6 +6,7 @@
 
 import sys
 import os
+import io
 from configparser import ConfigParser
 from datetime import datetime
 
@@ -42,6 +43,16 @@ def get_ini(section: str=None) -> ConfigParser:
 			return None
 
 
+def setting_encode():
+	"""
+	@return:
+	"""
+	sys_ini = get_ini('system')
+	if not sys_ini is None and sys_ini['text_encoding']:
+		sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
+		sys.stdin = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
+
+
 #プライベート
 def _get_ini_path() -> str:
 	if _config_path is None:
@@ -49,4 +60,8 @@ def _get_ini_path() -> str:
 		return str(path.replace('myapp/common', '')) + 'config/setting.ini'
 	else:
 		return _config_path + 'setting.ini'
+
+
+
+
 

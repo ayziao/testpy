@@ -35,6 +35,7 @@ sys.path.append(path)
 from myapp.common import settings
 
 settings.set_config_path(path + '/config/')
+settings.setting_encode()
 
 from myapp.main import main
 
