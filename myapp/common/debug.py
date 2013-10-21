@@ -4,7 +4,7 @@
 # myapp.common.debug
 """
 import resource
-from pprint import pprint
+import pprint as p
 from datetime import datetime
 
 from myapp.common import settings
@@ -32,8 +32,19 @@ class Debug:
 			pass
 		else:
 			self._collect()
-			pprint(self.list)
+			p.pprint(self.list)
 			self.__init__()
+
+	def list_to_str(self) -> None:
+		if not settings.environ is None \
+			and settings.environ['PATH_INFO'] == '/favicon.ico':
+			pass
+		else:
+			self._collect()
+			pf = p.pformat(self.list)
+			self.__init__()
+			return pf
+
 
 	#プライベート
 	def _collect(self) -> None:

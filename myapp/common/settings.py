@@ -6,7 +6,6 @@
 
 import sys
 import os
-import io
 from configparser import ConfigParser
 from datetime import datetime
 
@@ -51,8 +50,12 @@ def setting_encode():
 	global _encode_set
 	sys_ini = get_ini('system')
 	if not sys_ini is None and sys_ini['text_encoding'] and _encode_set is False:
-		sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
-		sys.stdin = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
+		#TODO バッファどうにかする
+		#sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
+		#sys.stdin = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
+		sys.stdin = open(sys.stdin.fileno(), 'r', encoding=sys_ini['text_encoding'])
+		sys.stdout = open(sys.stdout.fileno(), 'w', encoding=sys_ini['text_encoding'])
+		#sys.stderr = open(sys.stderr.fileno(), 'w', encoding=sys_ini['text_encoding'])
 		_encode_set = True
 
 
@@ -63,4 +66,5 @@ def _get_ini_path() -> str:
 		return str(path.replace('myapp/common', '')) + 'config/setting.ini'
 	else:
 		return _config_path + 'setting.ini'
+
 

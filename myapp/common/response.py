@@ -5,15 +5,15 @@
 _instance = []
 
 _status_messages = {
-	200: ' OK',
-	302: ' Found',
-	303: ' See Other',
-	304: ' Not Modified',
-	307: ' Temporary Redirect',
-	400: ' Bad Request',
-	403: ' Forbidden',
-	404: ' Not Found',
-	500: ' Internal Server Error',
+200: ' OK',
+302: ' Found',
+303: ' See Other',
+304: ' Not Modified',
+307: ' Temporary Redirect',
+400: ' Bad Request',
+403: ' Forbidden',
+404: ' Not Found',
+500: ' Internal Server Error',
 }
 
 
@@ -28,7 +28,8 @@ class Response():
 		"""
 		self.__status_code = 0
 		self.status = '200 OK'
-		self.headers = [('Content-Type', 'text/plain; charset=utf-8')]
+		#self.headers = [('Content-Type', 'text/plain; charset=utf-8')]
+		self.headers = [('Content-Type', 'text/html; charset=utf-8')]
 		self.body = ''
 
 	@property

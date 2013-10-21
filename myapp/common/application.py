@@ -20,7 +20,7 @@ def main() -> response.Response:
 	_assemble_main_request()  # メインリクエスト組み立て
 	run()
 
-	res = response.pop_instance()
+	res = response.get_instance()
 
 	#TODO エラー処理
 
@@ -101,16 +101,20 @@ _debug = None
 def _debug_setting() -> None:
 	global _debug
 	conf = settings.get_ini('application')
-	if conf['debug'] == 'true':
+	if conf['debug'] and conf['debug'] != 'false':
 		_debug = Debug()
 
 
-#TODO HTML内に表示するようにする
-#TODO ;debug = head  #HTTPHeader
-#TODO ;debug = body  #ボディ内
-#TODO ;debug = std 現状
 def _debug_print() -> None:
 	if _debug:
-		_debug.print()
+		conf = settings.get_ini('application')
+		if conf['debug'] == 'body':
+			res = response.get_instance()
+			str_ = _debug.list_to_str()
+			res.body += "\n<hr><pre>\n" + str(str_) + "</pre>"
+		else:
+			_debug.print()
+
+		# TODO ;debug = head  #HTTPHeader
 
 
