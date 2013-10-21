@@ -110,10 +110,15 @@ def _debug_print() -> None:
 		conf = settings.get_ini('application')
 		if conf['debug'] == 'head':
 			res = response.get_instance()
-			str_ = _debug.list_to_str()
-			res.headers.append(('X-DEBUG-PRINT', str_))
+			list_ = _debug.get_list()
+			if list_:
+				index = 0
+				for key_, item_ in list_.items():
+					index += 1
+					res.headers.append(('X-DEBUG-PRINT' + str(index).zfill(2) + '-' + key_, item_))
 		elif conf['debug'] == 'body':
 			res = response.get_instance()
+
 			str_ = _debug.list_to_str()
 			res.body += "\n<hr><pre>\n" + str(str_) + "</pre>"
 		else:

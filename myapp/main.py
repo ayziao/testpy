@@ -2,6 +2,7 @@
 # myapp.main
 """
 from datetime import datetime
+import pprint as p
 
 now = datetime.utcnow()
 
@@ -19,6 +20,10 @@ from myapp.common import application
 
 
 def main():
+	"""
+	# 共通アプリケーションのメイン呼ぶだけ
+	@return:
+	"""
 	return application.main()
 
 
@@ -27,6 +32,6 @@ if __name__ == '__main__':
 	print(__name__)
 	settings.start_time = now
 	res = main()
-	print(res.headers)
+	p.pprint(res.headers)
 	print(res.status)
 	print(res.body)

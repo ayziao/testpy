@@ -6,6 +6,7 @@
 import resource
 import pprint as p
 from datetime import datetime
+from collections import OrderedDict
 
 from myapp.common import settings
 
@@ -17,14 +18,17 @@ class Debug:
 	# PENDING クラスにする必要ある？
 
 	def __init__(self) -> None:
-		self.list = []
+		self.list = OrderedDict()
 		self.append_message('debug', settings.get_ini('application')['debug'])
 
 	def append_message(self, name: str, obj) -> None:
-		if name == '':
-			self.list.append(obj)
-		else:
-			self.list.append({name: obj})
+		"""
+		# デバッグメッセージを追加
+		@param name: 辞書に入れる名前
+		@param obj: なんでも
+		@return:
+		"""
+		self.list[name] = obj
 
 	def print(self) -> None:
 		if not settings.environ is None \
@@ -46,7 +50,27 @@ class Debug:
 			return pf
 
 
-	#プライベート
+	def _dict_format(self, dict_: OrderedDict) -> OrderedDict:
+		ddd = OrderedDict()
+		for key_, item_ in dict_.items():
+			if isinstance(item_, dict) or isinstance(item_, OrderedDict):
+				ddd.update(self._dict_format(item_))
+			else:
+				ddd[key_] = p.pformat(item_)
+		return ddd
+
+
+	def get_list(self) -> None:
+		if not settings.environ is None \
+			and settings.environ['PATH_INFO'] == '/favicon.ico':
+			return None
+		else:
+			self._collect()
+			out_list = self._dict_format(self.list)
+			self.__init__()
+			return out_list
+
+
 	def _collect(self) -> None:
 		now = datetime.utcnow()
 		self.append_message('arg', settings.arg)

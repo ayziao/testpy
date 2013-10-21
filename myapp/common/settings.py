@@ -20,6 +20,7 @@ _encode_set = False
 def set_config_path(config_path: str):
 	"""
 	# 設定ファイルの位置変えるなら一番最初に呼ばれるpyファイルでこれ実行しておこう
+	@param config_path: str
 	"""
 	global _config_path
 	if _config_path is None:

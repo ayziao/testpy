@@ -20,11 +20,13 @@ from myapp.main import main
 
 # PENDING セッションとかwebサーバのあれこれの処理はここでやる？
 
-def application(environ, start_response):
+def application(environ: 'aaa', start_response):
 	"""
 	# WSGI application
 	#
 	# WSGIサーバから呼ばれるところ
+	@param environ:
+	@param start_response:
 	"""
 	settings.start_time = datetime.utcnow()
 	settings.environ = environ
