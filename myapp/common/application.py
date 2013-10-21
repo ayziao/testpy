@@ -109,21 +109,26 @@ def _debug_print() -> None:
 	if _debug:
 		conf = settings.get_ini('application')
 		if conf['debug'] == 'head':
-			res = response.get_instance()
-			list_ = _debug.get_list()
-			if list_:
-				index = 0
-				for key_, item_ in list_.items():
-					index += 1
-					res.headers.append(('X-DEBUG-PRINT' + str(index).zfill(2) + '-' + key_, item_))
+			_debug_print_head(_debug)
 		elif conf['debug'] == 'body':
-			res = response.get_instance()
-
-			str_ = _debug.list_to_str()
-			res.body += "\n<hr><pre>\n" + str(str_) + "</pre>"
+			_debug_print_body(_debug)
 		else:
 			_debug.print()
 
-		# TODO ;debug = head  #HTTPHeader
+
+def _debug_print_head(debug_: Debug) -> None:
+	res = response.get_instance()
+	list_ = debug_.message_to_http_head('X-DEBUG')
+	if list_:
+		for key_, item_ in list_.items():
+			res.headers.append((key_, item_))
+
+
+def _debug_print_body(debug_: Debug) -> None:
+	res = response.get_instance()
+	str_ = debug_.messages_to_str()
+	res.body += "\n<hr><pre>\n" + str(str_) + "</pre>"
+
+# TODO ;debug = head  #HTTPHeader
 
 

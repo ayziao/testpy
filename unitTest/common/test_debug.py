@@ -7,7 +7,7 @@ class TestDebug(unittest.TestCase):
 		d = Debug()
 		d._collect()
 		l = []
-		for v in d.list:
+		for v in d.messages:
 			if 'memory' in v:
 				l.append('memory')
 			if 'start_time' in v:
@@ -26,4 +26,3 @@ class TestDebug(unittest.TestCase):
 if __name__ == '__main__':
 	unittest.main()
 
-	#TODO ;debug = std  #標準出力
