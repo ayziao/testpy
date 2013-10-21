@@ -96,7 +96,7 @@ def _run_controller_method(controller: str, method: str) -> "method":
 
 #デバッグ関連
 _debug = None
-
+#todo debugクラスをmoduleにする
 
 def _debug_setting() -> None:
 	global _debug
@@ -104,6 +104,7 @@ def _debug_setting() -> None:
 	if conf['debug'] and conf['debug'] != 'false':
 		_debug = Debug()
 
+#todo ↓をdebugモジュールに移動する
 
 def _debug_print() -> None:
 	if _debug:
@@ -130,5 +131,6 @@ def _debug_print_body(debug_: Debug) -> None:
 	res.body += "\n<hr><pre>\n" + str(str_) + "</pre>"
 
 # TODO ;debug = head  #HTTPHeader
+# TODO ;debug = context  #CLIならbody webならHeader
 
 
