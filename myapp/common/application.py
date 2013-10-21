@@ -108,7 +108,11 @@ def _debug_setting() -> None:
 def _debug_print() -> None:
 	if _debug:
 		conf = settings.get_ini('application')
-		if conf['debug'] == 'body':
+		if conf['debug'] == 'head':
+			res = response.get_instance()
+			str_ = _debug.list_to_str()
+			res.headers.append(('X-DEBUG-PRINT', str_))
+		elif conf['debug'] == 'body':
 			res = response.get_instance()
 			str_ = _debug.list_to_str()
 			res.body += "\n<hr><pre>\n" + str(str_) + "</pre>"
