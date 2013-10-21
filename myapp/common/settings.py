@@ -15,6 +15,7 @@ _ini = None  # 初期設定
 environ = None  # WSGIサーバから渡される情報
 start_time = datetime.utcnow()  # 処理開始日時
 arg = sys.argv  # コマンドライン引数
+_encode_set = False
 
 
 def set_config_path(config_path: str):
@@ -47,10 +48,12 @@ def setting_encode():
 	"""
 	@return:
 	"""
+	global _encode_set
 	sys_ini = get_ini('system')
-	if not sys_ini is None and sys_ini['text_encoding']:
+	if not sys_ini is None and sys_ini['text_encoding'] and _encode_set is False:
 		sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
 		sys.stdin = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
+		_encode_set = True
 
 
 #プライベート
@@ -60,8 +63,4 @@ def _get_ini_path() -> str:
 		return str(path.replace('myapp/common', '')) + 'config/setting.ini'
 	else:
 		return _config_path + 'setting.ini'
-
-
-
-
 
