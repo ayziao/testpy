@@ -121,3 +121,6 @@ administrator admin root ユーザーログインからはログイン不可
 ●CIサービス使う
 https://travis-ci.org/ayziao/testpy
 [![Build Status](https://travis-ci.org/ayziao/testpy.png?branch=master)](https://travis-ci.org/ayziao/testpy)
+
+カバレッジ #TODO
+https://coveralls.io/docs/python
