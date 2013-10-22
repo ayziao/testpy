@@ -33,6 +33,7 @@ from pprint import pprint
 
 path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(path.rstrip('/unitTest'))
+sys.path.append(path.rstrip('/unitTest') + '/myapp')
 pprint(sys.path)
 
 from myapp.common import settings
