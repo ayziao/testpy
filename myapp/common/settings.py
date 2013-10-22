@@ -36,7 +36,11 @@ def get_ini(section: str=None) -> ConfigParser:
 	global _ini
 	if _ini is None:
 		_ini = ConfigParser()
-		_ini.read(_get_ini_path())
+
+		if os.path.exists(_get_ini_path()):
+			_ini.read(_get_ini_path())
+		else:
+			_ini.read(_get_ini_path() + '.sample')
 	if section is None:
 		return _ini
 	else:
