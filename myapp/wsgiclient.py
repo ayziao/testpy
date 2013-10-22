@@ -20,7 +20,7 @@ from myapp.main import main
 
 # PENDING セッションとかwebサーバのあれこれの処理はここでやる？
 
-def application(environ: 'aaa', start_response):
+def application(environ: '環境変数', start_response):
 	"""
 	# WSGI application
 	#
@@ -28,8 +28,13 @@ def application(environ: 'aaa', start_response):
 	@param environ:
 	@param start_response:
 	"""
-	settings.start_time = datetime.utcnow()
-	settings.environ = environ
-	response = main()
-	start_response(response.status, response.headers)
-	return [response.body.encode("utf-8")]
+	if environ['PATH_INFO'] == '/favicon.ico':
+		# PENDING ファイル無いときの動作どうするか考える
+		start_response('404 Not Found', [('Content-Type', 'text/html; charset=utf-8')])
+		return ['Not Found'.encode("utf-8")]
+	else:
+		settings.start_time = datetime.utcnow()
+		settings.environ = environ
+		response = main()
+		start_response(response.status, response.headers)
+		return [response.body.encode("utf-8")]

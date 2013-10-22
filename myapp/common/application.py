@@ -109,7 +109,8 @@ def _debug_setting() -> None:
 
 def _debug_print() -> None:
 	if _debug:
-		_debug.print()
+		res = response.get_instance()
+		_debug.print(res)
 
 
 # TODO ;debug = head  #HTTPHeader

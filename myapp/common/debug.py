@@ -9,7 +9,7 @@ from datetime import datetime
 from collections import OrderedDict
 
 from myapp.common import settings
-from myapp.common import response
+from myapp.common.response import Response
 
 
 _messages = OrderedDict()
@@ -25,7 +25,7 @@ class Debug:
 	"""
 	# デバッグ用
 	"""
-	# PENDING クラスにする必要ある？
+	# TODO クラスやめてモジュールにする
 
 	def __init__(self) -> None:
 		global _messages
@@ -54,11 +54,11 @@ class Debug:
 			self.__init__()
 
 
-	def print(self):
+	def print(self, res: Response):
 		if _mode == 'head':
-			_debug_print_head(self)
+			_debug_print_head(self, res)
 		elif _mode == 'body':
-			_debug_print_body(self)
+			_debug_print_body(self, res)
 		else:
 			self.print_2()
 
@@ -112,19 +112,18 @@ class Debug:
 		self.append_message('dif', now - settings.start_time)
 
 
-def _debug_print_head(debug_: Debug) -> None:
-	res = response.get_instance()
+def _debug_print_head(debug_: Debug, res: Response) -> None:
 	list_ = debug_.message_to_http_head('X-DEBUG')
 	if list_:
 		for key_, item_ in list_.items():
 			res.headers.append((key_, item_))
 
 
-def _debug_print_body(debug_: Debug) -> None:
-	res = response.get_instance()
+def _debug_print_body(debug_: Debug, res: Response) -> None:
 	str_ = debug_.messages_to_str()
 	res.body += "\n<hr><pre>\n" + str(str_) + "</pre>"
 
 
 if __name__ == '__main__':
-	Debug().print()
+	res = Response()
+	Debug().print(res)
