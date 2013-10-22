@@ -5,4 +5,4 @@ python:
 # install: "pip install -r requirements.txt --use-mirrors"
 # command to run tests
 script:
-  - nosetests -w unitTest -w unitTest/common --with-coverage --with-id --verbosity
+  - nosetests -w unitTest -w unitTest/common -v --with-coverage --with-id

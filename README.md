@@ -119,5 +119,5 @@ administrator admin root ユーザーログインからはログイン不可
 
 
 ●CIサービス使う
-http://about.travis-ci.org/ja/
-https://travis-ci.org/
+https://travis-ci.org/ayziao/testpy
+[![Build Status](https://travis-ci.org/ayziao/testpy.png?branch=master)](https://travis-ci.org/ayziao/testpy)
