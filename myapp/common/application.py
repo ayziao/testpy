@@ -8,8 +8,6 @@ from myapp.common import utility
 from myapp.common import request
 from myapp.common import response
 
-from myapp.common.debug import Debug
-
 
 def main() -> response.Response:
 	"""
@@ -102,33 +100,17 @@ def _debug_setting() -> None:
 	global _debug
 	conf = settings.get_ini('application')
 	if conf['debug'] and conf['debug'] != 'false':
-		_debug = Debug()
+		d = utility.import_('myapp.common.debug')
+		d.mode(conf['debug'])
+		_debug = d.Debug()
 
 #todo ↓をdebugモジュールに移動する
 
+
 def _debug_print() -> None:
 	if _debug:
-		conf = settings.get_ini('application')
-		if conf['debug'] == 'head':
-			_debug_print_head(_debug)
-		elif conf['debug'] == 'body':
-			_debug_print_body(_debug)
-		else:
-			_debug.print()
+		_debug.print()
 
-
-def _debug_print_head(debug_: Debug) -> None:
-	res = response.get_instance()
-	list_ = debug_.message_to_http_head('X-DEBUG')
-	if list_:
-		for key_, item_ in list_.items():
-			res.headers.append((key_, item_))
-
-
-def _debug_print_body(debug_: Debug) -> None:
-	res = response.get_instance()
-	str_ = debug_.messages_to_str()
-	res.body += "\n<hr><pre>\n" + str(str_) + "</pre>"
 
 # TODO ;debug = head  #HTTPHeader
 # TODO ;debug = context  #CLIならbody webならHeader

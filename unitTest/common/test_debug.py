@@ -7,7 +7,7 @@ class TestDebug(unittest.TestCase):
 		d = Debug()
 		d._collect()
 		l = []
-		for v in d.messages:
+		for v in d.get_messages():
 			if 'memory' in v:
 				l.append('memory')
 			if 'start_time' in v:

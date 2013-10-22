@@ -9,6 +9,16 @@ from datetime import datetime
 from collections import OrderedDict
 
 from myapp.common import settings
+from myapp.common import response
+
+
+_messages = OrderedDict()
+_mode = False
+
+
+def mode(mode_):
+	global _mode
+	_mode = mode_
 
 
 class Debug:
@@ -18,8 +28,12 @@ class Debug:
 	# PENDING クラスにする必要ある？
 
 	def __init__(self) -> None:
-		self.messages = OrderedDict()
+		global _messages
+		_messages = OrderedDict()
 		self.append_message('debug', settings.get_ini('application')['debug'])
+
+	def get_messages(self):
+		return _messages
 
 	def append_message(self, name: str, obj) -> None:
 		"""
@@ -28,16 +42,27 @@ class Debug:
 		@param obj: なんでも
 		@return:
 		"""
-		self.messages[name] = obj
+		_messages[name] = obj
 
-	def print(self) -> None:
+	def print_2(self) -> None:
 		if not settings.environ is None \
 			and settings.environ['PATH_INFO'] == '/favicon.ico':
 			pass
 		else:
 			self._collect()
-			p.pprint(self.messages)
+			p.pprint(_messages)
 			self.__init__()
+
+
+	def print(self):
+		if _mode == 'head':
+			_debug_print_head(self)
+		elif _mode == 'body':
+			_debug_print_body(self)
+		else:
+			self.print_2()
+
+		pass
 
 	def messages_to_str(self) -> None:
 		if not settings.environ is None \
@@ -45,7 +70,7 @@ class Debug:
 			pass
 		else:
 			self._collect()
-			pf = p.pformat(self.messages)
+			pf = p.pformat(_messages)
 			self.__init__()
 			return pf
 
@@ -56,7 +81,7 @@ class Debug:
 			return None
 		else:
 			self._collect()
-			out_list = self._dict_format(self.messages, prefix)
+			out_list = self._dict_format(_messages, prefix)
 			self.__init__()
 			return out_list
 
@@ -85,6 +110,20 @@ class Debug:
 		self.append_message('start_time', settings.start_time)
 		self.append_message('end_time', now)
 		self.append_message('dif', now - settings.start_time)
+
+
+def _debug_print_head(debug_: Debug) -> None:
+	res = response.get_instance()
+	list_ = debug_.message_to_http_head('X-DEBUG')
+	if list_:
+		for key_, item_ in list_.items():
+			res.headers.append((key_, item_))
+
+
+def _debug_print_body(debug_: Debug) -> None:
+	res = response.get_instance()
+	str_ = debug_.messages_to_str()
+	res.body += "\n<hr><pre>\n" + str(str_) + "</pre>"
 
 
 if __name__ == '__main__':
