@@ -118,6 +118,6 @@ testpy
 administrator admin root ユーザーログインからはログイン不可
 
 
-●CIサービス使う # TODO
+●CIサービス使う
 http://about.travis-ci.org/ja/
-
+https://travis-ci.org/
