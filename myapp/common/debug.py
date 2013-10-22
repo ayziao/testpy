@@ -19,12 +19,13 @@ _mode = False
 def mode(mode_):
 	global _mode
 	_mode = mode_
+	append_message('debug', _mode)
 
 
 def init() -> None:
 	global _messages
 	_messages = OrderedDict()
-	append_message('debug', settings.get_ini('application')['debug'])
+	append_message('debug', _mode)
 
 
 def get_messages():
@@ -124,15 +125,16 @@ def _debug_print_body(res: Response) -> None:
 
 if __name__ == '__main__':
 	res = Response()
-	init()
-	mode('head')
-	print_(res)
-	p.pprint(res.headers)
 
 	init()
 	mode('body')
 	print_(res)
 	p.pprint(res.body)
+
+	init()
+	mode('head')
+	print_(res)
+	p.pprint(res.headers)
 
 	init()
 	mode('true')
