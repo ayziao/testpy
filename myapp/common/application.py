@@ -39,6 +39,13 @@ def view_dispatcher(class_name: str) -> "view class":
 	"""
 	# ビュー振り分け
 	@param class_name: クラス名
+
+	コントローラからビューをnewする方法検討
+		ビュー名(画面名) モデル キューは暗黙的
+		抽象コントローラにビュー生成メソッド？
+		ビューファクトリーをCommonに置く？
+	デザパタよく把握してないのでジェネレータって名前でInstance生成するやつ作る
+
 	"""
 	module_name = 'myapp.view.' + class_name.lower()  # PENDING 名前空間を動的に取る？
 	mod = utility.import_(module_name)
