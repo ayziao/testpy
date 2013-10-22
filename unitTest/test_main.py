@@ -31,6 +31,7 @@ import os
 
 path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(path)
+print(sys.path)
 
 from myapp.common import settings
 
