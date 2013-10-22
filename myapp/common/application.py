@@ -18,11 +18,11 @@ def main() -> response.Response:
 	_assemble_main_request()  # メインリクエスト組み立て
 	run()
 
-	res = response.get_instance()
+	res = response.pop_instance()
 
 	#TODO エラー処理
 
-	_debug_print()
+	_debug_print(res)
 
 	return res
 
@@ -94,26 +94,16 @@ def _run_controller_method(controller: str, method: str) -> "method":
 
 #デバッグ関連
 _debug = None
-#todo debugクラスをmoduleにする
+
 
 def _debug_setting() -> None:
 	global _debug
 	conf = settings.get_ini('application')
 	if conf['debug'] and conf['debug'] != 'false':
-		d = utility.import_('myapp.common.debug')
-		d.mode(conf['debug'])
-		_debug = d.Debug()
-
-#todo ↓をdebugモジュールに移動する
+		_debug = utility.import_('myapp.common.debug')
+		_debug.mode(conf['debug'])
 
 
-def _debug_print() -> None:
+def _debug_print(res) -> None:
 	if _debug:
-		res = response.get_instance()
-		_debug.print(res)
-
-
-# TODO ;debug = head  #HTTPHeader
-# TODO ;debug = context  #CLIならbody webならHeader
-
-
+		_debug.print_(res)

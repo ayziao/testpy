@@ -1,13 +1,13 @@
 import unittest
-from myapp.common.debug import Debug
+from myapp.common import debug
 
 
 class TestDebug(unittest.TestCase):
 	def test_collect(self):
-		d = Debug()
-		d._collect()
+		debug.init()
+		debug._collect()
 		l = []
-		for v in d.get_messages():
+		for v in debug.get_messages():
 			if 'memory' in v:
 				l.append('memory')
 			if 'start_time' in v:
@@ -26,3 +26,4 @@ class TestDebug(unittest.TestCase):
 if __name__ == '__main__':
 	unittest.main()
 
+	# TODO テスト書く

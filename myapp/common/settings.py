@@ -11,10 +11,11 @@ from datetime import datetime
 
 _config_path = None
 _ini = None  # 初期設定
+_encode_set = False
+
 environ = None  # WSGIサーバから渡される情報
 start_time = datetime.utcnow()  # 処理開始日時
 arg = sys.argv  # コマンドライン引数
-_encode_set = False
 
 
 def set_config_path(config_path: str):
@@ -29,6 +30,7 @@ def set_config_path(config_path: str):
 
 def get_ini(section: str=None) -> ConfigParser:
 	"""
+	設定ファイルの位置を変更する場合はこのメソッドを呼ぶ前にset_config_pathすること
 	# 初期設定取得(セクション別取得)
 	"""
 	global _ini
@@ -46,6 +48,7 @@ def get_ini(section: str=None) -> ConfigParser:
 
 def setting_encode():
 	"""
+	設定ファイルの位置を変更する場合はこのメソッドを呼ぶ前にset_config_pathすること
 	@return:
 	"""
 	global _encode_set
