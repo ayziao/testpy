@@ -28,12 +28,10 @@
 import unittest
 import sys
 import os
-from pprint import pprint
 
 
 path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(path.rstrip('/unitTest'))
-pprint(sys.path)
 
 from myapp.common import settings
 

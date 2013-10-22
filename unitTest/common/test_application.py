@@ -1,12 +1,5 @@
 import unittest
 
-from pprint import pprint
-import sys
-import os
-
-path = os.path.dirname(os.path.abspath(__file__))
-pprint(sys.path)
-
 from myapp.common import application
 from myapp.controller.data import Data
 
