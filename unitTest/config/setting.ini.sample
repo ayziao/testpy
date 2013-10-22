@@ -1,5 +1,5 @@
-[system]
-text_encoding = utf-8
+;[system]
+;text_encoding = utf-8
 
 [application]
 debug = false
