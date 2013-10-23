@@ -16,7 +16,7 @@ class TestSettings(unittest.TestCase):
 
 	def test_get_ini_path(self):
 		path = settings._get_ini_path()
-		self.assertEqual(path, 'test')
+		self.assertTrue(path.find('setting.ini') > 0)
 
 
 if __name__ == '__main__':
