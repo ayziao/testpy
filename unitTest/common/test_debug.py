@@ -22,6 +22,21 @@ class TestDebug(unittest.TestCase):
 		self.assertIn('end_time', l)
 		self.assertIn('dif', l)
 
+	def test_clear_message(self):
+		debug.clear_message()
+		debug._collect()
+		l = []
+		for v in debug.get_message_dic():
+			if 'memory' in v:
+				l.append('memory')
+		self.assertIn('memory', l)
+		debug.clear_message()
+		l = []
+		for v in debug.get_message_dic():
+			if 'memory' in v:
+				l.append('memory')
+		self.assertNotIn('memory', l)
+
 
 if __name__ == '__main__':
 	unittest.main()
