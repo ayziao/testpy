@@ -45,6 +45,7 @@ testpy [![Build Status](https://travis-ci.org/ayziao/testpy.png?branch=master)](
 ###●ソースコード構造
 ドキュメントルート webサーバの公開領域におく
 設定 設置時に書く DB接続情報とか
+
     アプリケーション 設置時にいじらない 1ファイルアーカイブ化できるならしたい
     └共通
     └コントローラ
