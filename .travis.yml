@@ -7,5 +7,6 @@ install:
 script:
 #  - nosetests unitTest unitTest/common -v --with-id
   - coverage run unitTest/all_test.py
+  - coverage report -m
 after_success:
   coveralls
