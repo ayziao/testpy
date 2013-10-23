@@ -1,6 +1,16 @@
 import imp
 import os
 import unittest
+import sys
+
+
+path = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(path.rstrip('/unitTest'))
+
+from myapp.common import settings
+
+settings.set_config_path(path + '/config/')
+settings.setting_encode()
 
 
 def load_testpy(path, suite, loader):
