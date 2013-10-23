@@ -28,6 +28,8 @@ class PyTest(TestCommand):
 
 
 setup(
+	name='myapp',
+	packages=['myapp'],
 	tests_require=['mock', 'pytest'],
 	cmdclass={'test': PyTest},
 )
