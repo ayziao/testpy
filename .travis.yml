@@ -4,9 +4,8 @@ python:
 install:
 #  - pip install -r requirements.txt --use-mirrors
   - pip install coveralls --use-mirrors
-#script:
-#  - nosetests unitTest unitTest/common -v --with-id
 script:
-  coverage run unitTest/alltest.py
+  - nosetests unitTest unitTest/common -v --with-id
+  coverage run unitTest/all_test.py
 after_success:
   coveralls
