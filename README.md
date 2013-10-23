@@ -1,4 +1,4 @@
-testpy [![Build Status](https://travis-ci.org/ayziao/testpy.png?branch=master)](https://travis-ci.org/ayziao/testpy)
+testpy [![Build Status](https://travis-ci.org/ayziao/testpy.png?branch=master)](https://travis-ci.org/ayziao/testpy) [![Coverage Status](https://coveralls.io/repos/ayziao/testpy/badge.png)](https://coveralls.io/r/ayziao/testpy)
 ======
 ■アプリの目的は？ めっちゃ個人向けデータ蓄積システム
 ---------------
