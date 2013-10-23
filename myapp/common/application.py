@@ -27,7 +27,7 @@ def main() -> response.Response:
 	return res
 
 
-def run():
+def run() -> None:
 	req = request.get_instance()
 	controller_instance = _controller_dispatcher(req.controller_class_name)  # コントローラ取得
 
@@ -101,6 +101,11 @@ def _run_controller_method(controller: str, method: str) -> "method":
 
 #デバッグ関連
 _debug = None
+
+
+def debug_message(name: str, obj) -> None:
+	if _debug:
+		_debug.append_message(name, obj)
 
 
 def _debug_setting() -> None:
