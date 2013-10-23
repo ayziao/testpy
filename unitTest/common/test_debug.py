@@ -1,8 +1,14 @@
 import unittest
+from collections import OrderedDict
+
 from myapp.common import debug
 
 
 class TestDebug(unittest.TestCase):
+	"""
+	共通デバッグモジュールのテスト
+	"""
+
 	def test_collect(self):
 		debug.clear_message()
 		debug._collect()
@@ -36,6 +42,10 @@ class TestDebug(unittest.TestCase):
 			if 'memory' in v:
 				l.append('memory')
 		self.assertNotIn('memory', l)
+
+	def test_get_message_dic(self):
+		dic = debug.get_message_dic()
+		self.assertIsInstance(dic, OrderedDict)
 
 
 if __name__ == '__main__':
