@@ -113,4 +113,4 @@ def _debug_setting() -> None:
 
 def _debug_print(res) -> None:
 	if _debug:
-		_debug.print_(res)
+		_debug.output_message(res)

@@ -22,13 +22,13 @@ def mode(mode_):
 	append_message('debug', _mode)
 
 
-def init() -> None:
+def clear_message() -> None:
 	global _messages
 	_messages = OrderedDict()
 	append_message('debug', _mode)
 
 
-def get_messages():
+def get_message_dic() -> OrderedDict:
 	return _messages
 
 
@@ -42,46 +42,46 @@ def append_message(name: str, obj) -> None:
 	_messages[name] = obj
 
 
-def print_2() -> None:
+def _message_to_stdout() -> None:
 	if not settings.environ is None \
 		and settings.environ['PATH_INFO'] == '/favicon.ico':
 		pass
 	else:
 		_collect()
 		p.pprint(_messages)
-		init()
+		clear_message()
 
 
-def print_(res: Response):
+def output_message(res: Response):
 	if _mode == 'head':
 		_debug_print_head(res)
 	elif _mode == 'body':
 		_debug_print_body(res)
 	else:
-		print_2()
+		_message_to_stdout()
 
 	pass
 
 
-def messages_to_str() -> None:
+def _messages_to_str() -> None:
 	if not settings.environ is None \
 		and settings.environ['PATH_INFO'] == '/favicon.ico':
 		pass
 	else:
 		_collect()
 		pf = p.pformat(_messages)
-		init()
+		clear_message()
 		return pf
 
 
-def message_to_http_head(prefix: str) -> None:
+def _message_to_http_head(prefix: str) -> None:
 	if not settings.environ is None \
 		and settings.environ['PATH_INFO'] == '/favicon.ico':
 		return None
 	else:
 		_collect()
 		out_list = _dict_format(_messages, prefix)
-		init()
+		clear_message()
 		return out_list
 
 
@@ -112,33 +112,33 @@ def _collect() -> None:
 
 
 def _debug_print_head(res: Response) -> None:
-	list_ = message_to_http_head('X-DEBUG')
+	list_ = _message_to_http_head('X-DEBUG')
 	if list_:
 		for key_, item_ in list_.items():
 			res.headers.append((key_, item_))
 
 
 def _debug_print_body(res: Response) -> None:
-	str_ = messages_to_str()
+	str_ = _messages_to_str()
 	res.body += "\n<hr><pre>\n" + str(str_) + "</pre>"
 
 
 if __name__ == '__main__':
 	res = Response()
 
-	init()
+	clear_message()
 	mode('body')
-	print_(res)
+	output_message(res)
 	p.pprint(res.body)
 
-	init()
+	clear_message()
 	mode('head')
-	print_(res)
+	output_message(res)
 	p.pprint(res.headers)
 
-	init()
+	clear_message()
 	mode('true')
-	print_(res)
+	output_message(res)
 
 
 

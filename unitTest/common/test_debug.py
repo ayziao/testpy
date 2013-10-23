@@ -4,10 +4,10 @@ from myapp.common import debug
 
 class TestDebug(unittest.TestCase):
 	def test_collect(self):
-		debug.init()
+		debug.clear_message()
 		debug._collect()
 		l = []
-		for v in debug.get_messages():
+		for v in debug.get_message_dic():
 			if 'memory' in v:
 				l.append('memory')
 			if 'start_time' in v:
