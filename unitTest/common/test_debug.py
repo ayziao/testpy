@@ -47,6 +47,12 @@ class TestDebug(unittest.TestCase):
 		dic = debug.get_message_dic()
 		self.assertIsInstance(dic, OrderedDict)
 
+	@unittest.skip("stdout skip")
+	def test_message_to_stdout(self):
+		# PENDING print関数をラップするべきか
+		self.fail("shouldn't happen")
+		pass
+
 
 if __name__ == '__main__':
 	unittest.main()
