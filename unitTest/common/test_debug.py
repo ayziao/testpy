@@ -53,6 +53,12 @@ class TestDebug(unittest.TestCase):
 		self.fail("shouldn't happen")
 		pass
 
+	def test_message_to_http_head(self):
+		heads = debug._message_to_http_head('X-TEST')
+		tapl = ('X-TEST-debug', 'False')
+		first_head = heads.popitem(False)
+		self.assertEqual(first_head, tapl)
+
 
 if __name__ == '__main__':
 	unittest.main()
