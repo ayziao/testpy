@@ -1,7 +1,7 @@
-import imp
-import os
-import unittest
 import sys
+import os
+import imp
+import unittest
 
 
 path = os.path.dirname(os.path.abspath(__file__))
