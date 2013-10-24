@@ -16,7 +16,6 @@
 # PENDING	結合テスト
 # PENDING デプロイ方法 自動化？
 # PENDING
-# PENDING ユニットテストもコンソールから実行できるようにパス解決するか
 # PENDING myappディレクトリ以下を一切弄らずに設定は変えられるように 設定パスをmain.pyに引数で渡せるようにすべきか？
 # PENDING mysql使う前にSQLiteやる？
 # PENDING テンプレートエンジン使うか全部DOM操作でやるか
@@ -57,10 +56,22 @@ class TestMyapp(unittest.TestCase):
 			test = [('Content-Type', 'text/html; charset=utf-8')]
 			self.assertEqual(b, test)
 			pass
-
 		env = {'PATH_INFO': '/favicon.ico'}
 		res = wsgiclient.application(env, callbuck)
 		tes_res = [b'Not Found']
+		self.assertEqual(res, tes_res)
+		self.assertEqual(wsgiserver.path, path.rstrip('unitTest'))
+
+	def test_wsgi2(self):
+		def callbuck(a, b):
+			self.assertEqual(a, '200 OK')
+			test = [('Content-Type', 'text/html; charset=utf-8')]
+			self.assertEqual(b, test)
+			pass
+
+		env = {'PATH_INFO': '/'}
+		res = wsgiclient.application(env, callbuck)
+		tes_res = [b'Hello world!']
 		self.assertEqual(res, tes_res)
 		self.assertEqual(wsgiserver.path, path.rstrip('unitTest'))
 
