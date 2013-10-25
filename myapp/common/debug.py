@@ -60,8 +60,6 @@ def output_message(res_: Response):
 	else:
 		_message_to_stdout()
 
-	pass
-
 
 def _messages_to_str() -> None:
 	if not settings.environ is None \
@@ -74,7 +72,7 @@ def _messages_to_str() -> None:
 		return pf
 
 
-def _message_to_http_head(prefix: str) -> None:
+def _message_to_http_head(prefix: str) -> OrderedDict:
 	if not settings.environ is None \
 		and settings.environ['PATH_INFO'] == '/favicon.ico':
 		return None
@@ -112,9 +110,9 @@ def _collect() -> None:
 
 
 def _debug_print_head(res_: Response) -> None:
-	list_ = _message_to_http_head('X-DEBUG')
-	if list_:
-		for key_, item_ in list_.items():
+	order_dic = _message_to_http_head('X-DEBUG')
+	if order_dic:
+		for key_, item_ in order_dic.items():
 			res_.headers.append((key_, item_))
 
 
@@ -124,7 +122,7 @@ def _debug_print_body(res_: Response) -> None:
 
 
 if __name__ == '__main__':
-	res = Response()
+	#res = Response()
 
 	#clear_message()
 	#mode('body')
@@ -137,11 +135,11 @@ if __name__ == '__main__':
 	#output_message(res)
 	#p.pprint(res.headers)
 
-	clear_message()
-	set_print_mode('true')
-	output_message(res)
+	#clear_message()
+	#set_print_mode('true')
+	#output_message(res)
 
-
+	pass
 
 	# TODO ;debug = context  #CLIならbody webならHeader
 	# TODO コード整理する

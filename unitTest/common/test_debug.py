@@ -12,6 +12,12 @@ class TestDebug(unittest.TestCase):
 	"""
 
 	def test_collect(self):
+		env = {'PATH_INFO': '/favicon.ico'}
+		settings.environ = env
+		debug.clear_message()
+		debug._collect()
+		settings.environ = None
+
 		debug.clear_message()
 		debug._collect()
 		l = []
