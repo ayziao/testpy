@@ -21,19 +21,9 @@ class Request():
 		self.system_command = ''  # システムコマンド
 		self.system_parameter = ''  # システムパラメータ
 		self.system_input = ''  # システム入力(コールバック関数？)
-		self.paging = None
-		self.controller_class_name = ''
-		self.method_name = ''
-
-
-def get_instance() -> Request:
-	"""
-	# 最新のスタックを返す 空なら作ってセット
-	"""
-	if not _instance:
-		_instance.append(Request())
-
-	return _instance[-1]
+		self.paging = None  # ページングクラス入れ
+		self.controller_class_name = ''  # コントローラクラス名
+		self.method_name = ''  # メソッド名
 
 
 def create_instance() -> Request:
@@ -43,6 +33,16 @@ def create_instance() -> Request:
 	_instance.append(Request())
 
 	return _instance[-1]
+
+
+def get_instance() -> Request:
+	"""
+	# 最新のスタックを返す 空なら作る
+	"""
+	if not _instance:
+		return create_instance()
+	else:
+		return _instance[-1]
 
 
 def pop_instance() -> Request:
