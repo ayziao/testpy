@@ -55,9 +55,14 @@ class TestDebug(unittest.TestCase):
 
 	def test_message_to_http_head(self):
 		heads = debug._message_to_http_head('X-TEST')
-		tapl = ('X-TEST-debug', 'False')
+		test_head = ('X-TEST-debug', 'False')
 		first_head = heads.popitem(False)
-		self.assertEqual(first_head, tapl)
+		self.assertEqual(first_head, test_head)
+
+	@unittest.skip("skip")
+	def test_debug_print_body(self):
+
+		pass
 
 
 if __name__ == '__main__':

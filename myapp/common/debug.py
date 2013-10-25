@@ -52,11 +52,11 @@ def _message_to_stdout() -> None:
 		clear_message()
 
 
-def output_message(res: Response):
+def output_message(res_: Response):
 	if _mode == 'head':
-		_debug_print_head(res)
+		_debug_print_head(res_)
 	elif _mode == 'body':
-		_debug_print_body(res)
+		_debug_print_body(res_)
 	else:
 		_message_to_stdout()
 
@@ -111,16 +111,16 @@ def _collect() -> None:
 	append_message('dif', now - settings.start_time)
 
 
-def _debug_print_head(res: Response) -> None:
+def _debug_print_head(res_: Response) -> None:
 	list_ = _message_to_http_head('X-DEBUG')
 	if list_:
 		for key_, item_ in list_.items():
-			res.headers.append((key_, item_))
+			res_.headers.append((key_, item_))
 
 
-def _debug_print_body(res: Response) -> None:
+def _debug_print_body(res_: Response) -> None:
 	str_ = _messages_to_str()
-	res.body += "\n<hr><pre>\n" + str(str_) + "</pre>"
+	res_.body += "\n<hr><pre>\n" + str(str_) + "</pre>"
 
 
 if __name__ == '__main__':
