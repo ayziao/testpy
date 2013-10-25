@@ -2,6 +2,7 @@ import unittest
 from collections import OrderedDict
 
 from myapp.common import debug
+from myapp.common import response
 
 
 class TestDebug(unittest.TestCase):
@@ -61,8 +62,21 @@ class TestDebug(unittest.TestCase):
 
 	@unittest.skip("skip")
 	def test_debug_print_body(self):
-
 		pass
+
+	def test_output_message_head(self):
+		res = response.Response()
+		debug.mode('head')
+		debug.output_message(res)
+		test = ('X-DEBUG-debug', "'head'")
+		self.assertEqual(res.headers[1], test)
+
+	def test_output_message_body(self):
+		res = response.Response()
+		debug.mode('body')
+		debug.output_message(res)
+		test = "\n<hr><pre>\n{'debug': 'body',"
+		self.assertEqual(res.body[0:28], test)
 
 
 if __name__ == '__main__':
