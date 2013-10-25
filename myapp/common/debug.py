@@ -126,15 +126,15 @@ def _debug_print_body(res_: Response) -> None:
 if __name__ == '__main__':
 	res = Response()
 
-	clear_message()
-	mode('body')
-	output_message(res)
-	p.pprint(res.body)
-
-	clear_message()
-	mode('head')
-	output_message(res)
-	p.pprint(res.headers)
+	#clear_message()
+	#mode('body')
+	#output_message(res)
+	#p.pprint(res.body)
+	#
+	#clear_message()
+	#mode('head')
+	#output_message(res)
+	#p.pprint(res.headers)
 
 	clear_message()
 	mode('true')
