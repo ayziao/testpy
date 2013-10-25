@@ -13,19 +13,19 @@ from myapp.common.response import Response
 
 
 _messages = OrderedDict()
-_mode = False
+print_mode = False
 
 
-def mode(mode_):
-	global _mode
-	_mode = mode_
-	append_message('debug', _mode)
+def set_print_mode(val: str):
+	global print_mode
+	print_mode = val
+	append_message('debug', val)
 
 
 def clear_message() -> None:
 	global _messages
 	_messages = OrderedDict()
-	append_message('debug', _mode)
+	append_message('debug', print_mode)
 
 
 def get_message_dic() -> OrderedDict:
@@ -53,9 +53,9 @@ def _message_to_stdout() -> None:
 
 
 def output_message(res_: Response):
-	if _mode == 'head':
+	if print_mode == 'head':
 		_debug_print_head(res_)
-	elif _mode == 'body':
+	elif print_mode == 'body':
 		_debug_print_body(res_)
 	else:
 		_message_to_stdout()
@@ -132,12 +132,13 @@ if __name__ == '__main__':
 	#p.pprint(res.body)
 	#
 	#clear_message()
-	#mode('head')
+	#print_mode='head'
+	#print(print_mode)
 	#output_message(res)
 	#p.pprint(res.headers)
 
 	clear_message()
-	mode('true')
+	set_print_mode('true')
 	output_message(res)
 
 

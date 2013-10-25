@@ -66,16 +66,17 @@ class TestDebug(unittest.TestCase):
 
 	def test_output_message_head(self):
 		res = response.Response()
-		debug.mode('head')
+		debug.set_print_mode('head')
 		debug.output_message(res)
 		test = ('X-DEBUG-debug', "'head'")
 		self.assertEqual(res.headers[1], test)
 
 	def test_output_message_body(self):
 		res = response.Response()
-		debug.mode('body')
+		debug.set_print_mode('body')
 		debug.output_message(res)
 		test = "\n<hr><pre>\n{'debug': 'body',"
+		#test = "{'debug': 'body',"
 		self.assertEqual(res.body[0:28], test)
 
 
