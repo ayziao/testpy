@@ -3,6 +3,7 @@ from collections import OrderedDict
 
 from myapp.common import debug
 from myapp.common import response
+from myapp.common import settings
 
 
 class TestDebug(unittest.TestCase):
@@ -52,7 +53,15 @@ class TestDebug(unittest.TestCase):
 	def test_message_to_stdout(self):
 		# PENDING print関数をラップするべきか
 		self.fail("shouldn't happen")
-		pass
+
+
+	def test_message_to_stdout_envfav(self):
+		env = {'PATH_INFO': '/favicon.ico'}
+		settings.environ = env
+		debug._message_to_stdout()
+		settings.environ = None
+
+	# PENDING なんかアサーションできないか
 
 	def test_message_to_http_head(self):
 		heads = debug._message_to_http_head('X-TEST')
