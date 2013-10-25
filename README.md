@@ -1,12 +1,5 @@
 testpy [![Build Status](https://travis-ci.org/ayziao/testpy.png?branch=master)](https://travis-ci.org/ayziao/testpy) [![Coverage Status](https://coveralls.io/repos/ayziao/testpy/badge.png)](https://coveralls.io/r/ayziao/testpy)
 ======
-■アプリの目的は？ めっちゃ個人向けデータ蓄積システム
----------------
-個人向けだけどwebサービスとして複数ユーザ扱えるようにする
-ユーザは複数サイトを持てる
-ユーザはエントリをたくさん投稿できる
-外部データを取り込んでいろいろする
-
 
 ■インストール
 ---------------
