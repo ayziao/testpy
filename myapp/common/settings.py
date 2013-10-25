@@ -2,6 +2,7 @@
 # myapp.common.settings
 #
 # 設定データ置き場(グローバル変数的なものとか)
+# PENDING globalsモジュールかなんか作ってその下に入れたほうが良い？
 """
 
 import sys
@@ -9,13 +10,13 @@ import os
 from configparser import ConfigParser
 from datetime import datetime
 
-_config_path = None
-_ini = None  # 初期設定
-_encode_set = False
-
 environ = None  # WSGIサーバから渡される情報
 start_time = datetime.utcnow()  # 処理開始日時
 arg = sys.argv  # コマンドライン引数
+
+_config_path = None # 設定ディレクトリパス
+_ini = None  # 初期設定
+_encode_set = False # 文字encode
 
 
 def set_config_path(config_path: str):
@@ -33,6 +34,8 @@ def get_ini(section: str=None) -> ConfigParser:
 	設定ファイルの位置を変更する場合はこのメソッドを呼ぶ前にset_config_pathすること
 	# 初期設定取得(セクション別取得)
 	"""
+	#TODO section指定必須にしてini全体取るのはプロバティに分ける
+	#PENDING ConfigParserクラスだるいので辞書に変換しとく？
 	global _ini
 	if _ini is None:
 		_ini = ConfigParser()
@@ -55,6 +58,7 @@ def setting_encode():
 	設定ファイルの位置を変更する場合はこのメソッドを呼ぶ前にset_config_pathすること
 	@return:
 	"""
+	# TODO プロバティにする
 	global _encode_set
 	sys_ini = get_ini('system')
 	if not sys_ini is None and sys_ini['text_encoding'] and _encode_set is False:

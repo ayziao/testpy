@@ -8,6 +8,7 @@ from myapp.common import utility
 from myapp.common import request
 from myapp.common import response
 
+#PENDING リクエストとレスポンスをstack化するよりアプリそのものをクラス化したほうが良い？
 
 def main() -> response.Response:
 	"""
@@ -47,6 +48,7 @@ def view_dispatcher(class_name: str) -> "view class":
 	デザパタよく把握してないのでジェネレータって名前でInstance生成するやつ作る
 
 	"""
+
 	module_name = 'myapp.view.' + class_name.lower()  # PENDING 名前空間を動的に取る？
 	mod = utility.import_(module_name)
 
