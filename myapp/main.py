@@ -16,22 +16,23 @@ from myapp.common import settings
 
 settings.setting_encode()
 
-from myapp.common import application
+import myapp.common.application as myapp
 
 
-def main():
+def main() -> str:
 	"""
-	# 共通アプリケーションのメイン呼ぶだけ
+	# コマンドライン向け
 	@return:
 	"""
-	return application.main()
+	settings.start_time = now
+	out = ''
+	res = myapp.main()
+	for v in res.headers:
+		out += p.pformat(v) + "\n"
+	out += res.status + "\n"
+	out += res.body
+	return out
 
 
 if __name__ == '__main__':
-	# PENDING コマンドラインで使うときやバッチで使うときのこと考える
-	print(__name__)
-	settings.start_time = now
-	res = main()
-	p.pprint(res.headers)
-	print(res.status)
-	print(res.body)
+	print(main())

@@ -41,14 +41,17 @@ from myapp.main import main
 from myapp import wsgiclient
 from myapp import wsgiserver
 
-top_body = 'Hello world!'  # PENDING パラメータなんもなしの時の表示考える
+top_body = """('Content-Type', 'text/html; charset=utf-8')
+200 OK
+Hello world!"""
+
+#	'Hello world!'  # PENDING パラメータなんもなしの時の表示考える
 
 
 class TestMyapp(unittest.TestCase):
 	def test_main(self):
 		ref = main()
-		self.assertEqual(ref.status, '200 OK')
-		self.assertEqual(ref.body, top_body)
+		self.assertEqual(ref, top_body)
 
 	def test_wsgi(self):
 		def callbuck(a, b):
