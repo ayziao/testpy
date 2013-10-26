@@ -20,6 +20,12 @@ class TestRequest(unittest.TestCase):
 	def test_pop_instance(self):
 		res = request.pop_instance()
 		self.assertEqual(res.extension, 'html')
+		res = request.pop_instance()
+		res = request.pop_instance()
+		res = request.pop_instance()
+		res = request.pop_instance()
+		res = request.pop_instance()
+		self.assertIsNone(res)
 
 #PENDING 値のセットをApplicationでやるか自分で集めてくるか
 
