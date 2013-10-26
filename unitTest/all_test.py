@@ -24,8 +24,12 @@ def load_testpy(path, suite, loader):
 	pass
 
 
-if __name__ == "__main__":
+def run():
 	suite = unittest.TestSuite()
 	loader = unittest.TestLoader()
 	load_testpy(os.path.curdir, suite, loader)
 	unittest.TextTestRunner(verbosity=2).run(suite)
+
+
+if __name__ == "__main__":
+	run()

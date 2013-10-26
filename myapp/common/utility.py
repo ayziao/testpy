@@ -1,7 +1,6 @@
 """
-# myapp.common.utility
-#
 # ユーティリティ
+# myapp.common.utility
 #
 # Pythonのめんどくさいとこ簡単にするのとか
 # アプリケーションに依存しないもの

@@ -1,7 +1,7 @@
 """
-# アプリケーション共通
-#
+# 共通 アプリケーションモジュール
 # myapp.common.application
+
 """
 from myapp.common import settings
 from myapp.common import utility

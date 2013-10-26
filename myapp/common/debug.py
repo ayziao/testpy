@@ -1,6 +1,5 @@
 """
-# デバッグ
-#
+# デバッグモジュール
 # myapp.common.debug
 """
 import resource

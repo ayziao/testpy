@@ -1,8 +1,11 @@
 """
+# 共通 設定モジュール
 # myapp.common.settings
 #
 # 設定データ置き場(グローバル変数的なものとか)
 # PENDING globalsモジュールかなんか作ってその下に入れたほうが良い？
+#
+# __main__なモジュールでpath解決の直後に書くこと
 """
 
 import sys

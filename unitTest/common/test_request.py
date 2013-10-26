@@ -1,5 +1,5 @@
 import unittest
-from myapp.common.request import Request
+from myapp.common import request
 
 
 class TestRequest(unittest.TestCase):
@@ -8,7 +8,17 @@ class TestRequest(unittest.TestCase):
 	"""
 
 	def test_init(self):
-		res = Request()
+		res = request.Request()
+		self.assertEqual(res.extension, 'html')
+
+
+	def test_create_instance(self):
+		res = request.create_instance()
+		self.assertEqual(res.extension, 'html')
+
+
+	def test_pop_instance(self):
+		res = request.pop_instance()
 		self.assertEqual(res.extension, 'html')
 
 #PENDING 値のセットをApplicationでやるか自分で集めてくるか

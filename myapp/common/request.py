@@ -1,4 +1,5 @@
 """
+# 共通 リクエストモジュール
 # myapp.common.request
 """
 

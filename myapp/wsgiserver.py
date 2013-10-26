@@ -1,4 +1,5 @@
 """
+# myapp.wsgiserver
 # WSGIサーバ 開発用
 # 本番環境ではApacheとかnginxとか使いましょう
 """
