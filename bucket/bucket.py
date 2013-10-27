@@ -31,7 +31,7 @@ def cache_class():
 	b = {}
 
 
-	class bbb():
+	class Bbb():
 		def __init__(self):
 			pass
 
@@ -51,7 +51,7 @@ def cache_class():
 			b[id(self)] = obj
 
 	print(b)
-	a = bbb()
+	a = Bbb()
 	a.hoge = 'piyo'
 	a.status_code = 'gggg'
 	print(b)

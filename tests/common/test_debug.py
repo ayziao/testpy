@@ -1,4 +1,5 @@
 import unittest
+import sys
 from collections import OrderedDict
 
 from myapp.common import debug
@@ -55,10 +56,14 @@ class TestDebug(unittest.TestCase):
 		dic = debug.get_message_dic()
 		self.assertIsInstance(dic, OrderedDict)
 
-	@unittest.skip("skip: test_message_to_stdout")
+
 	def test_message_to_stdout(self):
-		# PENDING print関数をラップするべきか
-		self.fail("shouldn't happen")
+		op = Output()
+		sys.stdout = op
+		debug._message_to_stdout()
+		sys.stdout = sys.__stdout__
+		test = "{'debug': "
+		self.assertEqual(op.pp()[0:10], test)
 
 
 	def test_message_to_stdout_envfav(self):
@@ -95,7 +100,22 @@ class TestDebug(unittest.TestCase):
 		self.assertEqual(res.body[0:28], test)
 
 
+class Output():
+	def __init__(self):
+		self.str = ''
+
+	def write(self, val):
+		self.str += val
+
+	def close(self):
+		return 0
+
+	def flush(self):
+		return 0
+
+	def pp(self):
+		return self.str
+
+
 if __name__ == '__main__':
 	unittest.main()
-
-	# TODO テスト書く

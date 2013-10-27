@@ -29,10 +29,10 @@ class TestResponse(unittest.TestCase):
 		self.assertEqual(res.status_code, 0)
 
 	def test_pop_instance(self):
-		res = response.pop_instance()
-		res = response.pop_instance()
-		res = response.pop_instance()
-		res = response.pop_instance()
+		response.pop_instance()
+		response.pop_instance()
+		response.pop_instance()
+		response.pop_instance()
 		res = response.pop_instance()
 		# PENDING 全消去メソッド作っとく？
 		self.assertIsNone(res)

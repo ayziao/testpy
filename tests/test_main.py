@@ -3,7 +3,6 @@
 # PENDING 考えること
 
 # タスク
-# TODO coverage.py調べる
 # TODO
 # PENDING	全体的な進め方
 # PENDING	準備
