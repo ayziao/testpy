@@ -1,10 +1,13 @@
+"""
+共通リクエスト単体テスト
+"""
 import unittest
 from myapp.common import request
 
 
 class TestRequest(unittest.TestCase):
 	"""
-	 リクエストクラス単体テスト
+	リクエストクラス単体テスト
 	"""
 
 	def test_init(self):

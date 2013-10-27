@@ -1,3 +1,6 @@
+"""
+共通設定単体テスト
+"""
 import unittest
 import os
 

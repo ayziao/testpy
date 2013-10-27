@@ -1,3 +1,6 @@
+"""
+メインテスト
+"""
 # タスク書き方
 # TODO やること
 # PENDING 考えること
@@ -53,25 +56,25 @@ class TestMyapp(unittest.TestCase):
 		self.assertEqual(ref, top_body)
 
 	def test_wsgiclient(self):
-		def callbuck(a, b):
+		def _callback(a, b):
 			self.assertEqual(a, '200 OK')
 			test = [('Content-Type', 'text/html; charset=utf-8')]
 			self.assertEqual(b, test)
 
 		env = {'PATH_INFO': '/'}
-		res = wsgiclient.application(env, callbuck)
+		res = wsgiclient.application(env, _callback)
 		tes_res = ['Hello world!'.encode()]
 		self.assertEqual(res, tes_res)
 
 
 	def test_wsgi_favicon(self):
-		def callbuck(a, b):
+		def _callback(a, b):
 			self.assertEqual(a, '404 Not Found')
 			test = [('Content-Type', 'text/html; charset=utf-8')]
 			self.assertEqual(b, test)
 
 		env = {'PATH_INFO': '/favicon.ico'}
-		res = wsgiclient.application(env, callbuck)
+		res = wsgiclient.application(env, _callback)
 		tes_res = ['Not Found'.encode()]
 		self.assertEqual(res, tes_res)
 

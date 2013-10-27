@@ -1,8 +1,14 @@
+"""
+test
+"""
 from datetime import datetime
 from myapp.common import settings
 
 
 def count():  # PENDING プラグイン化
+	"""
+	日数カウント
+	"""
 	a = settings.get_ini('count')
 
 	tstr = a['to_time_str']
@@ -20,18 +26,18 @@ def cache_class():
 	変数キャッシュのテスト
 	"""
 
-	def aaa():
-		return aaa
+	def _aaa():
+		return _aaa
 		pass
 
-	x = aaa()
+	x = _aaa()
 
 	print(x)
 
 	b = {}
 
 
-	class Bbb():
+	class _Bbb():
 		def __init__(self):
 			pass
 
@@ -41,17 +47,26 @@ def cache_class():
 
 		@property
 		def status_code(self):
+			"""
+			test
+			@return:
+			"""
 			obj = b[id(self)]
 			return obj['status_code']
 
 		@status_code.setter
 		def status_code(self, val):
-		#			global b
+			"""
+			test
+			@param val:
+			@return:
+			"""
+			#			global b
 			obj = {'status_code': val}
 			b[id(self)] = obj
 
 	print(b)
-	a = Bbb()
+	a = _Bbb()
 	a.hoge = 'piyo'
 	a.status_code = 'gggg'
 	print(b)

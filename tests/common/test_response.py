@@ -1,3 +1,6 @@
+"""
+共通レスポンス単体テスト
+"""
 import unittest
 from myapp.common import response
 

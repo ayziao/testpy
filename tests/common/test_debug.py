@@ -1,3 +1,6 @@
+"""
+共通デバッグ単体テスト
+"""
 import unittest
 import sys
 from collections import OrderedDict
@@ -57,7 +60,7 @@ class TestDebug(unittest.TestCase):
 		self.assertIsInstance(dic, OrderedDict)
 
 	def test_message_to_stdout(self):
-		op = Output()
+		op = _Output()
 		sys.stdout = op
 		debug._message_to_stdout()
 		sys.stdout = sys.__stdout__
@@ -67,7 +70,7 @@ class TestDebug(unittest.TestCase):
 	def test_message_to_stdout_env_favicon(self):
 		env = {'PATH_INFO': '/favicon.ico'}
 		settings.environ = env
-		op = Output()
+		op = _Output()
 		sys.stdout = op
 		debug._message_to_stdout()
 		sys.stdout = sys.__stdout__
@@ -108,7 +111,7 @@ class TestDebug(unittest.TestCase):
 	def test_output_message(self):
 		res = response.Response()
 		debug.set_print_mode('true')
-		op = Output()
+		op = _Output()
 		sys.stdout = op
 		debug.output_message(res)
 		sys.stdout = sys.__stdout__
@@ -118,20 +121,39 @@ class TestDebug(unittest.TestCase):
 
 #PENDING テスト用のutilityつくる？ common.utilityに入れる？
 #PENDING というかもっといい方法がありそうな 標準出力を奪うの
-class Output():
+class _Output():
 	def __init__(self):
 		self.str = ''
 
 	def write(self, val):
+		"""
+
+		@param val:
+		@return:
+		"""
 		self.str += val
 
-	def close(self):
+	@staticmethod
+	def close():
+		"""
+
+		@return:
+		"""
 		return 0
 
-	def flush(self):
+	@staticmethod
+	def flush():
+		"""
+
+		@return:
+		"""
 		return 0
 
 	def pp(self):
+		"""
+
+		@return:
+		"""
 		return self.str
 
 

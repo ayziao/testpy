@@ -9,19 +9,19 @@ class Account():
 	"""
 
 	def __init__(self):
-		pass
+		self._aaaa = True
 
 	def signup(self):
 		"""
 		サインアップ
 		"""
-		pass
+		return self._aaaa
 
 	def login(self):
 		"""
 		ログイン
 		"""
-		pass
+		return self._aaaa
 
 
 	#アカウント/作成

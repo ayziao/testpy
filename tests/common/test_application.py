@@ -1,3 +1,6 @@
+"""
+共通アプリケーション単体テスト
+"""
 import unittest
 
 from myapp.common import application

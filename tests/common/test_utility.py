@@ -1,3 +1,6 @@
+"""
+共通ユーティリティ単体テスト
+"""
 import unittest
 from myapp.common import utility
 from myapp.common import debug

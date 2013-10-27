@@ -35,8 +35,9 @@ def set_config_path(config_path: str):
 
 def get_ini(section: str=None) -> ConfigParser:
 	"""
-	設定ファイルの位置を変更する場合はこのメソッドを呼ぶ前にset_config_pathすること
+	WARNING 設定ファイルの位置を変更する場合はこのメソッドを呼ぶ前にset_config_pathすること
 	# 初期設定取得(セクション別取得)
+	@param section: セクション名
 	"""
 	#TODO section指定必須にしてini全体取るのはプロバティに分ける
 	#PENDING ConfigParserクラスだるいので辞書に変換しとく？
@@ -69,7 +70,7 @@ def setting_encode():
 		#TODO バッファどうにかする
 		#sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
 		#sys.stdin = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
-		sys.stdin = open(sys.stdin.fileno(), 'r', encoding=sys_ini['text_encoding'])
+		sys.stdin = open(sys.stdin.fileno(), encoding=sys_ini['text_encoding'])
 		sys.stdout = open(sys.stdout.fileno(), 'w', encoding=sys_ini['text_encoding'])
 		#sys.stderr = open(sys.stderr.fileno(), 'w', encoding=sys_ini['text_encoding'])
 		_encode_set = True

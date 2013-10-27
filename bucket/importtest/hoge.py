@@ -1,3 +1,6 @@
+"""
+テスト
+"""
 print('hoge')
 
 import myapp.common.Utility

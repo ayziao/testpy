@@ -35,10 +35,17 @@ class Response():
 
 	@property
 	def status_code(self) -> int:
+		"""
+		ステータスコード
+		"""
 		return self.__status_code
 
 	@status_code.setter
 	def status_code(self, val: int) -> None:
+		"""
+		ステータスコードを受け取ったらステータス文字列を組み立てる
+		@param val: ステータスコード値
+		"""
 		self.status = str(val) + _status_messages.get(val)
 		self.__status_code = val
 
