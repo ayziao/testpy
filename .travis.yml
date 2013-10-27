@@ -1,14 +1,11 @@
 language: python
 python:
   - "3.3"
-#  - pypy
+#  - pypy #pyhon3版出たら
 install:
-#  - pip install -r requirements.txt --use-mirrors
   - pip install coveralls --use-mirrors
 script:
-#  - nosetests unitTest unitTest/common -v --with-id
-  - coverage run --source=myapp unitTest/all_test.py
-#  - coverage run --source=myapp setup.py test
+  - coverage run --source=myapp tests/all_test.py
   - coverage report -m
 after_success:
   coveralls --verbose
