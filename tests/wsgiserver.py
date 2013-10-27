@@ -3,14 +3,16 @@
 # WSGIサーバ 開発用
 # 本番環境ではApacheとかnginxとか使いましょう
 """
-# PENDING 本番運用ではApacheとか使うのでこのファイルはテスト用なのでmyappから出す？
-
 import sys
 import os
 from wsgiref import simple_server
 
-path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
+path = os.path.dirname(os.path.abspath(__file__)).rstrip('/tests')
 sys.path.append(path)
+
+from myapp.common import settings
+
+settings.setting_encode()
 
 from myapp.wsgiclient import application
 
@@ -24,4 +26,6 @@ def make_server():
 
 
 if __name__ == '__main__':
+	print('aaaa')
+	print(path)
 	make_server()

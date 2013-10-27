@@ -15,6 +15,7 @@ from datetime import datetime
 
 environ = None  # WSGIサーバから渡される情報
 start_time = datetime.utcnow()  # 処理開始日時
+wsgi_load_time = None  # WSGIクライアントモジュールの読み込み日時
 arg = sys.argv  # コマンドライン引数
 
 _config_path = None # 設定ディレクトリパス

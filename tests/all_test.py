@@ -5,7 +5,7 @@ import unittest
 
 
 path = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(path.rstrip('/unitTest'))
+sys.path.append(path.rstrip('/tests'))
 
 from myapp.common import settings
 from myapp.common import utility

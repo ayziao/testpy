@@ -30,7 +30,7 @@ import os
 
 
 path = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(path.rstrip('/unitTest'))
+sys.path.append(path.rstrip('/tests'))
 
 from myapp.common import settings
 
@@ -39,7 +39,7 @@ settings.setting_encode()
 
 from myapp.main import main
 from myapp import wsgiclient
-from myapp import wsgiserver
+
 
 top_body = """('Content-Type', 'text/html; charset=utf-8')
 200 OK
@@ -53,30 +53,28 @@ class TestMyapp(unittest.TestCase):
 		ref = main()
 		self.assertEqual(ref, top_body)
 
-	def test_wsgi(self):
-		def callbuck(a, b):
-			self.assertEqual(a, '404 Not Found')
-			test = [('Content-Type', 'text/html; charset=utf-8')]
-			self.assertEqual(b, test)
-			pass
-		env = {'PATH_INFO': '/favicon.ico'}
-		res = wsgiclient.application(env, callbuck)
-		tes_res = [b'Not Found']
-		self.assertEqual(res, tes_res)
-		self.assertEqual(wsgiserver.path, path.rstrip('unitTest'))
-
-	def test_wsgi2(self):
+	def test_wsgiclient(self):
 		def callbuck(a, b):
 			self.assertEqual(a, '200 OK')
 			test = [('Content-Type', 'text/html; charset=utf-8')]
 			self.assertEqual(b, test)
-			pass
 
 		env = {'PATH_INFO': '/'}
 		res = wsgiclient.application(env, callbuck)
-		tes_res = [b'Hello world!']
+		tes_res = ['Hello world!'.encode()]
 		self.assertEqual(res, tes_res)
-		self.assertEqual(wsgiserver.path, path.rstrip('unitTest'))
+
+
+	def test_wsgi_favicon(self):
+		def callbuck(a, b):
+			self.assertEqual(a, '404 Not Found')
+			test = [('Content-Type', 'text/html; charset=utf-8')]
+			self.assertEqual(b, test)
+
+		env = {'PATH_INFO': '/favicon.ico'}
+		res = wsgiclient.application(env, callbuck)
+		tes_res = ['Not Found'.encode()]
+		self.assertEqual(res, tes_res)
 
 
 if __name__ == '__main__':

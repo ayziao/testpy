@@ -115,7 +115,7 @@ def _debug_setting() -> None:
 	conf = settings.get_ini('application')
 	if conf['debug'] and conf['debug'] != 'false':
 		_debug = utility.import_('myapp.common.debug')
-		_debug.mode(conf['debug'])
+		_debug.set_print_mode(conf['debug'])
 
 
 def _debug_print(res) -> None:

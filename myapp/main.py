@@ -2,12 +2,12 @@
 # myapp.main
 """
 from datetime import datetime
-import pprint as p
 
 now = datetime.utcnow()
 
 import sys
 import os
+import pprint as p
 
 path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
 sys.path.append(path)
@@ -16,7 +16,7 @@ from myapp.common import settings
 
 settings.setting_encode()
 
-import myapp.common.application as myapp
+import myapp.common.application
 
 
 def main() -> str:
@@ -27,7 +27,7 @@ def main() -> str:
 	# TODO 引数や設定みてヘッダ出さないとか入れる
 	settings.start_time = now
 	out = ''
-	res = myapp.main()
+	res = myapp.common.application.main()
 	for v in res.headers:
 		out += p.pformat(v) + "\n"
 	out += res.status + "\n"
