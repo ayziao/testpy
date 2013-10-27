@@ -56,7 +56,6 @@ class TestDebug(unittest.TestCase):
 		dic = debug.get_message_dic()
 		self.assertIsInstance(dic, OrderedDict)
 
-
 	def test_message_to_stdout(self):
 		op = Output()
 		sys.stdout = op
@@ -65,23 +64,30 @@ class TestDebug(unittest.TestCase):
 		test = "{'debug': "
 		self.assertEqual(op.pp()[0:10], test)
 
-
-	def test_message_to_stdout_envfav(self):
+	def test_message_to_stdout_env_favicon(self):
 		env = {'PATH_INFO': '/favicon.ico'}
 		settings.environ = env
+		op = Output()
+		sys.stdout = op
 		debug._message_to_stdout()
+		sys.stdout = sys.__stdout__
 		settings.environ = None
+		self.assertEqual(op.pp(), '')
 
-	# PENDING なんかアサーションできないか
 
 	def test_message_to_http_head(self):
+		debug.set_print_mode('head')
 		heads = debug._message_to_http_head('X-TEST')
-		test_head = ('X-TEST-debug', 'False')
+		test_head = ('X-TEST-debug', "'head'")
 		first_head = heads.popitem(False)
 		self.assertEqual(first_head, test_head)
 
-	@unittest.skip("skip: test_debug_print_body")
 	def test_debug_print_body(self):
+		res = response.Response()
+		debug.set_print_mode('body')
+		debug._debug_print_body(res)
+		test = "\n<hr><pre>\n{'debug': 'body',"
+		self.assertEqual(res.body[0:28], test)
 		pass
 
 	def test_output_message_head(self):
@@ -99,7 +105,19 @@ class TestDebug(unittest.TestCase):
 		#test = "{'debug': 'body',"
 		self.assertEqual(res.body[0:28], test)
 
+	def test_output_message(self):
+		res = response.Response()
+		debug.set_print_mode('true')
+		op = Output()
+		sys.stdout = op
+		debug.output_message(res)
+		sys.stdout = sys.__stdout__
+		test = "{'debug': 'true'"
+		self.assertEqual(op.pp()[0:16], test)
 
+
+#PENDING テスト用のutilityつくる？ common.utilityに入れる？
+#PENDING というかもっといい方法がありそうな 標準出力を奪うの
 class Output():
 	def __init__(self):
 		self.str = ''
