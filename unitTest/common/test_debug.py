@@ -55,7 +55,7 @@ class TestDebug(unittest.TestCase):
 		dic = debug.get_message_dic()
 		self.assertIsInstance(dic, OrderedDict)
 
-	@unittest.skip("stdout skip")
+	@unittest.skip("skip: test_message_to_stdout")
 	def test_message_to_stdout(self):
 		# PENDING print関数をラップするべきか
 		self.fail("shouldn't happen")
@@ -75,7 +75,7 @@ class TestDebug(unittest.TestCase):
 		first_head = heads.popitem(False)
 		self.assertEqual(first_head, test_head)
 
-	@unittest.skip("skip")
+	@unittest.skip("skip: test_debug_print_body")
 	def test_debug_print_body(self):
 		pass
 

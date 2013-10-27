@@ -18,13 +18,13 @@ def run():
 	suite = unittest.TestSuite()
 	loader = unittest.TestLoader()
 
-	def addTest(path):
-		file = os.path.basename(path)
+	def add_test(path_):
+		file = os.path.basename(path_)
 		if file.startswith('test_') and file.endswith('.py'):
-			mod = imp.load_source(os.path.splitext(file)[0], path)
+			mod = imp.load_source(os.path.splitext(file)[0], path_)
 			suite.addTest(loader.loadTestsFromModule(mod))
 
-	utility.recursive_directory(os.path.curdir, addTest)
+	utility.call_recursive_directory(add_test, os.path.curdir)
 
 	unittest.TextTestRunner(verbosity=2).run(suite)
 
