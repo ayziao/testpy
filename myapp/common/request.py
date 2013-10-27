@@ -54,4 +54,3 @@ def pop_instance() -> Request:
 		return _instance.pop()
 	else:
 		return None
-

@@ -17,4 +17,3 @@ class Hello():
 		@return:
 		"""
 		return self._aaaa
-

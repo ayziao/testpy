@@ -133,25 +133,25 @@ def _is_favicon():
 		return False
 
 
-		#if __name__ == '__main__':
-		#res = Response()
+	#if __name__ == '__main__':
+	#res = Response()
 
-		#_clear_message()
-		#mode('body')
+	#_clear_message()
+	#mode('body')
 	#output_message(res)
 	#p.pprint(res.body)
 	#
-		#_clear_message()
-		#_print_mode='head'
-		#print(_print_mode)
-		#output_message(res)
+	#_clear_message()
+	#_print_mode='head'
+	#print(_print_mode)
+	#output_message(res)
 	#p.pprint(res.headers)
 
-		#_clear_message()
-		#set_print_mode('true')
+	#_clear_message()
+	#set_print_mode('true')
 	#output_message(res)
 
-		#pass
+	#pass
 
-		# TODO ;debug = context  #CLIならbody webならHeader
+	# TODO ;debug = context  #CLIならbody webならHeader
 	# TODO コード整理する

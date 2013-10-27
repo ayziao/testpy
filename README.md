@@ -113,5 +113,3 @@ testpy [![Build Status](https://travis-ci.org/ayziao/testpy.png?branch=master)](
 
 ###●予約ユーザー名
 administrator admin root ユーザーログインからはログイン不可
-
-

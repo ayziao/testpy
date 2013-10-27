@@ -83,5 +83,3 @@ def _get_ini_path() -> str:
 		return str(path.replace('myapp/common', '')) + 'config/setting.ini'
 	else:
 		return _config_path + 'setting.ini'
-
-
