@@ -12,9 +12,15 @@ class Account():
 		pass
 
 	def signup(self):
+		"""
+		サインアップ
+		"""
 		pass
 
 	def login(self):
+		"""
+		ログイン
+		"""
 		pass
 
 

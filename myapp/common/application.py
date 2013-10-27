@@ -10,6 +10,7 @@ from myapp.common import response
 
 #PENDING リクエストとレスポンスをstack化するよりアプリそのものをクラス化したほうが良い？
 
+
 def main() -> response.Response:
 	"""
 	# メイン
@@ -29,6 +30,9 @@ def main() -> response.Response:
 
 
 def run() -> None:
+	"""
+	実行
+	"""
 	req = request.get_instance()
 	controller_instance = _controller_dispatcher(req.controller_class_name)  # コントローラ取得
 
@@ -36,17 +40,16 @@ def run() -> None:
 	res.body = _run_controller_method(controller_instance, req.method_name)  # コントローラ実行
 
 
-def view_dispatcher(class_name: str) -> "view class":
+def view_dispatcher(class_name: str) -> "view instance":
 	"""
 	# ビュー振り分け
 	@param class_name: クラス名
+	@return ビューインスタンス
 
 	コントローラからビューをnewする方法検討
 		ビュー名(画面名) モデル キューは暗黙的
 		抽象コントローラにビュー生成メソッド？
-		ビューファクトリーをCommonに置く？
-	デザパタよく把握してないのでジェネレータって名前でInstance生成するやつ作る
-
+		ビューファクトリーをCommonに置く？＞デザパタよく把握してないのでとりあえずディスパッチャって名前でInstance生成するやつ作る
 	"""
 
 	module_name = 'myapp.view.' + class_name.lower()  # PENDING 名前空間を動的に取る？
@@ -106,6 +109,11 @@ _debug = None
 
 
 def debug_message(name: str, obj) -> None:
+	"""
+	デバッグメッセージ追加
+	@param name: 名称
+	@param obj: なんでも
+	"""
 	if _debug:
 		_debug.append_message(name, obj)
 

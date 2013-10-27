@@ -4,4 +4,7 @@
 
 
 class BaseData():
+	"""
+	ベースデータ
+	"""
 	pass

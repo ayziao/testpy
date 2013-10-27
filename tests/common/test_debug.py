@@ -14,11 +14,11 @@ class TestDebug(unittest.TestCase):
 	def test_collect(self):
 		env = {'PATH_INFO': '/favicon.ico'}
 		settings.environ = env
-		debug.clear_message()
+		debug._clear_message()
 		debug._collect()
 		settings.environ = None
 
-		debug.clear_message()
+		debug._clear_message()
 		debug._collect()
 		l = []
 		for v in debug.get_message_dic():
@@ -37,14 +37,14 @@ class TestDebug(unittest.TestCase):
 		self.assertIn('dif', l)
 
 	def test_clear_message(self):
-		debug.clear_message()
+		debug._clear_message()
 		debug._collect()
 		l = []
 		for v in debug.get_message_dic():
 			if 'memory' in v:
 				l.append('memory')
 		self.assertIn('memory', l)
-		debug.clear_message()
+		debug._clear_message()
 		l = []
 		for v in debug.get_message_dic():
 			if 'memory' in v:

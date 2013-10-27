@@ -10,24 +10,26 @@ from collections import OrderedDict
 from myapp.common import settings
 from myapp.common.response import Response
 
-
+_print_mode = False
 _messages = OrderedDict()
-print_mode = False
 
 
 def set_print_mode(val: str):
-	global print_mode
-	print_mode = val
+	"""
+	出力モード設定
+	モードはサンプルファイル参照
+	@param val: 出力形式
+	"""
+	global _print_mode
+	_print_mode = val
 	append_message('debug', val)
 
 
-def clear_message() -> None:
-	global _messages
-	_messages = OrderedDict()
-	append_message('debug', print_mode)
-
-
 def get_message_dic() -> OrderedDict:
+	"""
+	デバッグメッセージ取得
+	@return: 順序有り辞書
+	"""
 	return _messages
 
 
@@ -36,49 +38,53 @@ def append_message(name: str, obj) -> None:
 	# デバッグメッセージを追加
 	@param name: 辞書に入れる名前
 	@param obj: なんでも
-	@return:
+	@return: 無し
 	"""
 	_messages[name] = obj
 
 
-def _message_to_stdout() -> None:
-	if not settings.environ is None \
-		and settings.environ['PATH_INFO'] == '/favicon.ico':
-		pass
-	else:
-		_collect()
-		p.pprint(_messages)
-		clear_message()
-
-
 def output_message(res_: Response):
-	if print_mode == 'head':
+	"""
+	デバッグメッセージ出力
+	@param res_: レスポンスインスタンス
+	@return:
+	"""
+	if _print_mode == 'head':
 		_debug_print_head(res_)
-	elif print_mode == 'body':
+	elif _print_mode == 'body':
 		_debug_print_body(res_)
 	else:
 		_message_to_stdout()
 
 
+# プライベート
+
+def _clear_message() -> None:
+	global _messages
+	_messages = OrderedDict()
+	append_message('debug', _print_mode)
+
+
+def _message_to_stdout() -> None:
+	if not _is_favicon():
+		_collect()
+		p.pprint(_messages)
+		_clear_message()
+
+
 def _messages_to_str() -> None:
-	if not settings.environ is None \
-		and settings.environ['PATH_INFO'] == '/favicon.ico':
-		pass
-	else:
+	if not _is_favicon():
 		_collect()
 		pf = p.pformat(_messages)
-		clear_message()
+		_clear_message()
 		return pf
 
 
 def _message_to_http_head(prefix: str) -> OrderedDict:
-	if not settings.environ is None \
-		and settings.environ['PATH_INFO'] == '/favicon.ico':
-		return None
-	else:
+	if not _is_favicon():
 		_collect()
 		out_list = _dict_format(_messages, prefix)
-		clear_message()
+		_clear_message()
 		return out_list
 
 
@@ -120,25 +126,32 @@ def _debug_print_body(res_: Response) -> None:
 	res_.body += "\n<hr><pre>\n" + str(str_) + "</pre>"
 
 
-if __name__ == '__main__':
-	#res = Response()
+def _is_favicon():
+	if settings.environ and settings.environ['PATH_INFO'] == '/favicon.ico':
+		return True
+	else:
+		return False
 
-	#clear_message()
-	#mode('body')
+
+		#if __name__ == '__main__':
+		#res = Response()
+
+		#_clear_message()
+		#mode('body')
 	#output_message(res)
 	#p.pprint(res.body)
 	#
-	#clear_message()
-	#print_mode='head'
-	#print(print_mode)
-	#output_message(res)
+		#_clear_message()
+		#_print_mode='head'
+		#print(_print_mode)
+		#output_message(res)
 	#p.pprint(res.headers)
 
-	#clear_message()
-	#set_print_mode('true')
+		#_clear_message()
+		#set_print_mode('true')
 	#output_message(res)
 
-	pass
+		#pass
 
-	# TODO ;debug = context  #CLIならbody webならHeader
+		# TODO ;debug = context  #CLIならbody webならHeader
 	# TODO コード整理する

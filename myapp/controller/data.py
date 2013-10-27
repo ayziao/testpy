@@ -12,6 +12,9 @@ class Data():
 		self.temp = 'Hello world!'
 
 	def run(self):
+		"""
+		実行
+		"""
 		return self.temp
 
 
