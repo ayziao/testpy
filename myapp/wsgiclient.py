@@ -23,7 +23,7 @@ import myapp.common.application
 # PENDING セッションとかwebサーバのあれこれの処理はここでやる？
 
 
-def application(environ: dict, start_response: 'function(status: str, header: tuple)'):
+def application(environ: dict, start_response: 'function(status: str, header: list[tuple(key,value)])'):
 	"""
 	# WSGI application
 	#
