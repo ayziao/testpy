@@ -16,6 +16,9 @@
 
 
 ■未分類
+●カバレッジツール
+https://github.com/coagulant/coveralls-python
+
 ●考
 基本モジュールで作ってインスタンス化が必要になったらクラス化する
 セッションクラス作る？

@@ -115,7 +115,3 @@ testpy [![Build Status](https://travis-ci.org/ayziao/testpy.png?branch=master)](
 administrator admin root ユーザーログインからはログイン不可
 
 
-## TODO
-カバレッジ なんかパーセントが出ない コードに色はつく
-https://coveralls.io/docs/python
-https://github.com/coagulant/coveralls-python
