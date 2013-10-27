@@ -18,10 +18,10 @@ from myapp.common import settings
 settings.setting_encode()
 settings.wsgi_load_time = now
 
-import myapp.common.application as myapp
-
+import myapp.common.application
 
 # PENDING セッションとかwebサーバのあれこれの処理はここでやる？
+
 
 def application(environ: dict, start_response: 'function(status: str, header: tuple)'):
 	"""
@@ -38,6 +38,6 @@ def application(environ: dict, start_response: 'function(status: str, header: tu
 	else:
 		settings.start_time = datetime.utcnow()
 		settings.environ = environ
-		response = myapp.main()
+		response = myapp.common.application.main()
 		start_response(response.status, response.headers)
 		return [response.body.encode('utf-8')]

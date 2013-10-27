@@ -1,5 +1,4 @@
 """
-# myapp.wsgiserver
 # WSGIサーバ 開発用
 # 本番環境ではApacheとかnginxとか使いましょう
 """
@@ -26,6 +25,4 @@ def make_server():
 
 
 if __name__ == '__main__':
-	print('aaaa')
-	print(path)
 	make_server()

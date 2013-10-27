@@ -6,6 +6,7 @@ def count():  # PENDING プラグイン化
 	a = settings.get_ini('count')
 
 	tstr = a['to_time_str']
+	print(tstr)
 	to = datetime.strptime(tstr, '%Y-%m-%d %H:%M:%S')
 	from_ = datetime.now()
 	return to - from_
@@ -14,49 +15,54 @@ def count():  # PENDING プラグイン化
 print(count())
 
 
-def aaa():
-	return aaa
-	pass
+def cache_class():
+	"""
+	変数キャッシュのテスト
+	"""
 
-
-x = aaa()
-
-print(x)
-exit()
-
-b = {}
-
-
-class Test():
-	def __init__(self):
+	def aaa():
+		return aaa
 		pass
 
-	def __del__(self):
-		print('dell')
-		del b[id(self)]
+	x = aaa()
 
-	@property
-	def status_code(self):
-		obj = b[id(self)]
-		return obj['status_code']
+	print(x)
 
-	@status_code.setter
-	def status_code(self, val):
-		global b
-		obj = {}
-		obj['status_code'] = val
-		b[id(self)] = obj
+	b = {}
 
 
-print(b)
-a = Test()
-a.hoge = 'piuo'
-a.status_code = 'gggg'
-print(b)
-print(vars(a))
-print(a.status_code)
-del a
-print(b)
+	class bbb():
+		def __init__(self):
+			pass
+
+		def __del__(self):
+			print('dell')
+			del b[id(self)]
+
+		@property
+		def status_code(self):
+			obj = b[id(self)]
+			return obj['status_code']
+
+		@status_code.setter
+		def status_code(self, val):
+		#			global b
+			obj = {'status_code': val}
+			b[id(self)] = obj
+
+	print(b)
+	a = bbb()
+	a.hoge = 'piyo'
+	a.status_code = 'gggg'
+	print(b)
+	print(vars(a))
+	print(a.status_code)
+	del a
+	print(b)
+
+
+cache_class()
+
 
 
 #
