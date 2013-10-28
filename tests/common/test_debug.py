@@ -4,6 +4,7 @@
 import unittest
 import sys
 from collections import OrderedDict
+import pprint as p
 
 from myapp.common import debug
 from myapp.common import response
@@ -77,6 +78,14 @@ class TestDebug(unittest.TestCase):
 		settings.environ = None
 		self.assertEqual(op.pp(), '')
 
+	def test_dict_format(self):
+		debug._clear_message()
+		env = {'PATH_INFO': ''}
+		settings.environ = env
+		debug._collect()
+		out = p.pformat(debug._dict_format(debug._messages, 'test'))
+		test = "{'test-debug': \"'body'\","
+		self.assertEqual(out[0:24], test)
 
 	def test_message_to_http_head(self):
 		debug.set_print_mode('head')
