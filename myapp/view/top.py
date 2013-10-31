@@ -9,7 +9,7 @@ from myapp.common import application
 from myapp.common import request
 
 
-class top:
+class Top:
 	"""
 	トップページ
 	"""
@@ -22,20 +22,20 @@ class top:
 
 	def viewhtml(self):
 		title = "title"  # PENDING タイトル
-		form = self.form()
+		#form = self.form()
 		html = """
-		<html>
-			<head>
-				<meta http-equiv="Content-Type" content="text/html charset=UTF-8">
-				<title>{title}</title>
-			</head>
-			<body><h1>{title}</h1>{form}</body>
-		</html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+		<title>title</title>
+	</head>
+	<body><h1>title</h1>form</body>
+</html>
 """
 
 		doc = minidom.parseString(html)
 		#header("Content-Type: text/html charset=UTF-8")
-		print(doc.toxml())
+		print(doc.toxml()[22:])
 
 
 	def form(self):
