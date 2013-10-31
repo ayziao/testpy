@@ -16,11 +16,11 @@ class TestAccount(unittest.TestCase):
 		account.signup()
 		self.assertTrue(True)
 
-	# TODO アサート
+	# PENDING アサート
 
 	def test_login(self):
 		account = Account()
 		account.login()
 		self.assertTrue(True)
 
-	# TODO アサート
+	# PENDING アサート

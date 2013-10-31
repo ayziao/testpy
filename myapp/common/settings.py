@@ -39,7 +39,7 @@ def get_ini(section: str=None) -> ConfigParser:
 	# 初期設定取得(セクション別取得)
 	@param section: セクション名
 	"""
-	#TODO section指定必須にしてini全体取るのはプロバティに分ける
+	#PENDING section指定必須にしてini全体取るのはプロバティに分ける
 	#PENDING ConfigParserクラスだるいので辞書に変換しとく？
 	global _ini
 	if _ini is None:
@@ -63,11 +63,11 @@ def setting_encode():
 	設定ファイルの位置を変更する場合はこのメソッドを呼ぶ前にset_config_pathすること
 	@return:
 	"""
-	# TODO プロバティにする
+	# PENDING プロバティにする
 	global _encode_set
 	sys_ini = get_ini('system')
 	if not sys_ini is None and sys_ini['text_encoding'] and _encode_set is False:
-		#TODO バッファどうにかする
+		# PENDING バッファどうにかする
 		#sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
 		#sys.stdin = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
 		sys.stdin = open(sys.stdin.fileno(), encoding=sys_ini['text_encoding'])

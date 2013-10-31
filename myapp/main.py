@@ -24,7 +24,7 @@ def main() -> str:
 	# コマンドライン向け
 	@return:
 	"""
-	# TODO 引数や設定みてヘッダ出さないとか入れる
+	# PENDING 引数や設定みてヘッダ出さないとか入れる
 	settings.start_time = now
 	out = ''
 	res = myapp.common.application.main()

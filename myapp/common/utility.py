@@ -34,7 +34,7 @@ def call_recursive_directory(func: 'function(file_path: str)', dir_: str) -> Non
 	"""
 	for basename in os.listdir(dir_):
 		path = os.path.join(dir_, basename)
-		if not basename.startswith('_'):  # FIXME 処理対象外ファイル、ディレクトリ名のチェック関数も受け取るか
+		if not basename.startswith('_'):  # PENDING 処理対象外ファイル、ディレクトリ名のチェック関数も受け取るか
 			if os.path.isdir(path):
 				call_recursive_directory(func, path)
 			elif os.path.isfile(path):

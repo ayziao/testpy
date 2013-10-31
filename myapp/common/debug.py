@@ -153,5 +153,5 @@ def _is_favicon():
 
 	#pass
 
-	# TODO ;debug = context  #CLIならbody webならHeader
-	# TODO コード整理する
+	# PENDING ;debug = context  #CLIならbody webならHeader
+	# PENDING コード整理する

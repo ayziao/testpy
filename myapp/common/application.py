@@ -22,7 +22,7 @@ def main() -> response.Response:
 
 	res = response.pop_instance()
 
-	#TODO エラー処理
+	#PENDING エラー処理
 
 	_debug_print(res)
 
@@ -69,7 +69,7 @@ def _assemble_main_request() -> request.Request:
 	# メインリクエスト組み立て
 	"""
 	req = request.get_instance()
-	req.controller_class_name = 'Data'  # TODO 環境から取る
+	req.controller_class_name = 'Data'  # PENDING 環境から取る
 	req.method_name = 'run'
 	return req
 
