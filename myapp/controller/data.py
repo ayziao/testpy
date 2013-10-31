@@ -2,6 +2,8 @@
 # myapp.controller.data
 """
 
+from myapp.common import request
+
 
 class Data():
 	"""
@@ -15,6 +17,8 @@ class Data():
 		"""
 		実行
 		"""
+		req = request.get_instance()
+		#req.command
 		return self.temp
 
 
