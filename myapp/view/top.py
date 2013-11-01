@@ -21,21 +21,24 @@ class Top:
 			print('top')
 
 	def viewhtml(self):
-		title = "title"  # PENDING タイトル
+		title = "titlあああ"  # PENDING タイトル
+		body = "はろー"
 		#form = self.form()
 		html = """
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
-		<title>title</title>
+		<title>%s</title>
 	</head>
-	<body><h1>title</h1>form</body>
+	<body>
+		<p>%s</p>
+	</body>
 </html>
-"""
+""" % (title, body)
 
-		doc = minidom.parseString(html)
+		doc = minidom.parseString(html.replace("\t", "").replace("\n", ''))
 		#header("Content-Type: text/html charset=UTF-8")
-		print(doc.toxml()[22:])
+		return doc
 
 
 	def form(self):
