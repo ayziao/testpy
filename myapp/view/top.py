@@ -15,6 +15,11 @@ class Top:
 	"""
 
 	def view(self):
+		"""
+		表示
+
+		形式によって出し分ける
+		"""
 		if (settings.environ):
 			self.viewhtml()
 		else:
