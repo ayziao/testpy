@@ -8,7 +8,35 @@ from myapp.common import utility
 from myapp.common import request
 from myapp.common import response
 
-#PENDING リクエストとレスポンスをstack化するよりアプリそのものをクラス化したほうが良い？
+
+_instance = []
+
+
+class Application:
+	"""
+	アプリケーションクラス
+	"""
+
+	def __init__(self, req):
+		self.request = req
+		self.response = response.Response()
+
+	def run(self) -> None:
+		"""
+		実行
+		"""
+		req = self.request
+		controller_instance = _controller_dispatcher(req.controller_class_name)  # コントローラ取得
+
+		self.response.body = _run_controller_method(controller_instance, req.method_name)  # コントローラ実行
+
+
+#パブリックメソッド
+def get_instance() -> Application:
+	"""
+	# 最新のスタックを返す
+	"""
+	return _instance[-1]
 
 
 def main() -> response.Response:
@@ -17,27 +45,17 @@ def main() -> response.Response:
 	"""
 	_debug_setting()
 
-	_assemble_main_request()  # メインリクエスト組み立て
-	run()
+	req = _assemble_main_request()  # メインリクエスト組み立て
 
-	res = response.pop_instance()
+	app = Application(req)
+	_instance.append(app)
+	app.run()
 
 	#PENDING エラー処理
 
-	_debug_print(res)
+	_debug_print(app.response)
 
-	return res
-
-
-def run() -> None:
-	"""
-	実行
-	"""
-	req = request.get_instance()
-	controller_instance = _controller_dispatcher(req.controller_class_name)  # コントローラ取得
-
-	res = response.create_instance()
-	res.body = _run_controller_method(controller_instance, req.method_name)  # コントローラ実行
+	return app.response
 
 
 def view_dispatcher(class_name: str) -> "view instance":

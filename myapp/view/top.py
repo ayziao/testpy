@@ -3,7 +3,6 @@
 """
 # TODO投稿フォーム
 from xml.dom import minidom
-
 from myapp.common import settings
 
 

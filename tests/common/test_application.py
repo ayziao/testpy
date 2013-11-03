@@ -5,9 +5,28 @@ import unittest
 
 from myapp.common import application
 from myapp.controller.data import Data
+from myapp.common import request
 
 
 class TestApplication(unittest.TestCase):
+	def test_init(self):
+		app = application.Application(None)
+		self.assertIsInstance(app, application.Application)
+
+	def test_run(self):
+		req = request.Request()
+		req.controller_class_name = 'Data'  # PENDING 環境から取る
+		req.method_name = 'run'
+		app = application.Application(req)
+		app.run()
+		self.assertEqual(app.response.body, 'Hello world!')
+
+	def test_get_instance(self):
+		app = application.Application(None)
+		application._instance.append(app)
+		app2 = application.get_instance()
+		self.assertEqual(app, app2)
+
 	def test_main(self):
 		ret = application.main()
 		self.assertEqual(ret.body, 'Hello world!')
