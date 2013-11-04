@@ -15,10 +15,10 @@ class TestApplication(unittest.TestCase):
 
 	def test_run(self):
 		req = request.Request()
-		req.controller_class_name = 'Data'  # PENDING 環境から取る
+		req.controller_class_name = 'Top'  # PENDING 環境から取る
 		req.method_name = 'run'
-		app = application.Application(req)
-		app.run()
+		application.sub(req)
+		app = application.get_instance()
 		self.assertEqual(app.response.body, 'Hello world!')
 
 	def test_get_instance(self):
@@ -32,7 +32,7 @@ class TestApplication(unittest.TestCase):
 		self.assertEqual(ret.body, 'Hello world!')
 
 	def test_view_dispatcher(self):
-		view_instance = application.view_dispatcher('Hello')
+		view_instance = application.view_dispatcher('Top')
 		ret = view_instance.view()
 		self.assertEqual(ret, 'Hello world!')
 
@@ -42,7 +42,7 @@ class TestApplication(unittest.TestCase):
 
 	def test_assemble_main_request(self):
 		req = application._assemble_main_request()
-		self.assertEqual(req.controller_class_name, 'Data')
+		self.assertEqual(req.controller_class_name, 'Top')
 
 	def test_controller_dispatcher(self):
 		controller_instance = application._controller_dispatcher('Data')

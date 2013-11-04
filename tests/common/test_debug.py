@@ -40,6 +40,7 @@ class TestDebug(unittest.TestCase):
 		self.assertIn('start_time', l)
 		self.assertIn('end_time', l)
 		self.assertIn('dif', l)
+		settings.environ = None
 
 	def test_clear_message(self):
 		debug._clear_message()
@@ -77,6 +78,7 @@ class TestDebug(unittest.TestCase):
 		sys.stdout = sys.__stdout__
 		settings.environ = None
 		self.assertEqual(op.pp(), '')
+		settings.environ = None
 
 	def test_dict_format(self):
 		debug._clear_message()
@@ -86,6 +88,7 @@ class TestDebug(unittest.TestCase):
 		out = p.pformat(debug._dict_format(debug._messages, 'test'))
 		test = "{'test-debug': \"'body'\","
 		self.assertEqual(out[0:24], test)
+		settings.environ = None
 
 	def test_message_to_http_head(self):
 		debug.set_print_mode('head')

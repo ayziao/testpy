@@ -65,6 +65,7 @@ class TestMyapp(unittest.TestCase):
 		res = wsgiclient.application(env, _callback)
 		tes_res = ['Hello world!'.encode()]
 		self.assertEqual(res, tes_res)
+		settings.environ = None
 
 
 	def test_wsgi_favicon(self):
@@ -77,6 +78,7 @@ class TestMyapp(unittest.TestCase):
 		res = wsgiclient.application(env, _callback)
 		tes_res = ['Not Found'.encode()]
 		self.assertEqual(res, tes_res)
+		settings.environ = None
 
 
 if __name__ == '__main__':

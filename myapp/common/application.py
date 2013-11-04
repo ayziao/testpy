@@ -27,8 +27,7 @@ class Application:
 		"""
 		req = self.request
 		controller_instance = _controller_dispatcher(req.controller_class_name)  # コントローラ取得
-
-		self.response.body = _run_controller_method(controller_instance, req.method_name)  # コントローラ実行
+		_run_controller_method(controller_instance, req.method_name)  # コントローラ実行
 
 
 #パブリックメソッド
@@ -45,17 +44,23 @@ def main() -> response.Response:
 	"""
 	_debug_setting()
 
+	_instance.clear()
 	req = _assemble_main_request()  # メインリクエスト組み立て
-
-	app = Application(req)
-	_instance.append(app)
-	app.run()
+	sub(req)
+	app = get_instance()
+	_instance.clear()
 
 	#PENDING エラー処理
 
 	_debug_print(app.response)
 
 	return app.response
+
+
+def sub(req):
+	app = Application(req)
+	_instance.append(app)
+	app.run()
 
 
 def view_dispatcher(class_name: str) -> "view instance":
@@ -86,8 +91,22 @@ def _assemble_main_request() -> request.Request:
 	"""
 	# メインリクエスト組み立て
 	"""
-	req = request.get_instance()
-	req.controller_class_name = 'Data'  # PENDING 環境から取る
+	if settings.environ:
+		return _assemble_main_request_web()
+	else:
+		return _assemble_main_request_cli()
+
+
+def _assemble_main_request_web() -> request.Request:
+	req = request.Request()
+	req.controller_class_name = 'Top'  # PENDING 環境から取る
+	req.method_name = 'run'
+	return req
+
+
+def _assemble_main_request_cli() -> request.Request:
+	req = request.Request()
+	req.controller_class_name = 'Top'  # PENDING 環境から取る
 	req.method_name = 'run'
 	return req
 

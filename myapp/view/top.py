@@ -18,11 +18,12 @@ class Top:
 		形式によって出し分ける
 		"""
 		if (settings.environ):
-			self.viewhtml()
+			print(settings.environ)
+			self._viewhtml()
 		else:
-			print('top')
+			return 'Hello world!'
 
-	def viewhtml(self):
+	def _viewhtml(self):
 		title = "titlあああ"  # PENDING タイトル
 		body = "はろー"
 		#form = self.form()

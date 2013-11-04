@@ -49,31 +49,31 @@ class Response():
 		self.status = str(val) + _status_messages.get(val)
 		self.__status_code = val
 
-
-def get_instance() -> Response:
-	"""
-	# 最新のスタックを返す 空なら作ってセット
-	"""
-	if not _instance:
-		_instance.append(Response())
-
-	return _instance[-1]
-
-
-def create_instance() -> Response:
-	"""
-	# 新しくスタック積んで返す
-	"""
-	_instance.append(Response())
-
-	return _instance[-1]
-
-
-def pop_instance() -> Response:
-	"""
-	# 最新のスタックを取り出して返す
-	"""
-	if _instance:
-		return _instance.pop()
-	else:
-		return None
+#
+#def get_instance() -> Response:
+#	"""
+#	# 最新のスタックを返す 空なら作ってセット
+#	"""
+#	if not _instance:
+#		_instance.append(Response())
+#
+#	return _instance[-1]
+#
+#
+#def create_instance() -> Response:
+#	"""
+#	# 新しくスタック積んで返す
+#	"""
+#	_instance.append(Response())
+#
+#	return _instance[-1]
+#
+#
+#def pop_instance() -> Response:
+#	"""
+#	# 最新のスタックを取り出して返す
+#	"""
+#	if _instance:
+#		return _instance.pop()
+#	else:
+#		return None

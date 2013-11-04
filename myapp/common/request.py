@@ -26,31 +26,31 @@ class Request():
 		self.controller_class_name = ''  # コントローラクラス名
 		self.method_name = ''  # メソッド名
 
-
-def create_instance() -> Request:
-	"""
-	# 新しくスタック積んで返す
-	"""
-	_instance.append(Request())
-
-	return _instance[-1]
-
-
-def get_instance() -> Request:
-	"""
-	# 最新のスタックを返す 空なら作る
-	"""
-	if not _instance:
-		return create_instance()
-	else:
-		return _instance[-1]
-
-
-def pop_instance() -> Request:
-	"""
-	# 最新のスタックを取り出して返す
-	"""
-	if _instance:
-		return _instance.pop()
-	else:
-		return None
+#
+#def create_instance() -> Request:
+#	"""
+#	# 新しくスタック積んで返す
+#	"""
+#	_instance.append(Request())
+#
+#	return _instance[-1]
+#
+#
+#def get_instance() -> Request:
+#	"""
+#	# 最新のスタックを返す 空なら作る
+#	"""
+#	if not _instance:
+#		return create_instance()
+#	else:
+#		return _instance[-1]
+#
+#
+#def pop_instance() -> Request:
+#	"""
+#	# 最新のスタックを取り出して返す
+#	"""
+#	if _instance:
+#		return _instance.pop()
+#	else:
+#		return None

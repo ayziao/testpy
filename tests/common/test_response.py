@@ -23,24 +23,25 @@ class TestResponse(unittest.TestCase):
 		self.assertEqual(res.status, '200 OK')
 		self.assertEqual(res.status_code, 200)
 
-	def test_get_instance(self):
-		res = response.get_instance()
-		self.assertEqual(res.status_code, 0)
-
-	def test_create_instance(self):
-		res = response.create_instance()
-		self.assertEqual(res.status_code, 0)
-
-	def test_pop_instance(self):
-		response.pop_instance()
-		response.pop_instance()
-		response.pop_instance()
-		response.pop_instance()
-		res = response.pop_instance()
-		# PENDING 全消去メソッド作っとく？
-		self.assertIsNone(res)
-		res = response.get_instance()
-		self.assertEqual(res.status_code, 0)
+	#
+	#def test_get_instance(self):
+	#	res = response.get_instance()
+	#	self.assertEqual(res.status_code, 0)
+	#
+	#def test_create_instance(self):
+	#	res = response.create_instance()
+	#	self.assertEqual(res.status_code, 0)
+	#
+	#def test_pop_instance(self):
+	#	response.pop_instance()
+	#	response.pop_instance()
+	#	response.pop_instance()
+	#	response.pop_instance()
+	#	res = response.pop_instance()
+	#	# PENDING 全消去メソッド作っとく？
+	#	self.assertIsNone(res)
+	#	res = response.get_instance()
+	#	self.assertEqual(res.status_code, 0)
 
 
 if __name__ == '__main__':
