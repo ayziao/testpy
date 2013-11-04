@@ -10,7 +10,7 @@ from myapp.common import request
 
 class TestApplication(unittest.TestCase):
 	def test_init(self):
-		app = application.Application(None)
+		app = application.Application(request.Request())
 		self.assertIsInstance(app, application.Application)
 
 	def test_run(self):
@@ -22,7 +22,7 @@ class TestApplication(unittest.TestCase):
 		self.assertEqual(app.response.body, 'Hello world!')
 
 	def test_get_instance(self):
-		app = application.Application(None)
+		app = application.Application(request.Request())
 		application._instance.append(app)
 		app2 = application.get_instance()
 		self.assertEqual(app, app2)
@@ -32,6 +32,9 @@ class TestApplication(unittest.TestCase):
 		self.assertEqual(ret.body, 'Hello world!')
 
 	def test_view_dispatcher(self):
+		req = request.Request()
+		req.extension = 'raw'
+		application._instance.append(application.Application(req))
 		view_instance = application.view_dispatcher('Top')
 		ret = view_instance.view()
 		self.assertEqual(ret, 'Hello world!')

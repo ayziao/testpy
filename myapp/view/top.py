@@ -18,7 +18,6 @@ class Top:
 		形式によって出し分ける
 		"""
 		req = application.get_instance().request
-		print(req)
 		if (req.extension == 'html'):
 			self._viewhtml()
 		#if (req.Request.extension == 'json'):
