@@ -3,7 +3,7 @@
 """
 # TODO投稿フォーム
 from xml.dom import minidom
-from myapp.common import settings
+from myapp.common import application
 
 
 class Top:
@@ -17,9 +17,12 @@ class Top:
 
 		形式によって出し分ける
 		"""
-		if (settings.environ):
-			print(settings.environ)
+		req = application.get_instance().request
+		print(req)
+		if (req.extension == 'html'):
 			self._viewhtml()
+		#if (req.Request.extension == 'json'):
+		#	pass
 		else:
 			return 'Hello world!'
 
