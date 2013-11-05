@@ -55,6 +55,7 @@ class TestApplication(unittest.TestCase):
 		controller_instance = application._controller_dispatcher('none')
 		self.assertIsNone(controller_instance)
 
+
 #メインリクエスト取得
 #リクエスト組み立て
 #リクエストプッシュ
