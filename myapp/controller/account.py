@@ -9,7 +9,7 @@ class Account():
 	"""
 
 	def __init__(self):
-		self._aaaa = True
+		self._aaaa = None
 
 	def signup(self):
 		"""

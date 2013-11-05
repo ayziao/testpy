@@ -127,7 +127,7 @@ def _controller_dispatcher(class_name: str) -> "controller instance":
 		return None
 
 
-def _run_controller_method(controller: "controller instance", method: str) -> "method":
+def _run_controller_method(controller: "controller instance", method: str) -> None:
 	"""
 	# メソッド実行
 	@param controller:
