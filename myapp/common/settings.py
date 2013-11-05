@@ -79,7 +79,11 @@ def setting_encode():
 #プライベート
 def _get_ini_path() -> str:
 	if _config_path is None:
-		path = os.path.dirname(os.path.abspath(__file__))
-		return str(path.replace('myapp/common', '')) + 'config/setting.ini'
+		return _default_path()
 	else:
 		return _config_path + 'setting.ini'
+
+
+def _default_path() -> str:
+	path = os.path.dirname(os.path.abspath(__file__))
+	return str(path.replace('myapp/common', '')) + 'config/setting.ini'

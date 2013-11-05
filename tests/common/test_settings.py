@@ -24,6 +24,12 @@ class TestSettings(unittest.TestCase):
 		path_ = settings._get_ini_path()
 		self.assertTrue(path_.find('setting.ini') > 0)
 
+	def test_default_path(self):
+		path = os.path.dirname(os.path.abspath(__file__))
+		test = str(path.replace('tests/common', '')) + 'config/setting.ini'
+		defpath = settings._default_path()
+		self.assertEqual(test, defpath)
+
 
 if __name__ == '__main__':
 	unittest.main()
