@@ -2,6 +2,7 @@
 共通アプリケーション単体テスト
 """
 import unittest
+from unittest.mock import MagicMock
 
 from myapp.common import application
 from myapp.controller.data import Data
@@ -54,6 +55,31 @@ class TestApplication(unittest.TestCase):
 	def test_controller_dispatcher_none(self):
 		controller_instance = application._controller_dispatcher('none')
 		self.assertIsNone(controller_instance)
+
+	def test_run_controller_method(self):
+		controller_instance = application._run_controller_method('none', 'none')
+		self.assertIsNone(controller_instance)
+
+	def test_debug_message(self):
+		application._debug = MagicMock()
+		application.debug_message('test', 'test')
+		application._debug = None
+
+	#カバレッジ上げるためだけ アサーション未定
+
+	def test_debug_print(self):
+		application._debug = MagicMock()
+		application._debug_print(None)
+		application._debug = None
+
+	#カバレッジ上げるためだけ アサーション未定
+
+	def test_debug_instance_set(self):
+		test = {'debug': 'unit test'}
+		application._debug_instance_set(test)
+		application._debug = None
+
+	#カバレッジ上げるためだけ アサーション未定
 
 
 #メインリクエスト取得

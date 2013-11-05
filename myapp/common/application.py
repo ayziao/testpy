@@ -111,7 +111,7 @@ def _assemble_main_request_cli() -> request.Request:
 	return req
 
 
-def _controller_dispatcher(class_name: str) -> "controller class":
+def _controller_dispatcher(class_name: str) -> "controller instance":
 	"""
 	# コントローラ振り分け
 	@param class_name:
@@ -127,7 +127,7 @@ def _controller_dispatcher(class_name: str) -> "controller class":
 		return None
 
 
-def _run_controller_method(controller: str, method: str) -> "method":
+def _run_controller_method(controller: "controller instance", method: str) -> "method":
 	"""
 	# メソッド実行
 	@param controller:
@@ -138,7 +138,7 @@ def _run_controller_method(controller: str, method: str) -> "method":
 		return m()
 	except AttributeError:
 		# PENDING 404?
-		return ''
+		return None
 
 
 #デバッグ関連
@@ -156,11 +156,15 @@ def debug_message(name: str, obj) -> None:
 
 
 def _debug_setting() -> None:
-	global _debug
 	conf = settings.get_ini('application')
 	if conf['debug'] and conf['debug'] != 'false':
-		_debug = utility.import_('myapp.common.debug')
-		_debug.set_print_mode(conf['debug'])
+		_debug_instance_set(conf)
+
+
+def _debug_instance_set(conf):
+	global _debug
+	_debug = utility.import_('myapp.common.debug')
+	_debug.set_print_mode(conf['debug'])
 
 
 def _debug_print(res) -> None:
