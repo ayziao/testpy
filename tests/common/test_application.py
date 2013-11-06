@@ -37,8 +37,8 @@ class TestApplication(unittest.TestCase):
 		req.extension = 'raw'
 		application._instance.append(application.Application(req))
 		view_instance = application.view_dispatcher('Top')
-		ret = view_instance.view()
-		self.assertEqual(ret, 'Hello world!')
+		res = view_instance.view(req)
+		self.assertEqual(res.body, 'Hello world!')
 
 	def test_view_dispatcher_none(self):
 		view_instance = application.view_dispatcher('none')

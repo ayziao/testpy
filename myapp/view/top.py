@@ -3,7 +3,8 @@
 """
 # TODO投稿フォーム
 from xml.dom import minidom
-from myapp.common import application
+from myapp.common.request import Request
+from myapp.common.response import Response
 
 
 class Top:
@@ -11,25 +12,37 @@ class Top:
 	トップページ
 	"""
 
-	def view(self):
+	def view(self, req: Request):
 		"""
 		表示
-
 		形式によって出し分ける
+		@param req: リクエスト
 		"""
-		req = application.get_instance().request
+		res = Response()
 		if (req.extension == 'html'):
-			self._viewhtml()
+			res.body = self._view_html()
 		#if (req.Request.extension == 'json'):
 		#	pass
 		else:
-			return 'Hello world!'
+			res.body = 'Hello world!'
 
-	def _viewhtml(self):
+		return res
+
+	def _view_html(self):
 		title = "titlあああ"  # PENDING タイトル
 		body = "はろー"
 		#form = self.form()
-		html = """
+		html = _html() % (title, body)
+
+		doc = minidom.parseString(html.replace("\t", "").replace("\n", ''))
+		#header("Content-Type: text/html charset=UTF-8")
+		return doc.toprettyxml()[23:] # XML宣言削除
+
+	# PENDING HTMLバージョンいくつ宣言にする？
+
+
+def _html():
+	html_str = """
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
@@ -39,9 +52,5 @@ class Top:
 		<p>%s</p>
 	</body>
 </html>
-""" % (title, body)
-
-		doc = minidom.parseString(html.replace("\t", "").replace("\n", ''))
-		#header("Content-Type: text/html charset=UTF-8")
-		return doc
-
+"""
+	return html_str
