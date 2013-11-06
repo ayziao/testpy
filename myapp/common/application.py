@@ -94,13 +94,8 @@ def _controller_dispatcher(class_name: str, req: Request) -> "controller instanc
 	module_name = 'myapp.controller.' + class_name.lower()
 	mod = utility.import_(module_name)
 
-	print(module_name)
-	print(class_name)
-	print(mod)
-
 	try:
 		class_object = getattr(mod, class_name)
-		print(class_object)
 		return class_object(req)
 	except AttributeError:
 		# PENDING 404?

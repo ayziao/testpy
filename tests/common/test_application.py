@@ -10,7 +10,6 @@ from myapp.common.request import Request
 
 
 class TestApplication(unittest.TestCase):
-
 	def test_run(self):
 		req = Request()
 		req.extension = 'raw'
@@ -41,8 +40,6 @@ class TestApplication(unittest.TestCase):
 	def test_controller_dispatcher(self):
 		req = Request()
 		controller_instance = application._controller_dispatcher('Top', req)
-		print('test_controller_dispatcher')
-		print(controller_instance)
 		self.assertTrue(isinstance(controller_instance, Top))
 
 	def test_controller_dispatcher_none(self):

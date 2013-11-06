@@ -1,6 +1,6 @@
 import unittest
 
-from myapp.view.top import Top
+from myapp.view.top import Top as ViewTop
 from myapp.common.request import Request
 
 
@@ -9,17 +9,18 @@ class TestVewTop(unittest.TestCase):
 		req = Request()
 
 		req.extension = 'html'
-		viw = Top(req)
+		viw = ViewTop(req)
 		res = viw.view(None)
 		self.assert_html(res.body)
 
 		req.extension = 'raw'
-		viw = Top(req)
+		viw = ViewTop(req)
 		res = viw.view(req)
 		self.assertEqual(res.body, 'Hello world!')
 
 	def test_view_html(self):
-		top = Top(None)
+		req = Request()
+		top = ViewTop(req)
 		_str = top._view_html()
 		self.assert_html(_str)
 
