@@ -51,12 +51,10 @@ Hello world!"""
 
 
 class TestMyapp(unittest.TestCase):
-	@unittest.skip("skipping")
 	def test_main(self):
 		ref = main()
 		self.assertEqual(ref, top_body)
 
-	@unittest.skip("skipping")
 	def test_wsgiclient(self):
 		def _callback(a, b):
 			self.assertEqual(a, '200 OK')

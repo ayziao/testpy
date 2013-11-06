@@ -2,7 +2,8 @@
 # myapp.controller.data
 """
 
-from myapp.common import application
+from myapp.common.request import Request
+from myapp.common.response import Response
 
 
 class Data():
@@ -10,17 +11,19 @@ class Data():
 	# データコントローラ
 	"""
 
-	def __init__(self):
+	def __init__(self, req:Request):
 		self.title = ''
 		self.temp = 'Hello world!'
+		self.request = req
 
 	def run(self):
 		"""
 		実行
 		"""
-		app = application.get_instance()
-		app.response.body = self.title
-		app.response.body = self.temp
+		res = Response()
+		res.body = self.title
+		res.body = self.temp
+		return res
 
 
 	#データ/キーワードエントリ

@@ -6,39 +6,26 @@ from unittest.mock import MagicMock
 
 from myapp.common import application
 from myapp.controller.top import Top
-from myapp.common import request
+from myapp.common.request import Request
 
 
 class TestApplication(unittest.TestCase):
-	def test_init(self):
-		app = application.Application(request.Request())
-		self.assertIsInstance(app, application.Application)
 
-	@unittest.skip("skipping")
 	def test_run(self):
-		req = request.Request()
+		req = Request()
 		req.extension = 'raw'
 		req.controller_class_name = 'Top'  # PENDING 環境から取る
 		req.method_name = 'run'
-		application.sub(req)
-		app = application.get_instance()
-		self.assertEqual(app.response.body, 'Hello world!')
+		res = application.run(req)
+		self.assertEqual(res.body, 'Hello world!')
 
-	def test_get_instance(self):
-		app = application.Application(request.Request())
-		application._instance.append(app)
-		app2 = application.get_instance()
-		self.assertEqual(app, app2)
-
-	@unittest.skip("skipping")
 	def test_main(self):
 		ret = application.main()
 		self.assertEqual(ret.body, 'Hello world!')
 
 	def test_view_dispatcher(self):
-		req = request.Request()
+		req = Request()
 		req.extension = 'raw'
-		application._instance.append(application.Application(req))
 		view_instance = application.view_dispatcher('Top', req)
 		res = view_instance.view(None)
 		self.assertEqual(res.body, 'Hello world!')
@@ -51,13 +38,16 @@ class TestApplication(unittest.TestCase):
 		req = application._assemble_main_request()
 		self.assertEqual(req.controller_class_name, 'Top')
 
-	@unittest.skip("skipping")
 	def test_controller_dispatcher(self):
-		controller_instance = application._controller_dispatcher('Top', None)
+		req = Request()
+		controller_instance = application._controller_dispatcher('Top', req)
+		print('test_controller_dispatcher')
+		print(controller_instance)
 		self.assertTrue(isinstance(controller_instance, Top))
 
 	def test_controller_dispatcher_none(self):
-		controller_instance = application._controller_dispatcher('none', None)
+		req = Request()
+		controller_instance = application._controller_dispatcher('none', req)
 		self.assertIsNone(controller_instance)
 
 	def test_run_controller_method(self):

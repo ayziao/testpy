@@ -5,62 +5,36 @@
 """
 from myapp.common import settings
 from myapp.common import utility
-from myapp.common import request
-from myapp.common import response
+from myapp.common.request import Request
+from myapp.common.response import Response
 
 
 _instance = []
 
 
-class Application:
-	"""
-	アプリケーションクラス
-	"""
-
-	def __init__(self, req: request.Request):
-		self.request = req
-		self.response = response.Response()
-
-	def run(self) -> None:
-		"""
-		実行
-		"""
-		req = self.request
-		controller_instance = _controller_dispatcher(req.controller_class_name, self.request)  # コントローラ取得
-		_run_controller_method(controller_instance, req.method_name)  # コントローラ実行
-
-
-#パブリックメソッド
-def get_instance() -> Application:
-	"""
-	# 最新のスタックを返す
-	"""
-	return _instance[-1]
-
-
-def main() -> response.Response:
+def main() -> Response:
 	"""
 	# メイン
 	"""
 	_debug_setting()
 
-	_instance.clear()
 	req = _assemble_main_request()  # メインリクエスト組み立て
-	sub(req)
-	app = get_instance()
-	_instance.clear()
+	res = run(req)
 
 	#PENDING エラー処理
 
-	_debug_print(app.response)
+	_debug_print(res)
 
-	return app.response
+	return res
 
 
-def sub(req):
-	app = Application(req)
-	_instance.append(app)
-	app.run()
+def run(req: Request) -> None:
+	"""
+	実行
+	@param req:
+	"""
+	controller_instance = _controller_dispatcher(req.controller_class_name, req)  # コントローラ取得
+	return _run_controller_method(controller_instance, req.method_name)  # コントローラ実行
 
 
 def view_dispatcher(class_name: str, aaa) -> "view instance":
@@ -87,7 +61,7 @@ def view_dispatcher(class_name: str, aaa) -> "view instance":
 
 
 #プライベート
-def _assemble_main_request() -> request.Request:
+def _assemble_main_request() -> Request:
 	"""
 	# メインリクエスト組み立て
 	"""
@@ -97,22 +71,22 @@ def _assemble_main_request() -> request.Request:
 		return _assemble_main_request_cli()
 
 
-def _assemble_main_request_web() -> request.Request:
-	req = request.Request()
+def _assemble_main_request_web() -> Request:
+	req = Request()
 	req.controller_class_name = 'Top'  # PENDING 環境から取る
 	req.method_name = 'run'
 	return req
 
 
-def _assemble_main_request_cli() -> request.Request:
-	req = request.Request()
+def _assemble_main_request_cli() -> Request:
+	req = Request()
 	req.extension = 'raw'  # PENDING 環境から取る
 	req.controller_class_name = 'Top'  # PENDING 環境から取る
 	req.method_name = 'run'
 	return req
 
 
-def _controller_dispatcher(class_name: str, req) -> "controller instance":
+def _controller_dispatcher(class_name: str, req: Request) -> "controller instance":
 	"""
 	# コントローラ振り分け
 	@param class_name:
@@ -120,8 +94,13 @@ def _controller_dispatcher(class_name: str, req) -> "controller instance":
 	module_name = 'myapp.controller.' + class_name.lower()
 	mod = utility.import_(module_name)
 
+	print(module_name)
+	print(class_name)
+	print(mod)
+
 	try:
 		class_object = getattr(mod, class_name)
+		print(class_object)
 		return class_object(req)
 	except AttributeError:
 		# PENDING 404?
@@ -171,33 +150,3 @@ def _debug_instance_set(conf):
 def _debug_print(res) -> None:
 	if _debug:
 		_debug.output_message(res)
-
-
-#
-#def create_instance() -> Request:
-#	"""
-#	# 新しくスタック積んで返す
-#	"""
-#	_instance.append(Request())
-#
-#	return _instance[-1]
-#
-#
-#def get_instance() -> Request:
-#	"""
-#	# 最新のスタックを返す 空なら作る
-#	"""
-#	if not _instance:
-#		return create_instance()
-#	else:
-#		return _instance[-1]
-#
-#
-#def pop_instance() -> Request:
-#	"""
-#	# 最新のスタックを取り出して返す
-#	"""
-#	if _instance:
-#		return _instance.pop()
-#	else:
-#		return None

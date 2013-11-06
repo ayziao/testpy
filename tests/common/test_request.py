@@ -12,7 +12,7 @@ class TestRequest(unittest.TestCase):
 
 	def test_init(self):
 		res = request.Request()
-		self.assertEqual(res.extension, 'html')
+		self.assertEqual(res.extension, '')
 
 	#
 	#def test_create_instance(self):

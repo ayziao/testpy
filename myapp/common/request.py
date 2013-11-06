@@ -13,7 +13,7 @@ class Request():
 
 	def __init__(self) -> None:
 		self.path = ''
-		self.extension = 'html'  # 出力形式(拡張子)
+		self.extension = ''  # 出力形式(拡張子)
 		self.command = ''  # ユーザーコマンド
 		self.parameter = ''  # ユーザーパラメータ
 		self.input = ''  # ユーザ入力(ファイルとか プロパティはガワだけで処理を入れる コールバック関数？)

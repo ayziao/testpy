@@ -3,21 +3,19 @@
 """
 import unittest
 
-from myapp.common import request
-from myapp.common import application
+from myapp.common.request import Request
 from myapp.controller.data import Data
 
 
 class TestData(unittest.TestCase):
 	def test_init(self):
-		data = Data()
+		req = Request()
+		data = Data(req)
 		self.assertIsInstance(data, Data)
 
 	def test_run(self):
-		req = request.Request()
-		app = application.Application(req)
-		application._instance.append(app)
-		data = Data()
+		req = Request()
+		data = Data(req)
 		data.run()
 		self.assertTrue(True)
 

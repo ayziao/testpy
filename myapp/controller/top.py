@@ -11,7 +11,7 @@ class Top():
 	# サイトトップコントローラ
 	"""
 
-	def __init__(self, req:Request):
+	def __init__(self, req: Request):
 		self.title = 'Top'
 		req.title = self.title
 		self.request = req
