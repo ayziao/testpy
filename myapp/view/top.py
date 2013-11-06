@@ -12,14 +12,17 @@ class Top:
 	トップページ
 	"""
 
-	def view(self, req: Request):
+	def __init__(self, req: Request):
+		self.request = req
+
+	def view(self, model):
 		"""
 		表示
 		形式によって出し分ける
-		@param req: リクエスト
 		"""
+		tmp = model
 		res = Response()
-		if (req.extension == 'html'):
+		if (self.request.extension == 'html'):
 			res.body = self._view_html()
 		#if (req.Request.extension == 'json'):
 		#	pass

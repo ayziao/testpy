@@ -26,7 +26,7 @@ class Application:
 		実行
 		"""
 		req = self.request
-		controller_instance = _controller_dispatcher(req.controller_class_name)  # コントローラ取得
+		controller_instance = _controller_dispatcher(req.controller_class_name, self.request)  # コントローラ取得
 		_run_controller_method(controller_instance, req.method_name)  # コントローラ実行
 
 
@@ -63,7 +63,7 @@ def sub(req):
 	app.run()
 
 
-def view_dispatcher(class_name: str) -> "view instance":
+def view_dispatcher(class_name: str, aaa) -> "view instance":
 	"""
 	# ビュー振り分け
 	@param class_name: クラス名
@@ -80,7 +80,7 @@ def view_dispatcher(class_name: str) -> "view instance":
 
 	try:
 		class_object = getattr(mod, class_name)
-		return class_object()
+		return class_object(aaa)
 	except AttributeError:
 		# PENDING 404?
 		return None
@@ -106,12 +106,13 @@ def _assemble_main_request_web() -> request.Request:
 
 def _assemble_main_request_cli() -> request.Request:
 	req = request.Request()
+	req.extension = 'raw'  # PENDING 環境から取る
 	req.controller_class_name = 'Top'  # PENDING 環境から取る
 	req.method_name = 'run'
 	return req
 
 
-def _controller_dispatcher(class_name: str) -> "controller instance":
+def _controller_dispatcher(class_name: str, req) -> "controller instance":
 	"""
 	# コントローラ振り分け
 	@param class_name:
@@ -121,7 +122,7 @@ def _controller_dispatcher(class_name: str) -> "controller instance":
 
 	try:
 		class_object = getattr(mod, class_name)
-		return class_object()
+		return class_object(req)
 	except AttributeError:
 		# PENDING 404?
 		return None

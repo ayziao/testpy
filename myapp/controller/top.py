@@ -2,7 +2,8 @@
 # myapp.controller.top
 """
 
-from myapp.common import application
+from myapp.common.request import Request
+from myapp.view.top import Top as ViewTop
 
 
 class Top():
@@ -10,17 +11,17 @@ class Top():
 	# サイトトップコントローラ
 	"""
 
-	def __init__(self):
-		self.title = ''
-		self.temp = 'Hello world!'
+	def __init__(self, req:Request):
+		self.title = 'Top'
+		req.title = self.title
+		self.request = req
 
 	def run(self):
 		"""
 		実行
 		"""
-		app = application.get_instance()
-		app.response.body = self.title
-		app.response.body = self.temp
+		view = ViewTop(self.request)
+		return view.view(None)
 
 
 #扉型
