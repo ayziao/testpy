@@ -33,7 +33,7 @@ def run():
 
 	utility.call_recursive_directory(_add_test, os.path.curdir)
 
-	unittest.TextTestRunner(verbosity=1).run(suite)
+	unittest.TextTestRunner(verbosity=2).run(suite)
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@
 # アプリケーションに依存しないもの
 """
 import os
+from types import FunctionType
 
 
 def import_(module_name: str) -> "module":
@@ -14,23 +15,20 @@ def import_(module_name: str) -> "module":
 	@param module_name: モジュール名(mypackage.subpackage.mymodule)
 	"""
 	try:
-
-		mod = __import__(module_name)
+		mod = __import__(module_name)  # PENDING impモジュール？
 		components = module_name.split('.')
 		for c in components[1:]:
 			mod = getattr(mod, c)
-
 		return mod
-
 	except (ImportError, AttributeError):
 		return None
 
 
-def call_recursive_directory(func: 'function(file_path: str)', dir_: str) -> None:
+def call_recursive_directory(func: FunctionType, dir_: str) -> None:
 	"""
 	#translationME 再帰的にディレクトリ内のファイルに処理を行う
 	@param dir_: ディレクトリパス文字列
-	@param func: ファイルパス文字列を引数に持つ関数オブジェクト
+	@param func: function(file_path: str) ファイルパス文字列を引数に持つ関数オブジェクト
 	"""
 	for basename in os.listdir(dir_):
 		path = os.path.join(dir_, basename)

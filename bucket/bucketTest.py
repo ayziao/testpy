@@ -2,6 +2,8 @@
 test
 """
 import unittest
+from unittest import mock
+import importtest.test
 
 #from bucket import bucket
 
@@ -22,6 +24,14 @@ class MyTestCase(unittest.TestCase):
 		aaa = 'bb %s cc'
 		bbb = aaa % "aaa"
 		print(bbb)
+
+	@mock.patch('importtest.test.random')
+	def test_aaa(self, mmm):
+		def method():
+			return 9
+
+		mmm.random = method
+		print(importtest.test.rnd())
 
 
 if __name__ == '__main__':
