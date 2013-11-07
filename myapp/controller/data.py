@@ -12,8 +12,6 @@ class Data():
 	"""
 
 	def __init__(self, req:Request):
-		self.title = ''
-		self.temp = 'Hello world!'
 		self.request = req
 
 	def run(self):
@@ -21,8 +19,6 @@ class Data():
 		実行
 		"""
 		res = Response()
-		res.body = self.title
-		res.body = self.temp
 		return res
 
 
