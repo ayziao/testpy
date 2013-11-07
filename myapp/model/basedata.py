@@ -11,6 +11,8 @@ class BaseData():
 	def __init__(self, _id=None):
 		if _id:
 			self.entity = BaseDataEntity()
+		else:
+			self.entity = None
 
 
 class BaseDataEntity:
