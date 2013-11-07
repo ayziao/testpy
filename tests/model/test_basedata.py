@@ -1,4 +1,5 @@
 import unittest
+import pprint as p
 
 from myapp.model.basedata import BaseData
 
@@ -7,6 +8,11 @@ class TestBaseData(unittest.TestCase):
 	def test_init(self):
 		obj = BaseData()
 		self.assertIsInstance(obj, BaseData)
+
+		obj = BaseData('20121231235959123456')
+		self.assertEqual(obj.entity.id, '20121231235959123456')
+
+		p.pprint(obj.entity.__dict__)
 
 #新規作成
 #読み込み
