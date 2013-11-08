@@ -4,22 +4,45 @@ from myapp.model.basedata import BaseData
 
 
 class TestBaseData(unittest.TestCase):
+	def setUp(self):
+		self.obj = BaseData()
+
 	def test_init(self):
 		obj = BaseData()
 		self.assertIsInstance(obj, BaseData)
-		self.assertIsNone(obj.entity)
+		self.assertIsNone(obj._entity)
 
 		obj = BaseData('20121231235959123456')
-		self.assertEqual(obj.entity.id, '20121231235959123456')
-		self.assertEqual(obj.entity.title, 'dummy')
+		self.assertEqual(obj.id, '20121231235959123456')
+		self.assertEqual(obj.title, 'dummy')
+
+	def test_load(self):
+		self.obj.load('20121231235959123456')
+		self.assertEqual(self.obj.id, '20121231235959123456')
+		self.assertEqual(self.obj.title, 'dummy')
+
+		self.obj.load('dummy')
+		self.assertEqual(self.obj.id, '20121231235959123456')
+		self.assertEqual(self.obj.title, 'dummy')
+
+		self.obj.load_from_id('20121231235959123456')
+		self.assertEqual(self.obj.id, '20121231235959123456')
+		self.assertEqual(self.obj.title, 'dummy')
+
+
+	def test_save(self):
+		self.obj.load('20121231235959123456')
+		self.obj.title = 'dummy2'
+		self.assertTrue(self.obj.save())
+
+		obj = BaseData()
+		obj.id = '20121231235959999999'
+		obj.save()
+
 
 	#p.pprint(obj.entity.__dict__)
 
-#新規作成
-#読み込み
-#	ID
-#	タイトル
-#書き込み
+#新規登録
 #別IDとして書き込み
 
 #新しいものから取得
