@@ -7,6 +7,7 @@ now = datetime.utcnow()
 
 import sys
 import os
+from types import FunctionType
 
 # PENDING やっぱりmainに混ぜる？
 
@@ -23,13 +24,13 @@ import myapp.common.application
 # PENDING セッションとかwebサーバのあれこれの処理はここでやる？
 
 
-def application(environ: dict, start_response: 'function(status: str, header: list[tuple(key,value)])'):
+def application(environ: dict, start_response: FunctionType):
 	"""
 	# WSGI application
 	#
 	# WSGIサーバから呼ばれるところ
 	@param environ: webサーバ環境変数等
-	@param start_response: レスポンス コールバック関数
+	@param start_response: レスポンス コールバック関数  function(status: str, header: [(key: str,value: str), ...])
 	"""
 	from pprint import pprint
 
