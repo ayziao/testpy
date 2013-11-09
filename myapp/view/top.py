@@ -19,10 +19,11 @@ class Top:
 		"""
 		表示
 		形式によって出し分ける
+		@param model: モデルインスタンス
 		"""
 		tmp = model
 		res = Response()
-		if (self.request.extension == 'html'):
+		if self.request.extension == 'html':
 			res.body = self._view_html()
 		#if (req.Request.extension == 'json'):
 		#	pass
@@ -32,7 +33,7 @@ class Top:
 		return res
 
 	def _view_html(self):
-		title = "titlあああ"  # PENDING タイトル
+		title = "たいとる"  # PENDING タイトル
 		body = "はろー"
 		#form = self.form()
 		html = _html() % (title, body)

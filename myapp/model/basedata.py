@@ -24,7 +24,7 @@ class BaseData():
 
 	def load(self, str_: str) -> None:
 		self.load_from_title(str_)
-		if self._entity == None:
+		if self._entity is None:
 			self.load_from_id(str_)
 
 	def load_from_id(self, id_: str) -> None:
@@ -38,7 +38,7 @@ class BaseData():
 			self.__dict__[key] = item
 
 	def save(self) -> bool:
-		if self._entity == None:
+		if self._entity is None:
 			self._entity = BaseDataEntity()  # FIXME
 		self._entity.id = self.id
 		self._entity.title = self.title
@@ -63,6 +63,7 @@ class BaseDataEntity:
 		self.tag = 'dummy_tag1 dummy_tag2'
 		self.body = 'dummy body'
 		self.datetime = datetime.strptime('2012-12-31 23:59:59.123456', '%Y-%m-%d %H:%M:%S.%f')
+
 
 	def save(self):
 		return True

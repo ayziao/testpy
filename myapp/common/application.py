@@ -8,7 +8,6 @@ from myapp.common import utility
 from myapp.common.request import Request
 from myapp.common.response import Response
 
-
 _instance = []
 
 
@@ -37,10 +36,11 @@ def run(req: Request) -> None:
 	return _run_controller_method(controller_instance, req.method_name)  # コントローラ実行
 
 
-def view_dispatcher(class_name: str, aaa) -> "view instance":
+def view_dispatcher(class_name: str, req: Request) -> "view instance":
 	"""
 	# ビュー振り分け
 	@param class_name: クラス名
+	@param req: リクエストインスタンス
 	@return ビューインスタンス
 
 	コントローラからビューをnewする方法検討
@@ -54,7 +54,7 @@ def view_dispatcher(class_name: str, aaa) -> "view instance":
 
 	try:
 		class_object = getattr(mod, class_name)
-		return class_object(aaa)
+		return class_object(req)
 	except AttributeError:
 		# PENDING 404?
 		return None

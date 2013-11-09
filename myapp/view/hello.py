@@ -2,7 +2,7 @@
 テスト用
 """
 
-from myapp.common import request
+from myapp.common.request import Request
 from myapp.common import application
 
 
@@ -23,22 +23,26 @@ class Hello():
 
 
 	def form(self):
-		navhtml = ''
-		formhtml = ''
-		isLogin = True
-		if isLogin:
+		"""
+		入力フォームとか
+		@return:
+		"""
+		navi_html = ''
+		form_html = ''
+		is_login = True
+		if is_login:
 			#PENDING どうにか
 			#include dirname(__FILE__) . '/parts/post_form.php'
-			navhtml += '<a href="./?Account.logout">logout</a><br><br>'
+			navi_html += '<a href="./?Account.logout">logout</a><br><br>'
 		else:
-			navhtml += '<a href="./?Account.signup">signup</a><br>'
-			navhtml += '<a href="./?Account.login">login</a><br><br>'
+			navi_html += '<a href="./?Account.signup">signup</a><br>'
+			navi_html += '<a href="./?Account.login">login</a><br><br>'
 
-		nav_request = request.create_instance()
+		nav_request = Request()
 		nav_request.controller_class_name = 'Navigation'
 		nav_request.method_name = 'main'
 		nav_request.extension = 'htmlElement'
 
-		navhtml += application.run()
+		navi_html += application.run(nav_request)
 
-		return formhtml + navhtml
+		return form_html + navi_html
