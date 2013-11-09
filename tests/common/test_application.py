@@ -56,21 +56,21 @@ class TestApplication(unittest.TestCase):
 		application.debug_message('test', 'test')
 		application._debug = None
 
-	#カバレッジ上げるためだけ アサーション未定
+	# PENDING カバレッジ上げるためだけ アサーション未定
 
 	def test_debug_print(self):
 		application._debug = MagicMock()
 		application._debug_print(None)
 		application._debug = None
 
-	#カバレッジ上げるためだけ アサーション未定
+	# PENDING カバレッジ上げるためだけ アサーション未定
 
 	def test_debug_instance_set(self):
 		test = {'debug': 'unit test'}
 		application._debug_instance_set(test)
 		application._debug = None
 
-	#カバレッジ上げるためだけ アサーション未定
+	# PENDING カバレッジ上げるためだけ アサーション未定
 
 
 #メインリクエスト取得

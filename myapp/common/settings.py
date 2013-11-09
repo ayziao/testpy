@@ -18,9 +18,9 @@ start_time = datetime.utcnow()  # 処理開始日時
 wsgi_load_time = None  # WSGIクライアントモジュールの読み込み日時
 arg = sys.argv  # コマンドライン引数
 
-_config_path = None # 設定ディレクトリパス
+_config_path = None  # 設定ディレクトリパス
 _ini = None  # 初期設定
-_encode_set = False # 文字encode
+_encode_set = False  # 文字encode
 
 
 def set_config_path(config_path: str):
