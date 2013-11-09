@@ -64,14 +64,15 @@ def setting_encode():
 	@return:
 	"""
 	# PENDING プロバティにする
+	# pending ConfigParserクラスだるいので辞書に変換しとく
 	global _encode_set
 	sys_ini = get_ini('system')
 	if not sys_ini is None and sys_ini['text_encoding'] and _encode_set is False:
 		# PENDING バッファどうにかする
 		#sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
 		#sys.stdin = io.TextIOWrapper(sys.stdout.buffer, encoding=sys_ini['text_encoding'])
-		sys.stdin = open(sys.stdin.fileno(), encoding=sys_ini['text_encoding'])
-		sys.stdout = open(sys.stdout.fileno(), 'w', encoding=sys_ini['text_encoding'])
+		#sys.stdin = open(sys.stdin.fileno(), encoding=sys_ini['text_encoding'])
+		#sys.stdout = open(sys.stdout.fileno(), 'w', encoding=sys_ini['text_encoding'])
 		#sys.stderr = open(sys.stderr.fileno(), 'w', encoding=sys_ini['text_encoding'])
 		_encode_set = True
 

@@ -188,3 +188,48 @@ http://d.hatena.ne.jp/themorthem/20110125/1295937346
 http://boli.boo.jp/boli_wiki/index.php?%E9%80%86%E5%BC%95%E3%81%8DPython%E3%83%A1%E3%83%A2%2F%E5%8B%95%E7%9A%84%E3%81%AB%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%82%92import%E3%81%99%E3%82%8B
 インポートされるモジュールを変更する
 http://d.hatena.ne.jp/nullpobug/20081109/1226223232
+
+
+■
+{
+	'CONTENT_LENGTH': '',
+	'CONTENT_TYPE': 'text/plain',
+	'GATEWAY_INTERFACE': 'CGI/1.1',
+	'HOME': '/Users/user',
+	'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+	'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+	'HTTP_ACCEPT_LANGUAGE': 'ja,en-US;q=0.8,en;q=0.6',
+	'HTTP_CACHE_CONTROL': 'max-age=0',
+	'HTTP_CONNECTION': 'keep-alive',
+	'HTTP_HOST': 'localhost:8080',
+	'HTTP_USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.0 Safari/537.36',
+	'PATH': '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/mysql/bin',
+	'PATH_INFO': '/',
+	'PYCHARM_HOSTED': '1',
+	'PYTHONIOENCODING': 'UTF-8',
+	'PYTHONPATH': '/usr/local/bin/python3:/Users/user/PycharmProjects/testpy/myapp',
+	'PYTHONUNBUFFERED': '1',
+	'QUERY_STRING': '',
+	'REMOTE_ADDR': '127.0.0.1',
+	'REMOTE_HOST': '',
+	'REQUEST_METHOD': 'GET',
+	'SCRIPT_NAME': '',
+	'SERVER_NAME': 'localhost',
+	'SERVER_PORT': '8080',
+	'SERVER_PROTOCOL': 'HTTP/1.1',
+	'SERVER_SOFTWARE': 'WSGIServer/0.2',
+	'SHELL': '/bin/bash',
+	'SSH_AUTH_SOCK': '/tmp/launch-LHtUCj/Listeners',
+	'TMPDIR': '/var/tmp/',
+	'USER': 'user',
+	'__CF_USER_TEXT_ENCODING': '0x1F6:1:14',
+	'__PYVENV_LAUNCHER__': '/Library/Frameworks/Python.framework/Versions/3.3/bin/python3',
+	'wsgi.errors': <_io.TextIOWrapper name='<stderr>' mode='w' encoding='UTF-8'>,
+	'wsgi.file_wrapper': <class 'wsgiref.util.FileWrapper'>,
+	'wsgi.input': <_io.BufferedReader name=6>,
+	'wsgi.multiprocess': False,
+	'wsgi.multithread': True,
+	'wsgi.run_once': False,
+	'wsgi.url_scheme': 'http',
+	'wsgi.version': (1, 0)
+}
