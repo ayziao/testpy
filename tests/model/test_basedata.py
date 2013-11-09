@@ -35,15 +35,19 @@ class TestBaseData(unittest.TestCase):
 		self.obj.title = 'dummy2'
 		self.assertTrue(self.obj.save())
 
+		#新規登録
 		obj = BaseData()
 		obj.id = '20121231235959999999'
 		obj.save()
 
+	@unittest.skip("demonstrating skipping")
+	def test_save_as(self):
+		#別IDとして書き込み
+		pass
+
 
 	#p.pprint(obj.entity.__dict__)
 
-#新規登録
-#別IDとして書き込み
 
 #新しいものから取得
 #古いものから取得

@@ -48,6 +48,9 @@ class BaseData():
 
 		return self._entity.save()
 
+	def save_as(self):
+		pass
+
 
 class BaseDataEntity:
 	"""
