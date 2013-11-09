@@ -3,7 +3,7 @@
 """
 
 
-class BaseData():
+class Account():
 	def __init__(self):
 		#identifier
 		#mail address
