@@ -32,9 +32,6 @@ def application(environ: dict, start_response: FunctionType):
 	@param environ: webサーバ環境変数等
 	@param start_response: レスポンス コールバック関数  function(status: str, header: [(key: str,value: str), ...])
 	"""
-	from pprint import pprint
-
-	pprint(environ)
 	if environ['PATH_INFO'] == '/favicon.ico':
 		# PENDING ファイル無いときの動作どうするか考える
 		start_response('404 Not Found', [('Content-Type', 'text/html; charset=utf-8')])

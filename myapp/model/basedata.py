@@ -6,7 +6,7 @@ from datetime import datetime
 
 class BaseData():
 	"""
-	ベースデータ
+	基底データ
 	"""
 
 	def __init__(self, id_: str=None) -> None:
@@ -44,7 +44,7 @@ class BaseData():
 		self._entity.title = self.title
 		self._entity.tag = self.tag
 		self._entity.body = self.body
-		self.datetime = datetime.utcnow()
+		self._entity.datetime = datetime.utcnow()
 
 		return self._entity.save()
 
