@@ -1,0 +1,7 @@
+"""
+ユーザーデータ
+"""
+
+
+class UserData():
+	pass
