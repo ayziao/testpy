@@ -21,10 +21,10 @@ import myapp.common.application
 
 def main() -> str:
 	"""
-	# コマンドライン向け
+	# コマンドライン向け 共通アプリケーション呼んでheaderをどうにかしてボディ返す
 	@return:
 	"""
-	# PENDING 引数や設定みてヘッダ出さないとか入れる
+	#
 	settings.start_time = now
 	out = ''
 	res = myapp.common.application.main()
