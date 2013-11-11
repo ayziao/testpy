@@ -189,6 +189,8 @@ http://boli.boo.jp/boli_wiki/index.php?%E9%80%86%E5%BC%95%E3%81%8DPython%E3%83%A
 インポートされるモジュールを変更する
 http://d.hatena.ne.jp/nullpobug/20081109/1226223232
 
+●URI クエリ
+http://koseki.hatenablog.com/entry/20120212/uricolon
 
 ■
 {
