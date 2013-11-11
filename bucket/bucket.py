@@ -76,7 +76,19 @@ def cache_class():
 	print(b)
 
 
+class dichoge():
+	pass
+
+
 cache_class()
+
+obj = dichoge()
+obj.hoge = "aaa"
+print(obj.hoge)
+
+dicc = {}
+dicc.hoge = 'aaa'
+print(dicc.hoge)
 
 
 

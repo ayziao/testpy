@@ -2,6 +2,14 @@
 # 共通 アプリケーションモジュール
 # myapp.common.application
 
+リクエスト解析してコントローラ呼ぶ
+pathがあるならコンテンツ
+	pathをデータコントローラに投げてデータモデルを受け取る
+	コマンドない場合はたんなる表示
+コマンドがあればコマンドを実行
+	データモデル有りのコマンド
+	データモデル無しのコマンド
+
 """
 from myapp.common import settings
 from myapp.common import utility

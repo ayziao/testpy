@@ -51,6 +51,12 @@ Hello world!"""
 
 
 class TestMyapp(unittest.TestCase):
+	# PENDING 引数や設定みてヘッダ出さないとか入れる
+	#python myapp/main.py
+	#データパス
+	#リクエスト	(ｗｅｂと同じ)
+	#コマンド（コマンドライン独自 webでHTTTPヘッダに出してる情報どうするかとか）
+
 	def test_main(self):
 		ref = main()
 		self.assertEqual(ref, top_body)
