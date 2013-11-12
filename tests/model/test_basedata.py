@@ -2,19 +2,16 @@ import unittest
 import sqlite3
 
 from myapp.model.basedata import BaseData
-
-con = None
+from myapp.common import database
 
 
 class TestBaseData(unittest.TestCase):
 	@classmethod
 	def setUpClass(cls):
-		global con
-		con = sqlite3.connect(":memory:")
+		database.connection = sqlite3.connect(":memory:")
 		#aaa = BaseDataEntity(con)
 		#aaa.create()
 
-		con = sqlite3.connect(":memory:")
 		sql = """
 		create table BaseData (
 			id varchar(20),
@@ -24,40 +21,40 @@ class TestBaseData(unittest.TestCase):
 			datetime text
 		);
 		"""
-		con.execute(sql)
+		database.connection.execute(sql)
 
 
 	@classmethod
 	def tearDownClass(cls):
-		con.close()
+		database.connection.close()
 
 
 	def setUp(self):
-		self.obj = BaseData(con)
+		self.obj = BaseData(database.connection)
 
 
 		#sql = "insert into user values ('jon', 26, 'USA')"
 		#con.execute(sql)
-		con.executemany("insert into BaseData values (?, ?, ?, ?, ?)",
-		                [
-			                ("20121231235959123456", 'dummy', 'dummy_tag1 dummy_tag2', 'dummy body',
+		database.connection.executemany("insert into BaseData values (?, ?, ?, ?, ?)",
+		                                [
+			                                ("20121231235959123456", 'dummy', 'dummy_tag1 dummy_tag2', 'dummy body',
 			                 '2012-12-31 23:59:59.123456'),
 		                ])
 
 
 	def test_aaaaa(self):
-		c = con.cursor()
+		c = database.connection.cursor()
 		c.execute("select * from BaseData")
 		for row in c: # rowはtuple
 			print(row[0], row[1], row[2])
 
 
 	def test_init(self):
-		obj = BaseData(con)
+		obj = BaseData(database.connection)
 		self.assertIsInstance(obj, BaseData)
 		self.assertIsNone(obj._entity)
 
-		obj = BaseData(con, '20121231235959123456')
+		obj = BaseData(database.connection, '20121231235959123456')
 		self.assertEqual(obj.id, '20121231235959123456')
 		self.assertEqual(obj.title, 'dummy')
 
@@ -81,7 +78,7 @@ class TestBaseData(unittest.TestCase):
 		self.assertTrue(self.obj.save())
 
 		#新規登録
-		obj = BaseData(con)
+		obj = BaseData(database.connection)
 		obj.id = '20121231235959999999'
 		obj.save()
 
