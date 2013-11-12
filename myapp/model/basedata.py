@@ -2,7 +2,6 @@
 # myapp.model.basedata
 """
 from datetime import datetime
-import sqlite3
 
 
 class BaseData():
@@ -22,7 +21,6 @@ class BaseData():
 
 		if id_:
 			self.load(id_)
-
 
 	def load(self, str_: str) -> None:
 		self.load_from_title(str_)
@@ -68,7 +66,6 @@ class BaseDataEntity:
 		self.datetime = datetime.strptime('2012-12-31 23:59:59.123456', '%Y-%m-%d %H:%M:%S.%f')
 
 	def create(self):
-		self.con = sqlite3.connect(":memory:")
 		sql = """
 		create table BaseData (
 			id varchar(20),
