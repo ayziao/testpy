@@ -1,6 +1,31 @@
 """
 test
 """
+
+import sqlite3
+
+con = sqlite3.connect(":memory:")
+sql = u"""
+create table user (
+  name varchar(10),
+  age integer,
+  address varchar(200)
+);
+"""
+con.execute(sql)
+sql = "insert into user values ('jon', 26, 'USA')"
+con.execute(sql)
+con.executemany("insert into user values (?, ?, ?)",
+                [("takasi", 35, "japan"),
+                 ("guid", 40, "Holland")])
+c = con.cursor()
+c.execute("select * from user")
+for row in c: # rowはtuple
+	print(row[0], row[1], row[2])
+con.close()
+
+exit()
+
 from datetime import datetime
 from myapp.common import settings
 
