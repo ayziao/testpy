@@ -1,7 +1,7 @@
 import unittest
 
-from myapp.view.top import Top as ViewTop
 from myapp.common.request import Request
+from myapp.view.top import Top as ViewTop
 
 
 class TestVewTop(unittest.TestCase):
