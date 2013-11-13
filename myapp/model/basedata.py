@@ -3,14 +3,15 @@
 """
 from datetime import datetime
 
+from myapp.common import database
+
 
 class BaseData():
 	"""
 	基底データ
 	"""
 
-	def __init__(self, con, id_: str=None) -> None:
-		self.con = con
+	def __init__(self, id_: str=None) -> None:
 		self._entity = None
 
 		self.id = ''
@@ -23,23 +24,23 @@ class BaseData():
 			self.load(id_)
 
 	def load(self, str_: str) -> None:
-		self.load_from_title(str_)
+		self.load_by_title(str_)
 		if self._entity is None:
-			self.load_from_id(str_)
+			self.load_by_id(str_)
 
-	def load_from_id(self, id_: str) -> None:
+	def load_by_id(self, id_: str) -> None:
 		self._entity = BaseDataEntity(id_)
 		for key, item in self._entity.__dict__.items():
 			self.__dict__[key] = item
 
-	def load_from_title(self, title: str) -> None:
+	def load_by_title(self, title: str) -> None:
 		self._entity = BaseDataEntity(title)
 		for key, item in self._entity.__dict__.items():
 			self.__dict__[key] = item
 
 	def save(self) -> bool:
 		if self._entity is None:
-			self._entity = BaseDataEntity(self.con)  # FIXME
+			self._entity = BaseDataEntity()  # FIXME
 		self._entity.id = self.id
 		self._entity.title = self.title
 		self._entity.tag = self.tag
@@ -57,8 +58,7 @@ class BaseDataEntity:
 	ダミー
 	"""
 	# PENDING 本物作る
-	def __init__(self, con, _id: str=None):
-		self.con = con
+	def __init__(self, _id: str=None):
 		self.id = '20121231235959123456'
 		self.title = 'dummy'
 		self.tag = 'dummy_tag1 dummy_tag2'
@@ -75,7 +75,7 @@ class BaseDataEntity:
 			datetime text
 		);
 		"""
-		self.con.execute(sql)
+		database.connection.execute(sql)
 
 
 	def save(self):

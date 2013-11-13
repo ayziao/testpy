@@ -1,8 +1,8 @@
 """
 データベース単体テスト
 """
-
 import unittest
+
 from myapp.common import database
 
 

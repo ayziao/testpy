@@ -3,8 +3,8 @@
 """
 import unittest
 import sys
-from collections import OrderedDict
 import pprint as p
+from collections import OrderedDict
 
 from myapp.common import debug
 from myapp.common import response

@@ -2,6 +2,27 @@
 test
 """
 
+
+class dichoge():
+	def __init__(self):
+		self.__aaa = 'BBB'
+
+	def func(self):
+		pass
+
+
+obj = dichoge()
+obj.hoge = "aaa"
+print(obj.__dict__)
+print(vars(obj))
+
+exit()
+dicc = {}
+dicc.hoge = 'aaa'
+print(dicc.hoge)
+
+exit()
+
 import sqlite3
 
 con = sqlite3.connect(":memory:")
@@ -100,20 +121,7 @@ def cache_class():
 	del a
 	print(b)
 
-
-class dichoge():
-	pass
-
-
 cache_class()
-
-obj = dichoge()
-obj.hoge = "aaa"
-print(obj.hoge)
-
-dicc = {}
-dicc.hoge = 'aaa'
-print(dicc.hoge)
 
 
 
