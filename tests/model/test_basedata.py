@@ -3,26 +3,15 @@ import sqlite3
 
 from myapp.common import database
 from myapp.model.basedata import BaseData
-from myapp.model.basedata import BaseDataEntity
 
 
 class TestBaseData(unittest.TestCase):
 	@classmethod
 	def setUpClass(cls):
 		database.connection = sqlite3.connect(":memory:")
-		aaa = BaseDataEntity(database.connection)
-		aaa.create()
+		BaseData.create()
 
-		#sql = """
-		#create table BaseData (
-		#	id varchar(20),
-		#	title varchar(500),
-		#	tag varchar(500),
-		#	body text,
-		#	datetime text
-		#);
-		#"""
-		#database.connection.execute(sql)
+		#テストデータインサート
 		database.connection.executemany(
 			"insert into BaseData values (?, ?, ?, ?, ?)",
 			[("20121231235959123456", 'dummy', 'dummy_tag1 dummy_tag2', 'dummy body', '2012-12-31 23:59:59.123456')]
@@ -97,7 +86,7 @@ class TestBaseData(unittest.TestCase):
 #タイトル部分一致で取得
 
 
-#PENDING DBとマップするだけのはentityとして別にするか
+#仕様 DBとマップするだけのはentityとして別にするか＞しない
 
 
 

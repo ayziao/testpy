@@ -11,6 +11,19 @@ class BaseData():
 	基底データ
 	"""
 
+	@staticmethod
+	def create():
+		sql = """
+		create table BaseData (
+			id varchar(20),
+			title varchar(500),
+			tag varchar(500),
+			body text,
+			datetime text
+		);
+		"""
+		database.connection.execute(sql)
+
 	def __init__(self, id_: str=None) -> None:
 		self._entity = None
 
@@ -65,17 +78,6 @@ class BaseDataEntity:
 		self.body = 'dummy body'
 		self.datetime = datetime.strptime('2012-12-31 23:59:59.123456', '%Y-%m-%d %H:%M:%S.%f')
 
-	def create(self):
-		sql = """
-		create table BaseData (
-			id varchar(20),
-			title varchar(500),
-			tag varchar(500),
-			body text,
-			datetime text
-		);
-		"""
-		database.connection.execute(sql)
 
 
 	def save(self):
