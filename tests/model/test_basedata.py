@@ -40,16 +40,14 @@ class TestBaseData(unittest.TestCase):
 		self.assertIsInstance(obj, BaseData)
 		self.assertEqual(obj.id, '')
 
-	#TODO ID読み込みできてない
-	#obj = BaseData('20121231235959123456')
-	#self.assertEqual(obj.id, '20121231235959123456')
-	#self.assertEqual(obj.title, 'dummy')
+		obj = BaseData('20121231235959123456')
+		self.assertEqual(obj.id, '20121231235959123456')
+		self.assertEqual(obj.title, 'dummy')
 
 	def test_load(self):
-		#TODO ID読み込みできてない
-		#self.obj.load('20121231235959123456')
-		#self.assertEqual(self.obj.id, '20121231235959123456')
-		#self.assertEqual(self.obj.title, 'dummy')
+		self.obj.load('20121231235959123456')
+		self.assertEqual(self.obj.id, '20121231235959123456')
+		self.assertEqual(self.obj.title, 'dummy')
 
 		self.obj.load('dummy')
 		self.assertEqual(self.obj.id, '20121231235959123456')

@@ -41,7 +41,7 @@ class BaseData():
 
 	def load_by_id(self, id_: str) -> None:
 		c = database.connection.cursor()
-		c.execute("select * from BaseData where title='" + id_ + "'")
+		c.execute("select * from BaseData where id='" + id_ + "'")
 		for row in c: # rowはtuple
 			self.id = row[0]
 			self.title = row[1]
@@ -65,8 +65,8 @@ class BaseData():
 
 	def save(self) -> bool:
 		if self.id != '':
-			database.connection.executemany(
-				"UPDATE  BaseData set id=?, title=?, tag=?, body=?, datetime=?)",
+			return database.connection.executemany(
+				"UPDATE  BaseData set id=?, title=?, tag=?, body=?, datetime=?",
 				[(self.id, self.title, self.tag, self.body, self.datetime)]
 			)
 
