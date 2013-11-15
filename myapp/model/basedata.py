@@ -1,7 +1,6 @@
 """
 # myapp.model.basedata
 """
-from datetime import datetime
 
 from myapp.common import database
 
@@ -25,8 +24,6 @@ class BaseData():
 		database.connection.execute(sql)
 
 	def __init__(self, id_: str=None) -> None:
-		self._entity = None
-
 		self.id = ''
 		self.title = ''
 		self.tag = ' '
@@ -37,48 +34,47 @@ class BaseData():
 			self.load(id_)
 
 	def load(self, str_: str) -> None:
-		self.load_by_title(str_)
-		if self._entity is None:
-			self.load_by_id(str_)
+		ret = self.load_by_title(str_)
+		if ret == '':
+			ret = self.load_by_id(str_)
+		return self.id
 
 	def load_by_id(self, id_: str) -> None:
-		self._entity = BaseDataEntity(id_)
-		for key, item in self._entity.__dict__.items():
-			self.__dict__[key] = item
+		c = database.connection.cursor()
+		c.execute("select * from BaseData where title='" + id_ + "'")
+		for row in c: # rowはtuple
+			self.id = row[0]
+			self.title = row[1]
+			self.tag = row[2]
+			self.body = row[3]
+			self.datetime = row[4]
+		return self.id
+
 
 	def load_by_title(self, title: str) -> None:
-		self._entity = BaseDataEntity(title)
-		for key, item in self._entity.__dict__.items():
-			self.__dict__[key] = item
+		c = database.connection.cursor()
+		c.execute("select * from BaseData where title='" + title + "'")
+		for row in c: # rowはtuple
+			self.id = row[0]
+			self.title = row[1]
+			self.tag = row[2]
+			self.body = row[3]
+			self.datetime = row[4]
+		return self.id
+
 
 	def save(self) -> bool:
-		if self._entity is None:
-			self._entity = BaseDataEntity()  # FIXME
-		self._entity.id = self.id
-		self._entity.title = self.title
-		self._entity.tag = self.tag
-		self._entity.body = self.body
-		self._entity.datetime = datetime.utcnow()
+		if self.id != '':
+			database.connection.executemany(
+				"UPDATE  BaseData set id=?, title=?, tag=?, body=?, datetime=?)",
+				[(self.id, self.title, self.tag, self.body, self.datetime)]
+			)
 
-		return self._entity.save()
 
 	def save_as(self):
-		pass
+		if self.id != '':
+			return database.connection.executemany(
+				"insert into BaseData values (?, ?, ?, ?, ?)",
+				[(self.id, self.title, self.tag, self.body, self.datetime)]
+			)
 
-
-class BaseDataEntity:
-	"""
-	ダミー
-	"""
-	# PENDING 本物作る
-	def __init__(self, _id: str=None):
-		self.id = '20121231235959123456'
-		self.title = 'dummy'
-		self.tag = 'dummy_tag1 dummy_tag2'
-		self.body = 'dummy body'
-		self.datetime = datetime.strptime('2012-12-31 23:59:59.123456', '%Y-%m-%d %H:%M:%S.%f')
-
-
-
-	def save(self):
-		return True
