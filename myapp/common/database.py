@@ -39,7 +39,7 @@ def select(entity):
 	pass
 
 
-def select_List(entity):
+def select_list(entity):
 	pass
 
 #PENDING 1件のもリストで返す？

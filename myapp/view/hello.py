@@ -32,7 +32,7 @@ class Hello():
 		is_login = True
 		if is_login:
 			#PENDING どうにか
-			#include dirname(__FILE__) . '/parts/post_form.php'
+			#include dir_name(__FILE__) . '/parts/post_form.php'
 			navi_html += '<a href="./?Account.logout">logout</a><br><br>'
 		else:
 			navi_html += '<a href="./?Account.signup">signup</a><br>'
