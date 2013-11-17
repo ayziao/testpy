@@ -31,7 +31,7 @@ class TestDataBase(unittest.TestCase):
 	def test_select(self):
 		database.select(None)
 
-	def test_select_List(self):
+	def test_select_list(self):
 		database.select_list(None)
 
 	def test_execut(query):
