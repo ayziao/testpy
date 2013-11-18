@@ -11,7 +11,7 @@ class BaseData():
 	"""
 
 	@staticmethod
-	def create():
+	def create_table():
 		sql = """
 		create table BaseData (
 			id varchar(20),

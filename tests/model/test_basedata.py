@@ -9,7 +9,7 @@ class TestBaseData(unittest.TestCase):
 	@classmethod
 	def setUpClass(cls):
 		database.connection = sqlite3.connect(":memory:")  #TODO テストの時はメモリ webアプリ起動でファイル
-		BaseData.create()
+		BaseData.create_table()
 
 		#テストデータインサート
 		database.connection.executemany(
