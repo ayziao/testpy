@@ -16,7 +16,10 @@ def get_connection(hogehoge):
 
 #	DDL生成（管理用DBクラスに分ける？）
 def create_ddl(dbinfo):
-	pass
+	c = connection.cursor()
+	c.execute('select * from sqlite_master')
+	for row in c:
+		return row[4]
 
 
 def insert(entity):

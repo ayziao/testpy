@@ -2,6 +2,7 @@
 データベース単体テスト
 """
 import unittest
+import sqlite3
 
 from myapp.common import database
 
@@ -14,7 +15,11 @@ class TestDataBase(unittest.TestCase):
 
 	#	DDL生成（管理用DBクラスに分ける？）
 	def test_create_ddl(self):
-		database.create_ddl(None)
+		database.connection = sqlite3.connect(":memory:")  #TODO テストの時はメモリ webアプリ起動でファイル
+		sql = "CREATE TABLE test (num int(10),str varchar(500),body text)"
+		database.connection.execute(sql)
+		ret = database.create_ddl(None)
+		self.assertEqual(sql, ret)
 
 	def test_insert(self):
 		database.insert(None)
