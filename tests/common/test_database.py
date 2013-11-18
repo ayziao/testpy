@@ -7,7 +7,20 @@ import sqlite3
 from myapp.common import database
 
 
+class dummy():
+	def __init__(self):
+		self.num = 0
+		self.str = ''
+		self._private = 'p'
+
+
 class TestDataBase(unittest.TestCase):
+	@classmethod
+	def setUpClass(cls):
+		database.connection = sqlite3.connect(":memory:")  #TODO テストの時はメモリ webアプリ起動でファイル
+		cls.sql = "CREATE TABLE dummy (num int(10),str varchar(500))"
+		database.connection.execute(cls.sql)
+
 	def test_get_connection(self):
 		database.get_connection(None)
 
@@ -15,14 +28,27 @@ class TestDataBase(unittest.TestCase):
 
 	#	DDL生成（管理用DBクラスに分ける？）
 	def test_create_ddl(self):
-		database.connection = sqlite3.connect(":memory:")  #TODO テストの時はメモリ webアプリ起動でファイル
-		sql = "CREATE TABLE test (num int(10),str varchar(500),body text)"
-		database.connection.execute(sql)
 		ret = database.create_ddl(None)
-		self.assertEqual(sql, ret)
+		self.assertEqual(self.sql, ret)
 
 	def test_insert(self):
-		database.insert(None)
+		d = dummy()
+		#database.insert(d)
+		d.num = 1
+		d.str = 'hoge'
+		database.insert(d)
+		#d.num = 2
+		#d.str = 'piyo'
+		#database.insert(d)
+
+		c = database.connection.cursor()
+		c.execute("select num,str from dummy")
+		for row in c: # rowはtuple
+			self.assertEqual(row[0], d.num)
+			self.assertEqual(row[1], d.str)
+		#from pprint import pprint
+		#pprint(row)
+
 
 	def test_update(self):
 		database.update(None)

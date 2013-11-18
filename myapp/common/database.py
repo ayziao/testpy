@@ -19,11 +19,23 @@ def create_ddl(dbinfo):
 	c = connection.cursor()
 	c.execute('select * from sqlite_master')
 	for row in c:
-		return row[4]
+		return row[4]  # TODO テーブル指定
 
 
 def insert(entity):
-	pass
+	keys = ''
+	vals = list()
+	qqq = ''
+	for k, v in entity.__dict__.items():
+		if k[0] != '_':
+			keys += '`' + k + '`,'
+			vals.append(v)
+			qqq += '?,'
+	keys = keys[0:-1]
+	qqq = qqq[0:-1]
+	name = entity.__class__.__name__
+	sql = "insert into %s (%s) values (%s)" % (name, keys, qqq)
+	connection.executemany(sql, [tuple(vals)])
 
 
 def update(entity):
