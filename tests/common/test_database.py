@@ -12,13 +12,14 @@ class dummy():
 		self.num = 0
 		self.str = ''
 		self._private = 'p'
+		self._key = 'num'
 
 
 class TestDataBase(unittest.TestCase):
 	@classmethod
 	def setUpClass(cls):
 		database.connection = sqlite3.connect(":memory:")  #TODO テストの時はメモリ webアプリ起動でファイル
-		cls.sql = "CREATE TABLE dummy (num int(10),str varchar(500))"
+		cls.sql = "CREATE TABLE dummy (num int(10) NOT NULL,str varchar(500) NOT NULL, PRIMARY KEY(num))"
 		database.connection.execute(cls.sql)
 
 	def test_get_connection(self):
@@ -33,7 +34,7 @@ class TestDataBase(unittest.TestCase):
 
 	def test_insert(self):
 		d = dummy()
-		#database.insert(d)
+		database.insert(d)
 		d.num = 1
 		d.str = 'hoge'
 		database.insert(d)
@@ -42,7 +43,7 @@ class TestDataBase(unittest.TestCase):
 		#database.insert(d)
 
 		c = database.connection.cursor()
-		c.execute("select num,str from dummy")
+		c.execute("select num,str from dummy where num = 1")
 		for row in c: # rowはtuple
 			self.assertEqual(row[0], d.num)
 			self.assertEqual(row[1], d.str)
@@ -51,7 +52,17 @@ class TestDataBase(unittest.TestCase):
 
 
 	def test_update(self):
-		database.update(None)
+		d = dummy()
+		d.num = 3
+		d.str = 'spam'
+		database.insert(d)
+		d.str = 'ham'
+		database.update(d)
+		c = database.connection.cursor()
+		c.execute("select num,str from dummy where num = 3")
+		for row in c: # rowはtuple
+			self.assertEqual(row[0], d.num)
+			self.assertEqual(row[1], d.str)
 
 	def test_save(self):
 		database.save(None)
