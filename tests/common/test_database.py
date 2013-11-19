@@ -11,7 +11,7 @@ class dummy():
 	def __init__(self):
 		self.num = 0
 		self.str = ''
-		self._private = 'p'
+		self._load_data = {}
 		self._key = 'num'
 
 
@@ -21,6 +21,11 @@ class TestDataBase(unittest.TestCase):
 		database.connection = sqlite3.connect(":memory:")  #TODO テストの時はメモリ webアプリ起動でファイル
 		cls.sql = "CREATE TABLE dummy (num int(10) NOT NULL,str varchar(500) NOT NULL, PRIMARY KEY(num))"
 		database.connection.execute(cls.sql)
+		d = dummy()
+		d.num = 999
+		d.str = 'testdata'
+		database.insert(d)
+
 
 	def test_get_connection(self):
 		database.get_connection(None)
@@ -71,7 +76,11 @@ class TestDataBase(unittest.TestCase):
 		database.save_as(None)
 
 	def test_select(self):
-		database.select(None)
+		d = dummy()
+		database.select(d, [('num', 999)])
+		self.assertEqual(d.num, 999)
+		self.assertEqual(d.str, 'testdata')
+
 
 	def test_select_list(self):
 		database.select_list(None)
