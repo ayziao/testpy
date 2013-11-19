@@ -48,7 +48,7 @@ def update(entity):
 			vals.append(v)
 	vals.append(entity.__dict__[entity._key])  # PENDING 複合キーの時どうするか
 	name = entity.__class__.__name__
-	sql = 'UPDATE %s SET %s WHERE %s = ?' % (name, set[0:-1], entity._key)
+	sql = "UPDATE %s SET %s WHERE %s = ?" % (name, set[0:-1], entity._key)
 	connection.executemany(sql, [tuple(vals)])
 
 
