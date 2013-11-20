@@ -75,14 +75,6 @@ def update(entity):
 	connection.execute(sql, tuple(vals))
 
 
-def save(entity):
-	pass
-
-
-def save_as(entity):
-	pass
-
-
 def select(entity, parameter: list):
 	"""
 

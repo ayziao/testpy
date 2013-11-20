@@ -69,11 +69,6 @@ class TestDataBase(unittest.TestCase):
 			self.assertEqual(row[0], d.num)
 			self.assertEqual(row[1], d.str)
 
-	def test_save(self):
-		database.save(None)
-
-	def test_save_as(self):
-		database.save_as(None)
 
 	def test_select(self):
 		d = dummy()
