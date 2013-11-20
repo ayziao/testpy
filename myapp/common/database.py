@@ -93,11 +93,35 @@ def select(entity, parameter: list):
 	for k in row.keys():
 		entity.__dict__[k] = row[k]
 
-
-def select_list(entity):
-	pass
-
 #PENDING 1件のもリストで返す？
+
+
+def select_list(entity_class, parameter: list):
+	where = ''
+	val_list = list()
+	if not parameter is None:
+		for item in parameter:
+			if item[0][0] != '_':
+				where += '`' + item[0] + '` = ? AND ,'
+				val_list.append(item[1])
+
+	name = entity_class.__name__
+	sql = "SELECT * FROM `%s`" % name
+	if not parameter is None:
+		sql += " WHERE %s" % where[0:-5]
+
+	connection.row_factory = sqlite3.Row
+	c = connection.cursor()
+	c.execute(sql, tuple(val_list))
+
+	ret_list = list()
+	for row in c:
+		entity = entity_class()
+		for k in row.keys():
+			entity.__dict__[k] = row[k]
+		ret_list.append(entity)
+	return ret_list
+
 
 def execut(query):
 	pass

@@ -78,7 +78,16 @@ class TestDataBase(unittest.TestCase):
 
 
 	def test_select_list(self):
-		database.select_list(None)
+		ret = database.select_list(dummy, None)
+		self.assertEqual(ret[0].num, 999)
+		self.assertEqual(ret[0].str, 'testdata')
+		self.assertEqual(ret[1].num, 0)
+		self.assertEqual(ret[1].str, '')
+		self.assertEqual(ret[2].num, 1)
+		self.assertEqual(ret[2].str, 'hoge')
+
+	#for i in ret:
+	#	print(i.__dict__)
 
 	def test_execut(query):
 		database.execut(None)
