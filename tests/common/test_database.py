@@ -86,6 +86,17 @@ class TestDataBase(unittest.TestCase):
 		self.assertEqual(ret[2].num, 1)
 		self.assertEqual(ret[2].str, 'hoge')
 
+		d = dummy()
+		d.num = 998
+		d.str = 'testdata'
+		database.insert(d)
+
+		ret = database.select_list(dummy, [('str', 'testdata')])
+		self.assertEqual(ret[0].num, 999)
+		self.assertEqual(ret[0].str, 'testdata')
+		self.assertEqual(ret[1].num, 998)
+		self.assertEqual(ret[1].str, 'testdata')
+
 	#for i in ret:
 	#	print(i.__dict__)
 
