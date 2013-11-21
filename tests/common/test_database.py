@@ -20,7 +20,7 @@ class TestDataBase(unittest.TestCase):
 	def setUpClass(cls):
 		database.connection = sqlite3.connect(":memory:")  #TODO テストの時はメモリ webアプリ起動でファイル
 		cls.sql = "CREATE TABLE dummy (num int(10) NOT NULL,str varchar(500) NOT NULL, PRIMARY KEY(num))"
-		database.connection.execute(cls.sql)
+		database.execute(cls.sql)
 		d = dummy()
 		d.num = 999
 		d.str = 'testdata'
@@ -78,7 +78,7 @@ class TestDataBase(unittest.TestCase):
 
 
 	def test_select_list(self):
-		ret = database.select_list(dummy, None)
+		ret = database.select_list(dummy, [])
 		self.assertEqual(ret[0].num, 999)
 		self.assertEqual(ret[0].str, 'testdata')
 		self.assertEqual(ret[1].num, 0)
@@ -100,8 +100,19 @@ class TestDataBase(unittest.TestCase):
 	#for i in ret:
 	#	print(i.__dict__)
 
-	def test_execut(query):
-		database.execut(None)
+	def test_execute(self):
+		sql = "CREATE TABLE dummy2 (num int(10) NOT NULL,str varchar(500) NOT NULL, PRIMARY KEY(num))"
+
+		database.execute(sql)
+
+		database.connection.row_factory = sqlite3.Row
+		c = database.connection.cursor()
+
+		c.execute("select * from sqlite_master where name = 'dummy2'")
+		row = c.fetchone()
+		#		print(row.keys())
+		self.assertEqual(row['name'], 'dummy2')
+
 
 # PENDING データベースアプリを何にするか sqlite Postgres キーバリューストア
 # PENDING トランザクションの仕組みはどうするか

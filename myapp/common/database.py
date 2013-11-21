@@ -43,18 +43,18 @@ def create_ddl(dbinfo):
 
 def insert(entity):
 	keys = ''
-	vals = list()
-	qqq = ''
+	val_list = []
+	placeholder = ''
 	for k, v in entity.__dict__.items():
 		if k[0] != '_':
 			keys += '`' + k + '`,'
-			vals.append(v)
-			qqq += '?,'
+			val_list.append(v)
+			placeholder += '?,'
 	keys = keys[0:-1]
-	qqq = qqq[0:-1]
+	placeholder = placeholder[0:-1]
 	name = entity.__class__.__name__
-	sql = "insert into %s (%s) values (%s)" % (name, keys, qqq)
-	connection.execute(sql, tuple(vals))
+	sql = "insert into %s (%s) values (%s)" % (name, keys, placeholder)
+	connection.execute(sql, tuple(val_list))
 
 
 def update(entity):
@@ -78,7 +78,7 @@ def select(entity, parameter: list):
 	@param parameter: [(key:val),(key:val)...]
 	"""
 	where = ''
-	val_list = list()
+	val_list = []
 	for item in parameter:
 		if item[0][0] != '_':
 			where += '`' + item[0] + '` = ? AND ,'
@@ -87,9 +87,8 @@ def select(entity, parameter: list):
 	name = entity.__class__.__name__
 	sql = "SELECT * FROM `%s` WHERE %s LIMIT 1" % (name, where[0:-5])
 	connection.row_factory = sqlite3.Row
-	c = connection.cursor()
-	c.execute(sql, tuple(val_list))
-	row = c.fetchone()
+	cursor = connection.execute(sql, tuple(val_list))
+	row = cursor.fetchone()
 	for k in row.keys():
 		entity.__dict__[k] = row[k]
 
@@ -98,8 +97,8 @@ def select(entity, parameter: list):
 
 def select_list(entity_class, parameter: list):
 	where = ''
-	val_list = list()
-	if not parameter is None:
+	val_list = []
+	if parameter:
 		for item in parameter:
 			if item[0][0] != '_':
 				where += '`' + item[0] + '` = ? AND ,'
@@ -107,15 +106,14 @@ def select_list(entity_class, parameter: list):
 
 	name = entity_class.__name__
 	sql = "SELECT * FROM `%s`" % name
-	if not parameter is None:
+	if parameter:
 		sql += " WHERE %s" % where[0:-5]
 
 	connection.row_factory = sqlite3.Row
-	c = connection.cursor()
-	c.execute(sql, tuple(val_list))
+	cursor = connection.execute(sql, tuple(val_list))
 
-	ret_list = list()
-	for row in c:
+	ret_list = []
+	for row in cursor:
 		entity = entity_class()
 		for k in row.keys():
 			entity.__dict__[k] = row[k]
@@ -123,6 +121,5 @@ def select_list(entity_class, parameter: list):
 	return ret_list
 
 
-def execut(query):
-	pass
-
+def execute(query):
+	connection.execute(query)
