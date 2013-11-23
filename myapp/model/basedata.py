@@ -21,7 +21,7 @@ class BaseData():
 			datetime text
 		);
 		"""
-		database.connection.execute(sql)
+		database.execute(sql) # PENDING 何処のデータベースに作るか指定出来るように
 
 	def __init__(self, id_: str=None) -> None:
 		self.id = ''
@@ -40,26 +40,14 @@ class BaseData():
 		return self.id
 
 	def load_by_id(self, id_: str) -> None:
-		c = database.connection.cursor()
-		c.execute("select * from BaseData where id='" + id_ + "'")
-		for row in c: # rowはtuple
-			self.id = row[0]
-			self.title = row[1]
-			self.tag = row[2]
-			self.body = row[3]
-			self.datetime = row[4]
+		prm = [('id', id_)]
+		database.select(self, prm)
 		return self.id
 
 
 	def load_by_title(self, title: str) -> None:
-		c = database.connection.cursor()
-		c.execute("select * from BaseData where title='" + title + "'")
-		for row in c: # rowはtuple
-			self.id = row[0]
-			self.title = row[1]
-			self.tag = row[2]
-			self.body = row[3]
-			self.datetime = row[4]
+		prm = [('title', title)]
+		database.select(self, prm)
 		return self.id
 
 
