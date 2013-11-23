@@ -59,6 +59,7 @@ class TestBaseData(unittest.TestCase):
 
 
 	def test_save(self):
+		#上書き保存
 		self.obj.load('20121231235959123456')
 		self.obj.title = 'dummy2'
 		self.assertTrue(self.obj.save())
@@ -72,7 +73,7 @@ class TestBaseData(unittest.TestCase):
 
 	def test_save_as(self):
 		#別IDとして書き込み
-		self.obj.load('20121231235959123456')
+	#		self.obj.load('20121231235959123456')
 		self.obj.id = '20121231235959123457'
 		self.assertTrue(self.obj.save_as())
 

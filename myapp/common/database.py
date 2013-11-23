@@ -4,10 +4,13 @@
 """
 import sqlite3
 
-#	コネクションを保持 sqlite PostgreSQL
-#	複数のコネクション持つ マスタースレーブ 垂直分割
-#	エンティティ毎のコネクション管理
-connection = None
+#	PENDING コネクションを保持 PostgreSQL
+#	PENDING 複数のコネクション持つ マスタースレーブ 垂直分割
+#	PENDING エンティティ毎のコネクション管理
+
+
+connection = None #	コネクションを保持 sqlite3
+
 
 #@property
 #def connection() -> sqlite3.Connection:
@@ -89,10 +92,12 @@ def select(entity, parameter: list):
 	connection.row_factory = sqlite3.Row
 	cursor = connection.execute(sql, tuple(val_list))
 	row = cursor.fetchone()
-	for k in row.keys():
-		entity.__dict__[k] = row[k]
 
-#PENDING 1件のもリストで返す？
+	try: #PENDING ０件の時の処理はこれでいいか？
+		for k in row.keys():
+			entity.__dict__[k] = row[k]
+	except AttributeError:
+		pass
 
 
 def select_list(entity_class, parameter: list):
@@ -122,4 +127,4 @@ def select_list(entity_class, parameter: list):
 
 
 def execute(query):
-	connection.execute(query)
+	return connection.execute(query)
