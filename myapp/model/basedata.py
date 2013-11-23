@@ -26,9 +26,10 @@ class BaseData():
 	def __init__(self, id_: str=None) -> None:
 		self.id = ''
 		self.title = ''
-		self.tag = ' '
+		self.tag = ''
 		self.body = ''
 		self.datetime = None
+		self._key = 'id'
 
 		if id_:
 			self.load(id_)
