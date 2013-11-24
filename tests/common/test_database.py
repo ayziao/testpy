@@ -20,6 +20,7 @@ class dummy():
 class TestDataBase(unittest.TestCase):
 	@classmethod
 	def setUpClass(cls):
+		#database.connection = sqlite3.connect("/tmp/test.db")  #TODO テストの時はメモリ webアプリ起動でファイル
 		database.connection = sqlite3.connect(":memory:")  #TODO テストの時はメモリ webアプリ起動でファイル
 		cls.sql = "CREATE TABLE dummy (num int(10) NOT NULL,str varchar(500) NOT NULL, PRIMARY KEY(num))"
 		database.execute(cls.sql)

@@ -8,14 +8,13 @@ from myapp.model.basedata import BaseData
 class TestBaseData(unittest.TestCase):
 	@classmethod
 	def setUpClass(cls):
+		#database.connection = sqlite3.connect("/tmp/test.sqlite3db")  #TODO テストの時はメモリ webアプリ起動でファイル
 		database.connection = sqlite3.connect(":memory:")  #TODO テストの時はメモリ webアプリ起動でファイル
 		BaseData.create_table()
 
 		#テストデータインサート
-		database.connection.executemany(
-			"insert into BaseData values (?, ?, ?, ?, ?)",
-			[("20121231235959123456", 'dummy', 'dummy_tag1 dummy_tag2', 'dummy body', '2012-12-31 23:59:59.123456')]
-		)
+		database.connection.executemany("insert into BaseData values (?, ?, ?, ?, ?)", [
+			("20121231235959123456", 'dummy', 'dummy_tag1 dummy_tag2', 'dummy body', '2012-12-31 23:59:59.123456')])
 
 
 	@classmethod
@@ -72,7 +71,7 @@ class TestBaseData(unittest.TestCase):
 	#TODO 保存後取得して内容アサート
 
 	def test_save_as(self):
-		#別IDとして書き込み
+	#別IDとして書き込み
 	#		self.obj.load('20121231235959123456')
 		self.obj.id = '20121231235959123457'
 		self.assertTrue(self.obj.save_as())

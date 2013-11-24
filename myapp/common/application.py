@@ -62,6 +62,7 @@ def view_dispatcher(class_name: str, req: Request) -> "view instance":
 
 	try:
 		class_object = getattr(mod, class_name)
+		debug_message('view', class_object.__name__)
 		return class_object(req)
 	except AttributeError:
 		# PENDING 404?
@@ -81,6 +82,7 @@ def _assemble_main_request() -> Request:
 
 def _assemble_main_request_web() -> Request:
 	req = Request()
+	req.extension = 'html'  # PENDING 環境から取る
 	req.controller_class_name = 'Top'  # PENDING 環境から取る
 	req.method_name = 'run'
 	return req
@@ -104,6 +106,7 @@ def _controller_dispatcher(class_name: str, req: Request) -> "controller instanc
 
 	try:
 		class_object = getattr(mod, class_name)
+		debug_message('controller', class_object.__name__)
 		return class_object(req)
 	except AttributeError:
 		# PENDING 404?

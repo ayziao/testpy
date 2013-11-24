@@ -54,6 +54,7 @@ def _html():
 	</head>
 	<body>
 		<p>%s</p>
+		<p>data</p>
 	</body>
 </html>
 """
