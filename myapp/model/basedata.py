@@ -45,12 +45,10 @@ class BaseData():
 		database.select(self, prm)
 		return self.id
 
-
 	def load_by_title(self, title: str) -> None:
 		prm = [('title', title)]
 		database.select(self, prm)
 		return self.id
-
 
 	def save(self) -> bool:
 		if self.id != '':
@@ -59,7 +57,6 @@ class BaseData():
 				[(self.id, self.title, self.tag, self.body, self.datetime)]
 			)
 
-
 	def save_as(self):
 		if self.id != '':
 			return database.connection.executemany(
@@ -67,3 +64,6 @@ class BaseData():
 				[(self.id, self.title, self.tag, self.body, self.datetime)]
 			)
 
+	@classmethod
+	def load_list(cls):
+		pass

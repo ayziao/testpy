@@ -20,7 +20,7 @@ class TestApplication(unittest.TestCase):
 
 	def test_main(self):
 		ret = application.main()
-		self.assertEqual(ret.body, 'Hello world!')
+		self.assertEqual(ret.body[0:6], 'Hello ')
 
 	def test_view_dispatcher(self):
 		req = Request()
@@ -30,7 +30,8 @@ class TestApplication(unittest.TestCase):
 		self.assertEqual(res.body, 'Hello world!')
 
 	def test_view_dispatcher_none(self):
-		view_instance = application.view_dispatcher('none', None)
+		req = Request()
+		view_instance = application.view_dispatcher('none', req)
 		self.assertIsNone(view_instance)
 
 	def test_assemble_main_request(self):
@@ -66,7 +67,7 @@ class TestApplication(unittest.TestCase):
 	# PENDING カバレッジ上げるためだけ アサーション未定
 
 	def test_debug_instance_set(self):
-		test = {'debug': 'unit test'}
+		test = {'debug':'unit test'}
 		application._debug_instance_set(test)
 		application._debug = None
 

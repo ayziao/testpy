@@ -62,25 +62,32 @@ class TestMyapp(unittest.TestCase):
 		self.assertEqual(ref, top_body)
 
 	def test_wsgiclient(self):
+		settings.environ = None
+
 		def _callback(a, b):
 			self.assertEqual(a, '200 OK')
 			test = [('Content-Type', 'text/html; charset=utf-8')]
 			self.assertEqual(b, test)
 
-		env = {'PATH_INFO': '/'}
+		tes_res = '<html>'
+		#tes_res = 'hello '
+
+		env = {'PATH_INFO':'/'}
 		res = wsgiclient.application(env, _callback)
-		tes_res = ['Hello world!'.encode()]
-		self.assertEqual(res, tes_res)
+		res2 = res[0].decode()
+		self.assertEqual(res2[0:6], tes_res)
 		settings.environ = None
 
 
 	def test_wsgi_favicon(self):
+		settings.environ = None
+
 		def _callback(a, b):
 			self.assertEqual(a, '404 Not Found')
 			test = [('Content-Type', 'text/html; charset=utf-8')]
 			self.assertEqual(b, test)
 
-		env = {'PATH_INFO': '/favicon.ico'}
+		env = {'PATH_INFO':'/favicon.ico'}
 		res = wsgiclient.application(env, _callback)
 		tes_res = ['Not Found'.encode()]
 		self.assertEqual(res, tes_res)
