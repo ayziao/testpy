@@ -6,6 +6,8 @@ import sqlite3
 
 from myapp.common import database
 
+# TODO sqlite ファイルでテスト
+# PENDING Postgres
 
 class dummy():
 	def __init__(self):
