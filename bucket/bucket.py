@@ -26,7 +26,7 @@ exit()
 import sqlite3
 
 con = sqlite3.connect(":memory:")
-sql = u"""
+sql = """
 create table user (
   name varchar(10),
   age integer,
