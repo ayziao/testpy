@@ -81,10 +81,20 @@ def _assemble_main_request() -> Request:
 
 
 def _assemble_main_request_web() -> Request:
+	class_name = 'Top'
+	method_name = 'run'
+	try:
+		que = settings.environ['QUERY_STRING']
+		ques = que.split('=')
+		mmm = ques[0].split('.')
+		class_name = mmm[0]
+		method_name = mmm[1]
+	except (AttributeError, KeyError):
+		pass
 	req = Request()
 	req.extension = 'html'  # PENDING 環境から取る
-	req.controller_class_name = 'Top'  # PENDING 環境から取る
-	req.method_name = 'run'
+	req.controller_class_name = class_name  # PENDING 環境から取る
+	req.method_name = method_name
 	return req
 
 

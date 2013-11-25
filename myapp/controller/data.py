@@ -29,8 +29,8 @@ class Data():
 		array = BaseData.load_list()
 
 		# PENDING 日や時をまたいだ処理 View側でやる？
-		for value in array:
-			value.datetime = value.time
+		#for value in array:
+		#	value.datetime = value.time
 
 		#if ($tmpdate != date("Ymd", $value->datetime)) {
 		#	$value->date = date("Ymd", $value->datetime);
