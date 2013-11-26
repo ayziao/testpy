@@ -115,7 +115,11 @@ def _collect() -> None:
 
 
 def _debug_print_head(res_: Response) -> None:
+	#from pprint import pprint
+	#pprint(res_)
 	order_dic = _message_to_http_head('X-DEBUG')
+	if not hasattr(res_, 'headers'):
+		res_.headers = []
 	if order_dic:
 		for key_, item_ in order_dic.items():
 			res_.headers.append((key_, item_))

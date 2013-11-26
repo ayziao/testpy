@@ -89,7 +89,7 @@ def _assemble_main_request_web() -> Request:
 		mmm = ques[0].split('.')
 		class_name = mmm[0]
 		method_name = mmm[1]
-	except (AttributeError, KeyError):
+	except (AttributeError, KeyError, IndexError):
 		pass
 	req = Request()
 	req.extension = 'html'  # PENDING 環境から取る

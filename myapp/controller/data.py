@@ -51,6 +51,7 @@ class Data():
 
 		res = Response()
 		res.body = 'time_line'
+		return res
 
 
 	#データ/キーワードエントリ
