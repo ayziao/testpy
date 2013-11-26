@@ -13,6 +13,7 @@ pathがあるならコンテンツ
 """
 from myapp.common import settings
 from myapp.common import utility
+from myapp.common import debug
 from myapp.common.request import Request
 from myapp.common.response import Response
 
@@ -81,10 +82,20 @@ def _assemble_main_request() -> Request:
 
 
 def _assemble_main_request_web() -> Request:
+	class_name = 'Top'
+	method_name = 'run'
+	try:
+		que = settings.environ['QUERY_STRING']
+		ques = que.split('=')
+		mmm = ques[0].split('.')
+		class_name = mmm[0]
+		method_name = mmm[1]
+	except (AttributeError, KeyError, IndexError):
+		pass
 	req = Request()
 	req.extension = 'html'  # PENDING 環境から取る
-	req.controller_class_name = 'Top'  # PENDING 環境から取る
-	req.method_name = 'run'
+	req.controller_class_name = class_name  # PENDING 環境から取る
+	req.method_name = method_name
 	return req
 
 
@@ -131,13 +142,19 @@ def _run_controller_method(controller: "controller instance", method: str) -> No
 _debug = None
 
 
+def _get_debug_obj() -> debug:
+	if _debug:
+		return _debug
+
+
 def debug_message(name: str, obj) -> None:
 	"""
 	デバッグメッセージ追加
 	@param name: 名称
 	@param obj: なんでも
 	"""
-	if _debug:
+	de = _get_debug_obj()
+	if de:
 		_debug.append_message(name, obj)
 
 
@@ -147,12 +164,14 @@ def _debug_setting() -> None:
 		_debug_instance_set(conf)
 
 
-def _debug_instance_set(conf):
+def _debug_instance_set(conf) -> None:
 	global _debug
-	_debug = utility.import_('myapp.common.debug')
+	#_debug = utility.import_('myapp.common.debug')
+	_debug = debug
 	_debug.set_print_mode(conf['debug'])
 
 
 def _debug_print(res) -> None:
-	if _debug:
-		_debug.output_message(res)
+	de = _get_debug_obj()
+	if de:
+		de.output_message(res)
