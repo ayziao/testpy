@@ -88,10 +88,14 @@ def _assemble_main_request_web() -> Request:
 		que = settings.environ['QUERY_STRING']
 		ques = que.split('=')
 		mmm = ques[0].split('.')
-		class_name = mmm[0]
-		method_name = mmm[1]
-	except (AttributeError, KeyError, IndexError):
+		if len(mmm) > 1:
+			class_name = mmm[0]
+		if len(mmm) == 2:
+			method_name = mmm[1]
+
+	except (AttributeError, KeyError):
 		pass
+
 	req = Request()
 	req.extension = 'html'  # PENDING 環境から取る
 	req.controller_class_name = class_name  # PENDING 環境から取る
@@ -166,7 +170,7 @@ def _debug_setting() -> None:
 
 def _debug_instance_set(conf) -> None:
 	global _debug
-	#_debug = utility.import_('myapp.common.debug')
+	#_debug = utility.import_('myapp.common.debug') # PENDING
 	_debug = debug
 	_debug.set_print_mode(conf['debug'])
 

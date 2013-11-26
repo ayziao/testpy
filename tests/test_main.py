@@ -7,7 +7,7 @@
 
 # タスク
 # TODO
-# PENDING	全体的な進め方
+# PENDING	全体的な進め方 要件書く データ設計する クラス設計する コメント書く テスト書く 実装書く
 # PENDING	準備
 # PENDING		ストレージ検討 KVS RDB SQLite
 # PENDING		プラグインディレクトリ構成
@@ -19,11 +19,11 @@
 # PENDING デプロイ方法 自動化？
 # PENDING
 # PENDING myappディレクトリ以下を一切弄らずに設定は変えられるように 設定パスをmain.pyに引数で渡せるようにすべきか？
-# PENDING mysql使う前にSQLiteやる？
+# PENDING Postgres調査
 # PENDING テンプレートエンジン使うか全部DOM操作でやるか
 # PENDING loggingモジュール調べる
 # PENDING
-# PENDING wsgi clientテストするか考える
+
 
 
 import unittest
@@ -72,7 +72,7 @@ class TestMyapp(unittest.TestCase):
 		tes_res = '<html>'
 		#tes_res = 'hello '
 
-		env = {'PATH_INFO':'/'}
+		env = {'PATH_INFO': '/'}
 		res = wsgiclient.application(env, _callback)
 		res2 = res[0].decode()
 		self.assertEqual(res2[0:6], tes_res)
@@ -87,7 +87,7 @@ class TestMyapp(unittest.TestCase):
 			test = [('Content-Type', 'text/html; charset=utf-8')]
 			self.assertEqual(b, test)
 
-		env = {'PATH_INFO':'/favicon.ico'}
+		env = {'PATH_INFO': '/favicon.ico'}
 		res = wsgiclient.application(env, _callback)
 		tes_res = ['Not Found'.encode()]
 		self.assertEqual(res, tes_res)
