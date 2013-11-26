@@ -166,7 +166,7 @@ def _debug_setting() -> None:
 
 def _debug_instance_set(conf) -> None:
 	global _debug
-	#_debug = utility.import_('myapp.common.debug')
+	#_debug = utility.import_('myapp.common.debug') # PENDING
 	_debug = debug
 	_debug.set_print_mode(conf['debug'])
 
