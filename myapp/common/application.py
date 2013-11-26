@@ -13,6 +13,7 @@ pathがあるならコンテンツ
 """
 from myapp.common import settings
 from myapp.common import utility
+from myapp.common import debug
 from myapp.common.request import Request
 from myapp.common.response import Response
 
@@ -141,13 +142,19 @@ def _run_controller_method(controller: "controller instance", method: str) -> No
 _debug = None
 
 
+def _get_debug_obj() -> debug:
+	if _debug:
+		return _debug
+
+
 def debug_message(name: str, obj) -> None:
 	"""
 	デバッグメッセージ追加
 	@param name: 名称
 	@param obj: なんでも
 	"""
-	if _debug:
+	de = _get_debug_obj()
+	if de:
 		_debug.append_message(name, obj)
 
 
@@ -157,12 +164,14 @@ def _debug_setting() -> None:
 		_debug_instance_set(conf)
 
 
-def _debug_instance_set(conf):
+def _debug_instance_set(conf) -> None:
 	global _debug
-	_debug = utility.import_('myapp.common.debug')
+	#_debug = utility.import_('myapp.common.debug')
+	_debug = debug
 	_debug.set_print_mode(conf['debug'])
 
 
 def _debug_print(res) -> None:
-	if _debug:
-		_debug.output_message(res)
+	de = _get_debug_obj()
+	if de:
+		de.output_message(res)
