@@ -18,7 +18,11 @@ class TestData(unittest.TestCase):
 		data = Data(req)
 		data.run()
 		self.assertTrue(True)
-
 	# PENDING アサート
+
+	def test_time_line(self):
+		req = Request()
+		data = Data(req)
+		data.time_line()
 
 

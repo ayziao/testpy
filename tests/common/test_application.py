@@ -5,6 +5,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from myapp.common import application
+from myapp.common import settings
 from myapp.controller.top import Top
 from myapp.common.request import Request
 
@@ -37,6 +38,16 @@ class TestApplication(unittest.TestCase):
 	def test_assemble_main_request(self):
 		req = application._assemble_main_request()
 		self.assertEqual(req.controller_class_name, 'Top')
+
+	def test_assemble_main_request_web(self):
+		bk = settings.environ
+
+		settings.environ = {'QUERY_STRING': "data.time_line={'hoge':'piyo'}"}
+		req = application._assemble_main_request_web()
+		self.assertEqual(req.controller_class_name, 'data')
+		self.assertEqual(req.method_name, 'time_line')
+
+		settings.environ = bk
 
 	def test_controller_dispatcher(self):
 		req = Request()
