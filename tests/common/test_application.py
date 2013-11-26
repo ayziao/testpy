@@ -47,6 +47,11 @@ class TestApplication(unittest.TestCase):
 		self.assertEqual(req.controller_class_name, 'data')
 		self.assertEqual(req.method_name, 'time_line')
 
+		settings.environ = {'QUERY_STRING': ""}
+		req = application._assemble_main_request_web()
+		self.assertEqual(req.controller_class_name, 'Top')
+		self.assertEqual(req.method_name, 'run')
+
 		settings.environ = bk
 
 	def test_controller_dispatcher(self):
@@ -78,7 +83,7 @@ class TestApplication(unittest.TestCase):
 	# PENDING カバレッジ上げるためだけ アサーション未定
 
 	def test_debug_instance_set(self):
-		test = {'debug':'unit test'}
+		test = {'debug': 'unit test'}
 		application._debug_instance_set(test)
 		application._debug = None
 
