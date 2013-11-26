@@ -3,7 +3,7 @@ test
 """
 import unittest
 from unittest import mock
-import importtest.test
+import bucket.importtest.test
 
 #from bucket import bucket
 
@@ -21,8 +21,8 @@ class MyTestCase(unittest.TestCase):
 
 	#@unittest.skip("demonstrating skipping")
 	def test_hoge(self):
-		aaa = 'bb %s cc'
-		bbb = aaa % "aaa"
+		aaa = 'bb {} cc'
+		bbb = aaa.format("aaa")
 		print(bbb)
 
 	@mock.patch('importtest.test.random')
@@ -31,7 +31,7 @@ class MyTestCase(unittest.TestCase):
 			return 9
 
 		mmm.random = method
-		print(importtest.test.rnd())
+		print(bucket.importtest.test.rnd())
 
 
 if __name__ == '__main__':
