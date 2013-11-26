@@ -56,7 +56,8 @@ def insert(entity):
 	keys = keys[0:-1]
 	placeholder = placeholder[0:-1]
 	name = entity.__class__.__name__
-	sql = "insert into %s (%s) values (%s)" % (name, keys, placeholder)
+	sql = "insert into {table_name} ({key}) values ({val})"
+	sql = sql.format(table_name=name, key=keys, val=placeholder)
 	connection.execute(sql, tuple(val_list))
 
 
@@ -70,7 +71,8 @@ def update(entity):
 			vals.append(v)
 	vals.append(entity.__dict__[entity._key])  # PENDING 複合キーの時どうするか
 	name = entity.__class__.__name__
-	sql = "UPDATE %s SET %s WHERE %s = ?" % (name, set_[0:-1], entity._key)
+	sql = "UPDATE {table_name} SET {set} WHERE {where} = ?"
+	sql = sql.format(table_name=name, set=set_[0:-1], where=entity._key)
 	connection.execute(sql, tuple(vals))
 
 
@@ -88,7 +90,8 @@ def select(entity, parameter: list):
 			val_list.append(item[1])
 
 	name = entity.__class__.__name__
-	sql = "SELECT * FROM `%s` WHERE %s LIMIT 1" % (name, where[0:-5])
+	sql = "SELECT * FROM `{table_name}` WHERE {where} LIMIT 1"
+	sql = sql.format(table_name=name, where=where[0:-5])
 	connection.row_factory = sqlite3.Row
 	cursor = connection.execute(sql, tuple(val_list))
 	row = cursor.fetchone()
@@ -110,9 +113,9 @@ def select_list(entity_class, parameter: list):
 				val_list.append(item[1])
 
 	name = entity_class.__name__
-	sql = "SELECT * FROM `%s`" % name
+	sql = "SELECT * FROM `{}`".format(name)
 	if parameter:
-		sql += " WHERE %s" % where[0:-5]
+		sql += " WHERE {}".format(where[0:-5])
 
 	connection.row_factory = sqlite3.Row
 	cursor = connection.execute(sql, tuple(val_list))

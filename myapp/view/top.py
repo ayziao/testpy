@@ -36,7 +36,8 @@ class Top:
 		title = "たいとる"  # PENDING タイトル
 		body = "はろー"
 		#form = self.form()
-		html = _html() % (title, body)
+		html = _html()
+		html.format(title=title, body=body)
 
 		doc = minidom.parseString(html.replace("\t", "").replace("\n", ''))
 		#header("Content-Type: text/html charset=UTF-8")
@@ -50,10 +51,10 @@ def _html():
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
-		<title>%s</title>
+		<title>{title}</title>
 	</head>
 	<body>
-		<p>%s</p>
+		<p>{body}</p>
 		<p><a href="/?data.time_line">data time line</a></p>
 	</body>
 </html>
