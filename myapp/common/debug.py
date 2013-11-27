@@ -105,7 +105,7 @@ def _collect() -> None:
 	now = datetime.utcnow()
 	append_message('arg', settings.arg)
 	if settings.environ is not None:
-		if settings.environ['PATH_INFO'] != '/favicon.ico':
+		if settings.environ.get('PATH_INFO') != '/favicon.ico':
 			append_message('env', settings.environ)
 	ru = resource.getrusage(resource.RUSAGE_SELF)
 	append_message('memory', ru.ru_maxrss)

@@ -28,7 +28,6 @@ def main() -> Response:
 
 	req = _assemble_main_request()  # メインリクエスト組み立て
 	res = run(req)
-
 	#PENDING エラー処理
 
 	_debug_print(res)
@@ -88,7 +87,7 @@ def _assemble_main_request_web() -> Request:
 		que = settings.environ['QUERY_STRING']
 		ques = que.split('=')
 		mmm = ques[0].split('.')
-		if len(mmm) > 1:
+		if len(mmm) >= 1 and mmm[0] != '':
 			class_name = mmm[0]
 		if len(mmm) == 2:
 			method_name = mmm[1]
@@ -124,7 +123,7 @@ def _controller_dispatcher(class_name: str, req: Request) -> "controller instanc
 		debug_message('controller', class_object.__name__)
 		return class_object(req)
 	except AttributeError:
-		# PENDING 404?
+		# print('404') # TODO 404?
 		return None
 
 
