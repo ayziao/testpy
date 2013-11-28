@@ -1,6 +1,52 @@
 """
 test
 """
+a = {
+	'REMOTE_ADDR': '127.0.0.1',
+	'SCRIPT_NAME': '',
+	'DISPLAY': '/tmp/launch-HCt8qh/org.x:0',
+	'Apple_Ubiquity_Message': '/tmp/launch-5Fwrhw/Apple_Ubiquity_Message',
+	'wsgi.multithread': True,
+	'SERVER_NAME': 'localhost',
+	'SERVER_SOFTWARE': 'WSGIServer/0.2',
+	'REQUEST_METHOD': 'GET',
+	'SERVER_PROTOCOL': 'HTTP/1.1',
+	'SERVER_PORT': '80',
+	'Apple_PubSub_Socket_Render': '/tmp/launch-2lM0Oa/Render',
+	'PYCHARM_HOSTED': '1',
+	'wsgi.file_wrapper': "<class 'wsgiref.util.FileWrapper'>",
+	'__PYVENV_LAUNCHER__': '/Library/Frameworks/Python.framework/Versions/3.4/bin/python3',
+	'SSH_AUTH_SOCK': '/tmp/launch-a7FFIW/Listeners',
+	'COMMAND_MODE': 'unix2003',
+	'wsgi.run_once': False,
+	'HTTP_CACHE_CONTROL': 'max-age=0',
+	'__CF_USER_TEXT_ENCODING': '0x1F5:1:14',
+	'GATEWAY_INTERFACE': 'CGI/1.1',
+	'TMPDIR': '/var/folders/3s/q4h3sr613kx978hqgr6_jlfc0000gn/T/',
+	'HTTP_ACCEPT_LANGUAGE': 'ja,en-US;q=0.8,en;q=0.6',
+	'wsgi.errors': "<_io.TextIOWrapper name='<stderr>' mode='w' encoding='UTF-8'>",
+	'wsgi.input': "<_io.BufferedReader name=7>",
+	'REMOTE_HOST': '',
+	'HTTP_USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36',
+	'QUERY_STRING': 'Data.time_line',
+	'HTTP_CONNECTION': 'keep-alive',
+	'PATH': '/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/local/git/bin:/opt/local/bin:/usr/local/mysql/bin',
+	'wsgi.multiprocess': False,
+	'HOME': '/Users/user01',
+	'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+	'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+	'HTTP_HOST': 'localhost:8080',
+	'SHELL': '/bin/bash',
+	'CONTENT_LENGTH': '',
+	'LOGNAME': 'user01',
+	'CONTENT_TYPE': 'text/plain',
+	'PATH_INFO': '/',
+	'wsgi.url_scheme': 'http',
+	'PYTHONUNBUFFERED': '1',
+	'PYTHONIOENCODING': 'UTF-8',
+	'HTTP_DNT': '1',
+	'wsgi.version': (1, 0)
+}
 
 
 class dichoge():
@@ -120,6 +166,7 @@ def cache_class():
 	print(a.status_code)
 	del a
 	print(b)
+
 
 cache_class()
 
