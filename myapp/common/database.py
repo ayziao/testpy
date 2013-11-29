@@ -4,12 +4,12 @@
 """
 import sqlite3
 
-#	PENDING コネクションを保持 PostgreSQL
-#	PENDING 複数のコネクション持つ マスタースレーブ 垂直分割
-#	PENDING エンティティ毎のコネクション管理
+# PENDING コネクションを保持 PostgreSQL
+# PENDING 複数のコネクション持つ マスタースレーブ 垂直分割
+# PENDING エンティティ毎のコネクション管理
 
 
-connection = None #	コネクションを保持 sqlite3
+connection = None  #コネクションを保持 sqlite3
 
 
 #@property
