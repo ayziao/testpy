@@ -28,19 +28,18 @@ class Top:
 		#if (req.Request.extension == 'json'):
 		#	pass
 		else:
-			res.body = 'Hello world!'
+			res.body = 'Hello world! {top}'.format(top='top')
 
 		return res
 
 	def _view_html(self):
-		title = "たいとる"  # PENDING タイトル
-		body = "はろー"
-		#form = self.form()
-		html = _html()
-		html.format(title=title, body=body)
+		_title = "たいとる"  # PENDING タイトル
+		_body = "はろー"  # PENDING タイムライン取る 将来的にはユーザが任意の機能を設定できるように
+		#form = self.form()  # PENDING 投稿フォーム
+		html = _html().strip().format(title=_title, body=_body)
 
 		doc = minidom.parseString(html.replace("\t", "").replace("\n", ''))
-		#header("Content-Type: text/html charset=UTF-8")
+		#header("Content-Type: text/html charset=UTF-8")  ＃ PENDING ヘッダ
 		return doc.toprettyxml()[23:] # XML宣言削除
 
 	# PENDING HTMLバージョンいくつ宣言にする？
