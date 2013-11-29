@@ -9,8 +9,6 @@ import sys
 import os
 from types import FunctionType
 
-# PENDING やっぱりmainに混ぜる？
-
 path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
 sys.path.append(path)
 

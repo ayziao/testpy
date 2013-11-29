@@ -17,8 +17,6 @@ from myapp.common import debug
 from myapp.common.request import Request
 from myapp.common.response import Response
 
-_instance = []
-
 
 def main() -> Response:
 	"""

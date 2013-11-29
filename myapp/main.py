@@ -7,15 +7,13 @@ now = datetime.utcnow()
 
 import sys
 import os
-import pprint as p
+from pprint import pformat
 
+#Pythonスクリプトパス解決
 path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
 sys.path.append(path)
 
 from myapp.common import settings
-
-settings.setting_encode()
-
 import myapp.common.application
 
 
@@ -25,11 +23,12 @@ def main() -> str:
 	@return:
 	"""
 	#
+	settings.setting_encode()
 	settings.start_time = now
 	out = ''
 	res = myapp.common.application.main()
 	for v in res.headers:
-		out += p.pformat(v) + "\n"
+		out += pformat(v) + "\n"
 	out += res.status + "\n"
 	out += res.body
 	return out
