@@ -18,7 +18,7 @@ class TestTop(unittest.TestCase):
 		req.extension = 'raw'
 		cnr = Top(req)
 		ret = cnr.run()
-		self.assertEqual(ret.body, 'Hello world!')
+		self.assertEqual(ret.body, 'Hello world! top')
 
 
 

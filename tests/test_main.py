@@ -45,7 +45,7 @@ from myapp import wsgiclient
 
 top_body = """('Content-Type', 'text/html; charset=utf-8')
 200 OK
-Hello world!"""
+Hello world! top"""
 
 #	'Hello world!'  # PENDING パラメータなんもなしの時の表示考える
 

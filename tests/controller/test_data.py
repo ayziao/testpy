@@ -23,6 +23,9 @@ class TestData(unittest.TestCase):
 	def test_time_line(self):
 		req = Request()
 		data = Data(req)
-		data.time_line()
+		res = data.time_line()
 
+	#		print(res.__dict__)
+
+	# PENDING アサート
 

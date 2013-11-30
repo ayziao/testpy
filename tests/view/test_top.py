@@ -16,7 +16,7 @@ class TestVewTop(unittest.TestCase):
 		req.extension = 'raw'
 		viw = ViewTop(req)
 		res = viw.view(req)
-		self.assertEqual(res.body, 'Hello world!')
+		self.assertEqual(res.body, 'Hello world! top')
 
 	def test_view_html(self):
 		req = Request()

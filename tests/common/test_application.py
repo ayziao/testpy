@@ -17,7 +17,7 @@ class TestApplication(unittest.TestCase):
 		req.controller_class_name = 'Top'  # PENDING 環境から取る
 		req.method_name = 'run'
 		res = application.run(req)
-		self.assertEqual(res.body, 'Hello world!')
+		self.assertEqual(res.body, 'Hello world! top')
 
 	def test_main(self):
 		ret = application.main()
@@ -28,7 +28,7 @@ class TestApplication(unittest.TestCase):
 		req.extension = 'raw'
 		view_instance = application.view_dispatcher('Top', req)
 		res = view_instance.view(None)
-		self.assertEqual(res.body, 'Hello world!')
+		self.assertEqual(res.body, 'Hello world! top')
 
 	def test_view_dispatcher_none(self):
 		req = Request()

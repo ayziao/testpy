@@ -5,6 +5,7 @@
 from myapp.common.request import Request
 from myapp.common.response import Response
 from myapp.model.basedata import BaseData
+from myapp.view.timeline import TimeLine
 
 
 class Data():
@@ -21,7 +22,6 @@ class Data():
 		"""
 		res = Response()
 		return res
-
 
 	def time_line(self):
 		tmphour = -1
@@ -49,10 +49,9 @@ class Data():
 		#$viw = \ViewGenerator::generateViewInstance('data_list');
 		#$viw->view($array);
 
-		res = Response()
-		res.body = 'time_line'
-		return res
 
+		view = TimeLine(self.request)
+		return view.view(None)
 
 	#データ/キーワードエントリ
 	#データ/IDエントリ
