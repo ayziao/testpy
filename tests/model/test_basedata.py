@@ -1,5 +1,4 @@
 import unittest
-import sqlite3
 
 from myapp.common import database
 from myapp.model.basedata import BaseData
@@ -8,8 +7,7 @@ from myapp.model.basedata import BaseData
 class TestBaseData(unittest.TestCase):
 	@classmethod
 	def setUpClass(cls):
-		#database.connection = sqlite3.connect("/tmp/test.sqlite3db")  #TODO テストの時はメモリ webアプリ起動でファイル 設定ファイルで対応
-		database.connection = sqlite3.connect(":memory:")  #TODO テストの時はメモリ webアプリ起動でファイル 設定ファイルで対応
+		database.get_connection(None)  # PENDING 引数仮
 		BaseData.create_table()
 
 		#テストデータインサート

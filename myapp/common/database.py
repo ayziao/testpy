@@ -4,6 +4,8 @@
 """
 import sqlite3
 
+from myapp.common import settings
+
 # PENDING コネクションを保持 PostgreSQL
 # PENDING 複数のコネクション持つ マスタースレーブ 垂直分割
 # PENDING エンティティ毎のコネクション管理
@@ -34,7 +36,16 @@ connection = None  #コネクションを保持 sqlite3
 
 #entityかデータベース情報をもとにコネクション返す
 def get_connection(hogehoge):
-	pass
+	#PENDING テストの時はメモリ webアプリ起動でファイル 設定ファイルで対応
+
+	ini = settings.get_ini('database')
+	global connection
+	db_file = ini.get('sqlite')
+	if db_file:
+		connection = sqlite3.connect(db_file)
+	else:
+		connection = sqlite3.connect(":memory:")
+
 
 #	DDL生成（管理用DBクラスに分ける？）
 def create_ddl(dbinfo):
