@@ -14,7 +14,7 @@ path = os.path.dirname(os.path.abspath(__file__)).rstrip('myapp')
 sys.path.append(path)
 
 from myapp.common import settings
-import myapp.common.application
+from myapp.common import application as myapp
 
 
 def main() -> str:
@@ -26,7 +26,7 @@ def main() -> str:
 	settings.setting_encode()
 	settings.start_time = now
 	out = ''
-	res = myapp.common.application.main()
+	res = myapp.mainrun()
 	for v in res.headers:
 		out += pformat(v) + "\n"
 	out += res.status + "\n"

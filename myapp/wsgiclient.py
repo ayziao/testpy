@@ -17,7 +17,7 @@ from myapp.common import settings
 settings.setting_encode()
 settings.wsgi_load_time = now
 
-import myapp.common.application
+from myapp.common import application as myapp
 
 # PENDING セッションとかwebサーバのあれこれの処理はここでやる？
 
@@ -37,7 +37,7 @@ def application(environ: dict, start_response: FunctionType):
 	else:
 		settings.start_time = datetime.utcnow()
 		settings.environ = environ
-		response = myapp.common.application.main()
+		response = myapp.mainrun()
 		start_response(response.status, response.headers)
 		# TODO MIME typeを見て文字エンコードして返すかそのまま帰すかの処理を入れる
 		return [response.body.encode('utf-8')]

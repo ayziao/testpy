@@ -18,7 +18,7 @@ from myapp.common.request import Request
 from myapp.common.response import Response
 
 
-def main() -> Response:
+def mainrun() -> Response:
 	"""
 	# メイン
 	"""

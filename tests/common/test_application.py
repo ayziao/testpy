@@ -20,7 +20,7 @@ class TestApplication(unittest.TestCase):
 		self.assertEqual(res.body, 'Hello world! top')
 
 	def test_main(self):
-		ret = application.main()
+		ret = application.mainrun()
 		self.assertEqual(ret.body[0:6], 'Hello ')
 
 	def test_view_dispatcher(self):

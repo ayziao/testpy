@@ -54,7 +54,7 @@ def _html():
 	</head>
 	<body>
 		<p>{body}</p>
-		<p><a href="/?data.time_line">data time line</a></p>
+		<p><a href="/?Data.time_line">data time line</a></p>
 	</body>
 </html>
 """

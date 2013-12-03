@@ -8,8 +8,8 @@ from myapp.model.basedata import BaseData
 class TestBaseData(unittest.TestCase):
 	@classmethod
 	def setUpClass(cls):
-		#database.connection = sqlite3.connect("/tmp/test.sqlite3db")  #TODO テストの時はメモリ webアプリ起動でファイル
-		database.connection = sqlite3.connect(":memory:")  #TODO テストの時はメモリ webアプリ起動でファイル
+		#database.connection = sqlite3.connect("/tmp/test.sqlite3db")  #TODO テストの時はメモリ webアプリ起動でファイル 設定ファイルで対応
+		database.connection = sqlite3.connect(":memory:")  #TODO テストの時はメモリ webアプリ起動でファイル 設定ファイルで対応
 		BaseData.create_table()
 
 		#テストデータインサート
