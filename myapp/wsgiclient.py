@@ -31,7 +31,8 @@ def application(environ: dict, start_response: FunctionType):
 	@param start_response: レスポンス コールバック関数  function(status: str, header: [(key: str,value: str), ...])
 	"""
 	if environ['PATH_INFO'] == '/favicon.ico':
-		# TODO 拒否リスト作る
+		# PENDING 拒否リスト作る
+		# PENDING ファビコンどうするか
 		start_response('404 Not Found', [('Content-Type', 'text/html; charset=utf-8')])
 		return ['Not Found'.encode()]
 	else:
@@ -39,5 +40,5 @@ def application(environ: dict, start_response: FunctionType):
 		settings.environ = environ
 		response = myapp.mainrun()
 		start_response(response.status, response.headers)
-		# TODO MIME typeを見て文字エンコードして返すかそのまま帰すかの処理を入れる
+		# PENDING MIME typeを見て文字エンコードして返すかそのまま帰すかの処理を入れる Viewに入れるべきか utility化するか
 		return [response.body.encode('utf-8')]

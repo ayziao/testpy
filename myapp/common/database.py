@@ -52,7 +52,7 @@ def create_ddl(dbinfo):
 	c = connection.cursor()
 	c.execute('select * from sqlite_master')
 	for row in c:
-		return row[4]  # TODO テーブル指定
+		return row[4]  # PENDING テーブル指定
 
 
 def insert(entity):

@@ -6,7 +6,6 @@ import sqlite3
 
 from myapp.common import database
 
-# TODO sqlite ファイルでテスト
 # PENDING Postgres
 
 class dummy():
@@ -20,9 +19,7 @@ class dummy():
 class TestDataBase(unittest.TestCase):
 	@classmethod
 	def setUpClass(cls):
-		#database.connection = sqlite3.connect("/tmp/test.db")  #TODO テストの時はメモリ webアプリ起動でファイル
-		#database.connection = sqlite3.connect(":memory:")  #TODO テストの時はメモリ webアプリ起動でファイル
-		database.get_connection(None)  #entityかデータベース情報をもとにコネクション返す
+		database.get_connection(None)  # PENDING entityかデータベース情報をもとにコネクション返す # PENDING テストの時どうするか常にメモリか 毎回作ったり消したりするテスト書くか
 
 		cls.sql = "CREATE TABLE dummy (num int(10) NOT NULL,str varchar(500) NOT NULL, PRIMARY KEY(num))"
 		database.execute(cls.sql)
