@@ -61,20 +61,38 @@ class TestBaseData(unittest.TestCase):
 		self.obj.title = 'dummy2'
 		self.assertTrue(self.obj.save())
 
+		self.obj.load_by_id('20121231235959123456')
+		self.assertEqual(self.obj.id, '20121231235959123456')
+		self.assertEqual(self.obj.title, 'dummy2')
+
 		#新規登録
 		obj = BaseData()
 		obj.id = '20121231235959999999'
-		obj.save()
+		obj.title = 'test'
+		self.assertTrue(obj.save())
 
-	#TODO 保存後取得して内容アサート
+		self.obj.load_by_id('20121231235959999999')
+		self.assertEqual(self.obj.id, '20121231235959999999')
+		self.assertEqual(self.obj.title, 'test')
+
 
 	def test_save_as(self):
 	#別IDとして書き込み
 	#		self.obj.load('20121231235959123456')
-		self.obj.id = '20121231235959123457'
+
+		obj = BaseData()
+		obj.id = '20121231235959999888'
+		obj.title = 'test as'
+		self.assertTrue(obj.save())
+
+		self.obj.load('20121231235959999888')
+		self.obj.id = '20121231235959777777'
+		self.obj.title = 'test as2'
 		self.assertTrue(self.obj.save_as())
 
-	#TODO 保存後取得して内容アサート
+		self.obj.load('20121231235959777777')
+		self.assertEqual(self.obj.id, '20121231235959777777')
+		self.assertEqual(self.obj.title, 'test as2')
 
 
 	#p.pprint(obj.entity.__dict__)
