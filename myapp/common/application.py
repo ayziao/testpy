@@ -38,7 +38,7 @@ def run(req: Request) -> None:
 	実行
 	@param req:
 	"""
-	# TODO パス解析してファイルあったらファイル返す
+	# PENDING パス解析してファイルあったらファイル返す
 	# PENDING ファイルもリクエストに対応する動作も無いときの動作どうするか考える
 
 	controller_instance = _controller_dispatcher(req.controller_class_name, req)  # コントローラ取得

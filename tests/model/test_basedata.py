@@ -24,7 +24,7 @@ class TestBaseData(unittest.TestCase):
 		self.obj = BaseData()
 
 
-	def test_dummydata(self):  # FIXME
+	def test_dummydata(self):  # PENDING FIX ME 行がアレなのどうする
 		c = database.connection.cursor()
 		c.execute("select * from BaseData")
 		#for row in c: # rowはtuple

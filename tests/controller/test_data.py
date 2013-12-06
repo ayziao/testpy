@@ -25,7 +25,7 @@ class TestData(unittest.TestCase):
 		data = Data(req)
 		res = data.time_line()
 
-	#		print(res.__dict__)
+	# print(res.body)
 
 	# PENDING アサート
 
