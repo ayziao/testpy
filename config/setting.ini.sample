@@ -5,8 +5,9 @@ text_encoding = utf-8
 debug = false
 ;debug = head  #HTTPHeader
 ;debug = body  #ボディ内
-;debug = std  #標準出力
-;debug = log  #ログファイル
+;debug = std  # TODO 標準出力
+;debug = log  # TODO ログファイル
+;debug = session  # TODO セッション変数にデバッグ表示種類を設定
 
 [count]
 to_time_str = 1970-01-01 00:00:00

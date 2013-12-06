@@ -26,7 +26,7 @@ def main() -> str:
 	settings.setting_encode()
 	settings.start_time = now
 	out = ''
-	res = myapp.mainrun()
+	res = myapp.main_run()
 	for v in res.headers:
 		out += pformat(v) + "\n"
 	out += res.status + "\n"

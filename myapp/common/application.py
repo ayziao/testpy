@@ -18,7 +18,7 @@ from myapp.common.request import Request
 from myapp.common.response import Response
 
 
-def mainrun() -> Response:
+def main_run() -> Response:
 	"""
 	# メイン
 	"""
@@ -124,7 +124,7 @@ def _controller_dispatcher(class_name: str, req: Request) -> "controller instanc
 		debug_message('controller', class_object.__name__)
 		return class_object(req)
 	except AttributeError:
-		# print('404') # TODO 404?
+		# print('404') # PENDING 404?
 		return None
 
 

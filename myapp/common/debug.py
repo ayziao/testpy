@@ -56,6 +56,11 @@ def output_message(res_: Response):
 	else:
 		_message_to_stdout()
 
+# ;debug = window  # PENDING 別窓
+# ;debug = std  # PENDING 標準出力
+# ;debug = log  # PENDING ログファイル
+# ;debug = session  # PENDING セッション変数にデバッグ表示種類を設定
+
 
 # プライベート
 

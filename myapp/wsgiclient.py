@@ -38,7 +38,7 @@ def application(environ: dict, start_response: FunctionType):
 	else:
 		settings.start_time = datetime.utcnow()
 		settings.environ = environ
-		response = myapp.mainrun()
+		response = myapp.main_run()
 		start_response(response.status, response.headers)
 		# PENDING MIME typeを見て文字エンコードして返すかそのまま帰すかの処理を入れる Viewに入れるべきか utility化するか
 		return [response.body.encode('utf-8')]
