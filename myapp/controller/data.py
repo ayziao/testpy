@@ -24,9 +24,23 @@ class Data():
 		return res
 
 	def time_line(self):
+		"""
+		タイムライン
+		"""
 		tmphour = -1
 		tmpdate = 0
-		array = BaseData.load_list()
+		array = BaseData.load_list()  # ベースデータ取得
+
+		res = Response()
+
+		from pprint import pformat
+
+		res.body = pformat(array)
+		return res
+
+		# 表示
+
+
 
 		# PENDING 日や時をまたいだ処理 View側でやる？
 		#for value in array:

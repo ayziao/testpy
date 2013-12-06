@@ -9,10 +9,10 @@ class TestVewTimeline(unittest.TestCase):
 		req = Request()
 		view = TimeLine(req)
 		res = view.view(None)
-		self.assertEqual(res.body[0:17], "time line") # TODO もっとマシに
+		self.assertEqual(res.body[0:17], "time line")  # PENDING もっとマシに
 
 	def test_view_html(self):
 		req = Request()
 		view = TimeLine(req)
 		html = view._view_html(None)
-		self.assertEqual(html[0:17], "<html>\n\t<head>\n\t\t") # TODO もっとマシに
+		self.assertEqual(html[0:17], "<html>\n\t<head>\n\t\t")  # PENDING もっとマシに

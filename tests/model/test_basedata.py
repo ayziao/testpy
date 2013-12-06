@@ -98,6 +98,12 @@ class TestBaseData(unittest.TestCase):
 	#p.pprint(obj.entity.__dict__)
 
 
+	def test_load_list(self):
+		list_ = BaseData.load_list()
+		self.assertEqual(list_[0].id, '20121231235959123456')
+		self.assertEqual(list_[0].title, 'dummy')
+
+
 #新しいものから取得
 #古いものから取得
 #期間を指定して取得

@@ -66,4 +66,4 @@ class BaseData():
 
 	@classmethod
 	def load_list(cls):
-		pass
+		return database.select_list(BaseData, None)
