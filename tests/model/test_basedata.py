@@ -7,7 +7,7 @@ from myapp.model.basedata import BaseData
 class TestBaseData(unittest.TestCase):
 	@classmethod
 	def setUpClass(cls):
-		database.get_connection(None)  # PENDING 引数仮
+		database.get_connection(':memory:')  # PENDING 引数仮
 		BaseData.create_table()
 
 		#テストデータインサート
@@ -100,6 +100,7 @@ class TestBaseData(unittest.TestCase):
 
 	def test_load_list(self):
 		list_ = BaseData.load_list()
+		print(list_[0].__dict__)
 		self.assertEqual(list_[0].id, '20121231235959123456')
 		self.assertEqual(list_[0].title, 'dummy')
 
