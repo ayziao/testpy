@@ -1,6 +1,17 @@
 """
 test
 """
+
+import random
+
+print('ccccddd')
+
+
+def rnd():
+	print('cccc')
+	return random.random()
+
+
 a = {
 	'REMOTE_ADDR': '127.0.0.1',
 	'SCRIPT_NAME': '',
@@ -47,130 +58,130 @@ a = {
 	'HTTP_DNT': '1',
 	'wsgi.version': (1, 0)
 }
-
-
-class dichoge():
-	def __init__(self):
-		self.__aaa = 'BBB'
-
-	def func(self):
-		pass
-
-
-obj = dichoge()
-obj.hoge = "aaa"
-print(obj.__dict__)
-print(vars(obj))
-
-exit()
-dicc = {}
-dicc.hoge = 'aaa'
-print(dicc.hoge)
-
-exit()
-
-import sqlite3
-
-con = sqlite3.connect(":memory:")
-sql = """
-create table user (
-  name varchar(10),
-  age integer,
-  address varchar(200)
-);
-"""
-con.execute(sql)
-sql = "insert into user values ('jon', 26, 'USA')"
-con.execute(sql)
-con.executemany("insert into user values (?, ?, ?)",
-                [("takasi", 35, "japan"),
-                 ("guid", 40, "Holland")])
-c = con.cursor()
-c.execute("select * from user")
-for row in c: # rowはtuple
-	print(row[0], row[1], row[2])
-con.close()
-
-exit()
-
-from datetime import datetime
-from myapp.common import settings
-
-
-def count():  # PENDING プラグイン化
-	"""
-	日数カウント
-	"""
-	a = settings.get_ini('count')
-
-	tstr = a['to_time_str']
-	print(tstr)
-	to = datetime.strptime(tstr, '%Y-%m-%d %H:%M:%S')
-	from_ = datetime.now()
-	return to - from_
-
-
-print(count())
-
-
-def cache_class():
-	"""
-	変数キャッシュのテスト
-	"""
-
-	def _aaa():
-		return _aaa
-		pass
-
-	x = _aaa()
-
-	print(x)
-
-	b = {}
-
-
-	class _Bbb():
-		def __init__(self):
-			pass
-
-		def __del__(self):
-			print('dell')
-			del b[id(self)]
-
-		@property
-		def status_code(self):
-			"""
-			test
-			@return:
-			"""
-			obj = b[id(self)]
-			return obj['status_code']
-
-		@status_code.setter
-		def status_code(self, val):
-			"""
-			test
-			@param val:
-			@return:
-			"""
-			#			global b
-			obj = {'status_code': val}
-			b[id(self)] = obj
-
-	print(b)
-	a = _Bbb()
-	a.hoge = 'piyo'
-	a.status_code = 'gggg'
-	print(b)
-	print(vars(a))
-	print(a.status_code)
-	del a
-	print(b)
-
-
-cache_class()
-
-
+#
+#
+#class dichoge():
+#	def __init__(self):
+#		self.__aaa = 'BBB'
+#
+#	def func(self):
+#		pass
+#
+#
+#obj = dichoge()
+#obj.hoge = "aaa"
+#print(obj.__dict__)
+#print(vars(obj))
+#
+#exit()
+#dicc = {}
+#dicc.hoge = 'aaa'
+#print(dicc.hoge)
+#
+#exit()
+#
+#import sqlite3
+#
+#con = sqlite3.connect(":memory:")
+#sql = """
+#create table user (
+#  name varchar(10),
+#  age integer,
+#  address varchar(200)
+#);
+#"""
+#con.execute(sql)
+#sql = "insert into user values ('jon', 26, 'USA')"
+#con.execute(sql)
+#con.executemany("insert into user values (?, ?, ?)",
+#                [("takasi", 35, "japan"),
+#                 ("guid", 40, "Holland")])
+#c = con.cursor()
+#c.execute("select * from user")
+#for row in c: # rowはtuple
+#	print(row[0], row[1], row[2])
+#con.close()
+#
+#exit()
+#
+#from datetime import datetime
+#from myapp.common import settings
+#
+#
+#def count():  # PENDING プラグイン化
+#	"""
+#	日数カウント
+#	"""
+#	a = settings.get_ini('count')
+#
+#	tstr = a['to_time_str']
+#	print(tstr)
+#	to = datetime.strptime(tstr, '%Y-%m-%d %H:%M:%S')
+#	from_ = datetime.now()
+#	return to - from_
+#
+#
+#print(count())
+#
+#
+#def cache_class():
+#	"""
+#	変数キャッシュのテスト
+#	"""
+#
+#	def _aaa():
+#		return _aaa
+#		pass
+#
+#	x = _aaa()
+#
+#	print(x)
+#
+#	b = {}
+#
+#
+#	class _Bbb():
+#		def __init__(self):
+#			pass
+#
+#		def __del__(self):
+#			print('dell')
+#			del b[id(self)]
+#
+#		@property
+#		def status_code(self):
+#			"""
+#			test
+#			@return:
+#			"""
+#			obj = b[id(self)]
+#			return obj['status_code']
+#
+#		@status_code.setter
+#		def status_code(self, val):
+#			"""
+#			test
+#			@param val:
+#			@return:
+#			"""
+#			#			global b
+#			obj = {'status_code': val}
+#			b[id(self)] = obj
+#
+#	print(b)
+#	a = _Bbb()
+#	a.hoge = 'piyo'
+#	a.status_code = 'gggg'
+#	print(b)
+#	print(vars(a))
+#	print(a.status_code)
+#	del a
+#	print(b)
+#
+#
+#cache_class()
+#
+#
 
 #
 #

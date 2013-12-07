@@ -3,7 +3,7 @@ test
 """
 import unittest
 from unittest import mock
-import bucket.importtest.test
+import bucket
 
 #from bucket import bucket
 
@@ -25,13 +25,15 @@ class MyTestCase(unittest.TestCase):
 		bbb = aaa.format("aaa")
 		print(bbb)
 
-	@mock.patch('importtest.test.random')
-	def test_aaa(self, mmm):
+	@mock.patch('bucket.random')
+	def test_aaa(self, moc):
+		print('aaabbb')
+
 		def method():
 			return 9
 
-		mmm.random = method
-		print(bucket.importtest.test.rnd())
+		moc.random = method
+		print(bucket.rnd())
 
 
 if __name__ == '__main__':

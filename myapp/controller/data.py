@@ -5,7 +5,6 @@
 from myapp.common.request import Request
 from myapp.common.response import Response
 from myapp.model.basedata import BaseData
-from myapp.view.timeline import TimeLine
 
 
 class Data():
@@ -64,8 +63,8 @@ class Data():
 		#$viw->view($array);
 
 
-		view = TimeLine(self.request)
-		return view.view(None)
+	#view = TimeLine(self.request)
+	#return view.view(None)
 
 	#データ/キーワードエントリ
 	#データ/IDエントリ
