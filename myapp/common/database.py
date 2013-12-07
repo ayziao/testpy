@@ -37,13 +37,12 @@ connection = None  #コネクションを保持 sqlite3
 #entityかデータベース情報をもとにコネクション返す
 def get_connection(con=None):
 	#PENDING テストの時はメモリ webアプリ起動でファイル 設定ファイルで対応
-
+	global connection
 	if con:
 		connection = sqlite3.connect(":memory:")
 		return
 
 	ini = settings.get_ini('database')
-	global connection
 	db_file = ini.get('sqlite')
 	if db_file:
 		connection = sqlite3.connect(db_file)

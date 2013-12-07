@@ -100,7 +100,6 @@ class TestBaseData(unittest.TestCase):
 
 	def test_load_list(self):
 		list_ = BaseData.load_list()
-		print(list_[0].__dict__)
 		self.assertEqual(list_[0].id, '20121231235959123456')
 		self.assertEqual(list_[0].title, 'dummy')
 
