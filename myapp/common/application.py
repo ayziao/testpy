@@ -168,6 +168,7 @@ def _debug_setting() -> None:
 		_debug_instance_set(conf)
 		if settings.wsgi_load_time:
 			debug_message('wsgi_load_time', settings.wsgi_load_time)
+		debug_message('wsgi_load_time', settings.start_time)
 
 
 def _debug_instance_set(conf) -> None:
