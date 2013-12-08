@@ -114,6 +114,8 @@ def _collect() -> None:
 			append_message('env', settings.environ)
 	ru = resource.getrusage(resource.RUSAGE_SELF)
 	append_message('memory', ru.ru_maxrss)
+	if settings.wsgi_load_time:
+		append_message('wsgi_load_time', settings.wsgi_load_time)
 	append_message('start_time', settings.start_time)
 	append_message('end_time', now)
 	append_message('dif', now - settings.start_time)

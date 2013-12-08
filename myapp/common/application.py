@@ -166,9 +166,6 @@ def _debug_setting() -> None:
 	conf = settings.get_ini('application')
 	if conf['debug'] and conf['debug'] != 'false':
 		_debug_instance_set(conf)
-		if settings.wsgi_load_time:
-			debug_message('wsgi_load_time', settings.wsgi_load_time)
-		debug_message('wsgi_load_time', settings.start_time)
 
 
 def _debug_instance_set(conf) -> None:
