@@ -15,10 +15,10 @@ class TimeLine:
 	def __init__(self, req: Request):
 		self.request = req
 
-	def view(self, model):
+	def view(self, model_list):
 		res = Response()
 		if self.request.extension == 'html':
-			res.body = self._view_html(model)
+			res.body = self._view_html(model_list)
 		#if (req.Request.extension == 'json'):
 		#	pass
 		else:
@@ -26,9 +26,11 @@ class TimeLine:
 
 		return res
 
-	def _view_html(self, model):
+	def _view_html(self, model_list):
 		title = "タイムライン"  # PENDING タイトル
-		body = self.body()
+
+		# PENDING テンプレートをDOMとして読んでから中身をDOM操作で組み立てるべきか
+		body = self.body(model_list)
 		#form = self.form()
 		html = _html().format(title=title, body=body)
 
@@ -38,8 +40,15 @@ class TimeLine:
 
 	# PENDING HTMLバージョンいくつ宣言にする？
 
-	def body(self):
-		return 'body'
+	def body(self, model_list):
+		mmm = '<div>'
+		for num, model in enumerate(model_list):
+			if num > 0: # 2件以上あるとき改行
+				mmm += '<br/>'
+			mmm += str(num) + ' ' + model.id + ' ' + model.title + ' ' + model.tag + ' ' + model.body + ' ' + model.datetime
+		mmm += '</div>'
+
+		return mmm
 
 
 def _html():

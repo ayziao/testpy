@@ -34,7 +34,7 @@ class TestData(unittest.TestCase):
 
 		res = data.time_line()
 
-	#print(res.body)
+	# print(res.body)
 
 	# PENDING アサート
 
