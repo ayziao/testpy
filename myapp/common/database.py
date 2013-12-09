@@ -39,7 +39,7 @@ def get_connection(con=None):
 	#PENDING テストの時はメモリ webアプリ起動でファイル 設定ファイルで対応
 	global connection
 	if con:
-		connection = sqlite3.connect(":memory:")
+		connection = sqlite3.connect(con)
 		return
 
 	ini = settings.get_ini('database')
@@ -130,7 +130,7 @@ def select_list(entity_class, parameter: list):
 	sql = "SELECT * FROM `{}`".format(name)
 	if parameter:
 		sql += " WHERE {}".format(where[0:-5])
-
+	# PENDING connection が無いときのエラー処理
 	connection.row_factory = sqlite3.Row
 	cursor = connection.execute(sql, tuple(val_list))
 

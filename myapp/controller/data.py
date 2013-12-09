@@ -6,6 +6,8 @@ from myapp.common.request import Request
 from myapp.common.response import Response
 from myapp.model.basedata import BaseData
 
+from myapp.view.timeline import TimeLine
+
 
 class Data():
 	"""
@@ -26,22 +28,28 @@ class Data():
 		"""
 		タイムライン
 		"""
-		tmphour = -1
-		tmpdate = 0
+
 		array = BaseData.load_list()  # ベースデータ取得
 
-		res = Response()
+		view = TimeLine(self.request)
 
-		from pprint import pformat
+		return view.view(array)
 
-		res.body = pformat(array)
-		return res
+	# tmphour = -1
+	# tmpdate = 0
 
-		# 表示
+	# res = Response()
+
+	# from pprint import pformat
+	#
+	# res.body = pformat(array)
+	# return res
+
+	# 表示
 
 
 
-		# PENDING 日や時をまたいだ処理 View側でやる？
+	# PENDING 日や時をまたいだ処理 View側でやる？
 		#for value in array:
 		#	value.datetime = value.time
 

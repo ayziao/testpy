@@ -66,4 +66,5 @@ class BaseData():
 
 	@classmethod
 	def load_list(cls):
+		# database.get_connection()
 		return database.select_list(BaseData, None)

@@ -7,6 +7,7 @@ from myapp.model.basedata import BaseData
 class TestBaseData(unittest.TestCase):
 	@classmethod
 	def setUpClass(cls):
+		# database.get_connection('/var/tmp/test.sqlite3db')  # PENDING 引数仮
 		database.get_connection(':memory:')  # PENDING 引数仮
 		BaseData.create_table()
 

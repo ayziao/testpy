@@ -24,8 +24,13 @@ class TestData(unittest.TestCase):
 	@mock.patch('myapp.controller.data.BaseData')
 	def test_time_line(self, moc):
 		def method():
-			return [{'_key':'id', 'tag':'dummy_tag1 dummy_tag2', 'title':'dummy', 'datetime':'2012-12-31 23:59:59.123456',
-			         'body':'dummy body', 'id':'20121231235959123456'}]
+			dummy.id = '20121231235959123456'
+			dummy.tag = 'dummy_tag1 dummy_tag2'
+			dummy.title = 'dummy'
+			dummy.datetime = '2012-12-31 23:59:59.123456'
+			dummy.body = 'dummy body'
+
+			return [dummy]
 
 		moc.load_list = method
 
@@ -34,7 +39,28 @@ class TestData(unittest.TestCase):
 
 		res = data.time_line()
 
-	# print(res.body)
+		print(res.body)
+
+		req = Request()
+		req.extension = 'html'
+		data = Data(req)
+
+		res = data.time_line()
+
+		self.assertEqual(res.body,
+		                 """<html>
+			<head>
+				<meta content="text/html charset=UTF-8" http-equiv="Content-Type"/>
+				<title>タイムライン</title>
+			</head>
+			<body>
+				<div>0 20121231235959123456 dummy dummy_tag1 dummy_tag2 dummy body 2012-12-31 23:59:59.123456</div>
+			</body>
+		</html>
+		""")
 
 	# PENDING アサート
 
+
+class dummy:
+	pass
