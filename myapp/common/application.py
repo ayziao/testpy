@@ -11,6 +11,7 @@ pathがあるならコンテンツ
 	データモデル無しのコマンド
 
 """
+from urllib.parse import parse_qs
 from myapp.common import settings
 from myapp.common import utility
 from myapp.common import debug
@@ -87,22 +88,27 @@ def _assemble_main_request() -> Request:
 def _assemble_main_request_web() -> Request:
 	class_name = 'Top'
 	method_name = 'run'
+	ques = []
+	que = settings.environ.get('QUERY_STRING')
+	if que:
+		que2 = que.replace("=", "&")
+		ques = que2.split('&')
+
 	try:
-		que = settings.environ['QUERY_STRING']
-		ques = que.split('=')
 		mmm = ques[0].split('.')
 		if len(mmm) >= 1 and mmm[0] != '':
 			class_name = mmm[0]
 		if len(mmm) == 2:
 			method_name = mmm[1]
 
-	except (AttributeError, KeyError):
+	except (AttributeError, KeyError, IndexError):
 		pass
 
 	req = Request()
 	req.extension = 'html'  # PENDING 環境から取る
 	req.controller_class_name = class_name  # PENDING 環境から取る
 	req.method_name = method_name
+	req.parameter = parse_qs(settings.environ.get('QUERY_STRING'))
 	return req
 
 

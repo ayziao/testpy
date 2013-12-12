@@ -61,6 +61,15 @@ def _html():
 	</head>
 	<body>
 		{body}
+		<form method="get" action="/">
+			<input type="hidden" name="Data.post" /><br/>
+			id：<input type="text" name="id" /><br/>
+			title：<input type="text" name="title" /><br/>
+			tag：<input type="text" name="tag" /><br/>
+			body：<input type="text" name="body" /><br/>
+			datetime：<input type="text" name="datetime" /><br/>
+			<input type="submit" value="submit" />
+		</form>
 	</body>
 </html>
 """

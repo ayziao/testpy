@@ -14,7 +14,7 @@ class BaseData():
 	def create_table():
 		sql = """
 		create table BaseData (
-			id varchar(20),
+			id varchar(20) PRIMARY KEY,
 			title varchar(500),
 			tag varchar(500),
 			body text,
@@ -68,3 +68,7 @@ class BaseData():
 	def load_list(cls):
 		# database.get_connection()
 		return database.select_list(BaseData, None)
+
+	@classmethod
+	def commit(cls):
+		database.connection.commit()
