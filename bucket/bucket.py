@@ -12,6 +12,24 @@ def rnd():
 	return random.random()
 
 
+class aaa:
+	pass
+
+
+c = aaa()
+c.bbb = 41242
+
+print(c)
+print(c.bbb)
+print(c.ccc)
+
+b = object()
+
+# b.hogeho = 'aaaaa'
+# b.dddd = 3253
+
+print(b)
+
 a = {
 	'REMOTE_ADDR': '127.0.0.1',
 	'SCRIPT_NAME': '',

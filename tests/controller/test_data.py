@@ -38,8 +38,7 @@ class TestData(unittest.TestCase):
 		data = Data(req)
 
 		res = data.time_line()
-
-		print(res.body)
+		self.assertEqual(res.body, 'time line')
 
 		req = Request()
 		req.extension = 'html'
@@ -47,17 +46,19 @@ class TestData(unittest.TestCase):
 
 		res = data.time_line()
 
-		self.assertEqual(res.body,
-		                 """<html>
-			<head>
-				<meta content="text/html charset=UTF-8" http-equiv="Content-Type"/>
-				<title>タイムライン</title>
-			</head>
-			<body>
-				<div>0 20121231235959123456 dummy dummy_tag1 dummy_tag2 dummy body 2012-12-31 23:59:59.123456</div>
-			</body>
-		</html>
-		""")
+	# print(res.body)
+	#
+	# 		self.assertEqual(res.body,
+	# 		                 """<html>
+	# 	<head>
+	# 		<meta content="text/html charset=UTF-8" http-equiv="Content-Type"/>
+	# 		<title>タイムライン</title>
+	# 	</head>
+	# 	<body>
+	# 		<div>0 20121231235959123456 dummy dummy_tag1 dummy_tag2 dummy body 2012-12-31 23:59:59.123456</div>
+	# 	</body>
+	# </html>
+	# """)
 
 	# PENDING アサート
 

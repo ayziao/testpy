@@ -2,11 +2,13 @@
 共通アプリケーション単体テスト
 """
 import unittest
+from unittest import mock
 from unittest.mock import MagicMock
 
 from myapp.common import application
 from myapp.common import settings
 from myapp.controller.top import Top
+from myapp.controller.error import Error
 from myapp.common.request import Request
 
 
@@ -19,7 +21,13 @@ class TestApplication(unittest.TestCase):
 		res = application.run(req)
 		self.assertEqual(res.body, 'Hello world! top')
 
-	def test_main(self):
+	@mock.patch('myapp.common.application.database')
+	def test_main(self, moc):
+		def method():
+			pass
+
+		moc.get_connection = method
+
 		ret = application.main_run()
 		self.assertEqual(ret.body[0:6], 'Hello ')
 
@@ -62,11 +70,13 @@ class TestApplication(unittest.TestCase):
 	def test_controller_dispatcher_none(self):
 		req = Request()
 		controller_instance = application._controller_dispatcher('none', req)
-		self.assertIsNone(controller_instance)
+		self.assertIsInstance(controller_instance, Error)
+
 
 	def test_run_controller_method(self):
-		controller_instance = application._run_controller_method('none', 'none')
-		self.assertIsNone(controller_instance)
+		with self.assertRaises(AssertionError):
+			controller_instance = application._run_controller_method('none', 'none')
+			self.assertIsInstance(controller_instance, Error)
 
 	def test_debug_message(self):
 		application._debug = MagicMock()

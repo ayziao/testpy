@@ -16,6 +16,7 @@ from myapp.common import utility
 from myapp.common import debug
 from myapp.common.request import Request
 from myapp.common.response import Response
+from myapp.common import database
 
 
 def main_run() -> Response:
@@ -24,10 +25,12 @@ def main_run() -> Response:
 	"""
 	_debug_setting()
 
+	database.get_connection()
 	req = _assemble_main_request()  # メインリクエスト組み立て
 	res = run(req)
 	#PENDING エラー処理
 
+	debug_message('req', req.__dict__)
 	_debug_print(res)
 
 	return res
@@ -124,8 +127,10 @@ def _controller_dispatcher(class_name: str, req: Request) -> "controller instanc
 		debug_message('controller', class_object.__name__)
 		return class_object(req)
 	except AttributeError:
+		debug_message('controller_dispatcher', 'AttributeError')
+		from myapp.controller.error import Error
 		# print('404') # PENDING 404?
-		return None
+		return Error()
 
 
 def _run_controller_method(controller: "controller instance", method: str) -> None:
@@ -136,10 +141,15 @@ def _run_controller_method(controller: "controller instance", method: str) -> No
 	"""
 	try:
 		m = getattr(controller, method)
-		return m()
 	except AttributeError:
+		debug_message('run_controller_method', 'AttributeError:' + controller.__class__.__name__ + '.' + method)
+		from myapp.controller.error import Error
+
+		err = Error()
 		# PENDING 404?
-		return None
+		return err.run()
+
+	return m()
 
 
 #デバッグ関連
@@ -159,7 +169,7 @@ def debug_message(name: str, obj) -> None:
 	"""
 	de = _get_debug_obj()
 	if de:
-		_debug.append_message(name, obj)
+		de.append_message(name, obj)
 
 
 def _debug_setting() -> None:

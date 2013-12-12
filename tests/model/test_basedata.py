@@ -20,6 +20,10 @@ class TestBaseData(unittest.TestCase):
 	def tearDownClass(cls):
 		database.connection.close()
 
+	@classmethod
+	def tearDownClass(cls):
+		database.connection.commit()
+		database.connection.close()
 
 	def setUp(self):
 		self.obj = BaseData()
