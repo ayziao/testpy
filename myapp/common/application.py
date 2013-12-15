@@ -12,12 +12,13 @@ pathがあるならコンテンツ
 
 """
 from urllib.parse import parse_qs
+
 from myapp.common import settings
 from myapp.common import utility
 from myapp.common import debug
+from myapp.common import database
 from myapp.common.request import Request
 from myapp.common.response import Response
-from myapp.common import database
 
 
 def main_run() -> Response:

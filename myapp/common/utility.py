@@ -26,10 +26,11 @@ def import_(module_name: str) -> "module":
 
 def call_recursive_directory(func: FunctionType, dir_: str) -> None:
 	"""
-	#translationME 再帰的にディレクトリ内のファイルに処理を行う
+	再帰的にディレクトリ内のファイルに処理を行う
 	@param dir_: ディレクトリパス文字列
 	@param func: function(file_path: str) ファイルパス文字列を引数に持つ関数オブジェクト
 	"""
+	#translationME クラス説明英語化
 	for basename in os.listdir(dir_):
 		path = os.path.join(dir_, basename)
 		if not basename.startswith('_'):  # PENDING 処理対象外ファイル、ディレクトリ名のチェック関数も受け取るか

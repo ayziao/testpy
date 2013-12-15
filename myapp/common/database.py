@@ -6,6 +6,7 @@ import sqlite3
 
 from myapp.common import settings
 
+# PENDING sqlite3 PostgreSQL どう使い分けるか クラス別にするか
 # PENDING コネクションを保持 PostgreSQL
 # PENDING 複数のコネクション持つ マスタースレーブ 垂直分割
 # PENDING エンティティ毎のコネクション管理
