@@ -55,7 +55,12 @@ def _html():
 	<body>
 		<p>{body}</p>
 		<p><a href="/?Data.time_line">data time line</a></p>
+		<p>
+			<a href="/?Account.logout">logout</a><br/>
+			<a href="/?Account.signup">signup</a><br/>
+			<a href="/?Account.login">login</a><br/>
+		</p>
 	</body>
 </html>
-"""
+""" #fixME アカウント周り
 	return html_str
