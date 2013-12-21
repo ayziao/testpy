@@ -41,7 +41,9 @@ class TestSettings(unittest.TestCase):
 	def test_time(self):
 		aaa = datetime.utcnow()
 		tstr = aaa.strftime('%Y%m%d%H%M%S%f')
-		print(tstr)
+
+	#PENDING どうしましょう
+	#print(tstr)
 
 
 if __name__ == '__main__':
