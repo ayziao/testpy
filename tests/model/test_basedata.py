@@ -7,14 +7,13 @@ from myapp.model.basedata import BaseData
 class TestBaseData(unittest.TestCase):
 	@classmethod
 	def setUpClass(cls):
-		# database.get_connection('/var/tmp/test.sqlite3db')  # PENDING 引数仮
+		#database.get_connection('/var/tmp/test.sqlite3db')  # PENDING 引数仮
 		database.get_connection(':memory:')  # PENDING 引数仮
 		BaseData.create_table()
 
 		#テストデータインサート
 		database.connection.executemany("insert into BaseData values (?, ?, ?, ?, ?)", [
 			("20121231235959123456", 'dummy', 'dummy_tag1 dummy_tag2', 'dummy body', '2012-12-31 23:59:59.123456')])
-
 
 	@classmethod
 	def tearDownClass(cls):
@@ -27,7 +26,6 @@ class TestBaseData(unittest.TestCase):
 
 	def setUp(self):
 		self.obj = BaseData()
-
 
 	def test_dummydata(self):  # PENDING FIX ME 行がアレなのどうする
 		c = database.connection.cursor()
@@ -59,7 +57,6 @@ class TestBaseData(unittest.TestCase):
 		self.assertEqual(self.obj.id, '20121231235959123456')
 		self.assertEqual(self.obj.title, 'dummy')
 
-
 	def test_save(self):
 		#上書き保存
 		self.obj.load('20121231235959123456')
@@ -79,7 +76,6 @@ class TestBaseData(unittest.TestCase):
 		self.obj.load_by_id('20121231235959999999')
 		self.assertEqual(self.obj.id, '20121231235959999999')
 		self.assertEqual(self.obj.title, 'test')
-
 
 	def test_save_as(self):
 	#別IDとして書き込み

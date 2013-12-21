@@ -20,6 +20,15 @@ class TestData(unittest.TestCase):
 		data.run()
 		self.assertTrue(True)  # PENDING アサート
 
+	@mock.patch('myapp.controller.data.BaseData')
+	def test_post(self, moc):
+		req = Request()
+		req.parameter = {'title': ['test title'], 'tag': ['test tag'], 'body': ['test body']}
+		data = Data(req)
+
+		res = data.post()
+		self.assertTrue(True)  # PENDING アサート
+
 
 	@mock.patch('myapp.controller.data.BaseData')
 	def test_time_line(self, moc):
