@@ -22,11 +22,19 @@ class TestData(unittest.TestCase):
 
 	@mock.patch('myapp.controller.data.BaseData')
 	def test_post(self, moc):
+		def method():
+			self.assertTrue(True)
+
+		#moc.save_as = method #PENDING インスタンスのモックどうやんのか調べる
+		moc.commit = method
+
 		req = Request()
 		req.parameter = {'title': ['test title'], 'tag': ['test tag'], 'body': ['test body']}
 		data = Data(req)
 
 		res = data.post()
+
+		#print(res.__dict__)
 		self.assertTrue(True)  # PENDING アサート
 
 
