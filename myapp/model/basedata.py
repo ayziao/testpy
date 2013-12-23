@@ -4,6 +4,7 @@
 
 from myapp.common import database
 
+#PENDING テーブルなかったら作る？ DDL権限はadminだけ？
 
 class BaseData():
 	"""
