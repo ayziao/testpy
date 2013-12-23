@@ -7,6 +7,7 @@ import sqlite3
 from myapp.common import database
 
 # PENDING Postgres
+# PENDING クラス全体をテスト実行しないと駄目になってる 書き込みテストで書き込まれたデータを読むとか
 
 class dummy():
 	def __init__(self):
@@ -19,7 +20,8 @@ class dummy():
 class TestDataBase(unittest.TestCase):
 	@classmethod
 	def setUpClass(cls):
-		database.get_connection(None)  # PENDING entityかデータベース情報をもとにコネクション返す # PENDING テストの時どうするか常にメモリか 毎回作ったり消したりするテスト書くか
+		database.get_connection(
+			":memory:")  # PENDING entityかデータベース情報をもとにコネクション返す # PENDING テストの時どうするか常にメモリか 毎回作ったり消したりするテスト書くか
 
 		cls.sql = "CREATE TABLE dummy (num int(10) NOT NULL,str varchar(500) NOT NULL, PRIMARY KEY(num))"
 		database.execute(cls.sql)
@@ -92,6 +94,18 @@ class TestDataBase(unittest.TestCase):
 		self.assertEqual(ret[0].num, 999)
 		self.assertEqual(ret[0].str, 'testdata')
 		self.assertEqual(ret[1].num, 998)
+		self.assertEqual(ret[1].str, 'testdata')
+
+		ret = database.select_list(dummy, [('str', 'testdata')], ['num DESC'])
+		self.assertEqual(ret[0].num, 999)
+		self.assertEqual(ret[0].str, 'testdata')
+		self.assertEqual(ret[1].num, 998)
+		self.assertEqual(ret[1].str, 'testdata')
+
+		ret = database.select_list(dummy, [('str', 'testdata')], ['num'])
+		self.assertEqual(ret[0].num, 998)
+		self.assertEqual(ret[0].str, 'testdata')
+		self.assertEqual(ret[1].num, 999)
 		self.assertEqual(ret[1].str, 'testdata')
 
 	#for i in ret:

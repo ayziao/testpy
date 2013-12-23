@@ -118,7 +118,7 @@ def select(entity, parameter: list):
 		pass
 
 
-def select_list(entity_class, parameter: list, order:list):
+def select_list(entity_class, parameter: list, order: list=None):
 	where = ''
 	val_list = []
 	if parameter:
