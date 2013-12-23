@@ -68,7 +68,7 @@ class BaseData():
 	@classmethod
 	def load_list(cls):
 		# database.get_connection()
-		return database.select_list(BaseData, None)
+		return database.select_list(BaseData, None, ['id DESC'])
 
 	@classmethod
 	def commit(cls):

@@ -118,7 +118,7 @@ def select(entity, parameter: list):
 		pass
 
 
-def select_list(entity_class, parameter: list):
+def select_list(entity_class, parameter: list, order:list):
 	where = ''
 	val_list = []
 	if parameter:
@@ -127,10 +127,18 @@ def select_list(entity_class, parameter: list):
 				where += '`' + item[0] + '` = ? AND ,'
 				val_list.append(item[1])
 
+	if order:
+		a_str = map(str, order)
+		order_str = ",".join(a_str)
+
+	# TODO プレースホルダにする
 	name = entity_class.__name__
 	sql = "SELECT * FROM `{}`".format(name)
 	if parameter:
 		sql += " WHERE {}".format(where[0:-5])
+	if order:
+		sql += " ORDER BY {}".format(order_str)
+
 	# PENDING connection が無いときのエラー処理
 	connection.row_factory = sqlite3.Row
 	cursor = connection.execute(sql, tuple(val_list))
