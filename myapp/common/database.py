@@ -104,7 +104,6 @@ def select(entity, parameter: list):
 			where += '`' + item[0] + '` = ? AND ,'
 			val_list.append(item[1])
 
-	# TODO プレースホルダにする
 	name = entity.__class__.__name__
 	sql = "SELECT * FROM `{table_name}` WHERE {where} LIMIT 1"
 	sql = sql.format(table_name=name, where=where[0:-5])
@@ -125,14 +124,15 @@ def select_list(entity_class, parameter: list, order:list):
 	if parameter:
 		for item in parameter:
 			if item[0][0] != '_':
+				# PENDING フィールド名を英数チェックするか
 				where += '`' + item[0] + '` = ? AND ,'
 				val_list.append(item[1])
 
 	if order:
 		a_str = map(str, order)
+		# PENDING フィールド名を`で囲うか？
 		order_str = ",".join(a_str)
 
-	# TODO プレースホルダにする
 	name = entity_class.__name__
 	sql = "SELECT * FROM `{}`".format(name)
 	if parameter:
