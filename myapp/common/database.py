@@ -104,6 +104,7 @@ def select(entity, parameter: list):
 			where += '`' + item[0] + '` = ? AND ,'
 			val_list.append(item[1])
 
+	# TODO プレースホルダにする
 	name = entity.__class__.__name__
 	sql = "SELECT * FROM `{table_name}` WHERE {where} LIMIT 1"
 	sql = sql.format(table_name=name, where=where[0:-5])
