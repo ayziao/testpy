@@ -95,10 +95,7 @@ def _assemble_main_request_web() -> Request:
 	# パス解析
 	path = settings.environ.get('PATH_INFO')
 
-	# path, ext\
-	x = os.path.splitext(path)
-	path = x[0]
-	ext = x[1]
+	path, ext = os.path.splitext(path)
 	ext = ext if ext != '' else '.html'
 
 	# コマンド解析
