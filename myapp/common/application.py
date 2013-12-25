@@ -11,6 +11,7 @@ pathがあるならコンテンツ
 	データモデル無しのコマンド
 
 """
+import os.path
 from urllib.parse import parse_qs
 
 from myapp.common import settings
@@ -78,19 +79,34 @@ def view_dispatcher(class_name: str, req: Request) -> "view instance":
 #プライベート
 def _assemble_main_request() -> Request:
 	"""
-	# メインリクエスト組み立て
+	メインリクエスト組み立て
+	@return:
 	"""
 	if settings.environ:
 		return _assemble_main_request_web()
 	else:
 		return _assemble_main_request_cli()
 
-
 def _assemble_main_request_web() -> Request:
-	class_name = 'Top'
+	"""
+	メインリクエスト組み立て web版
+	@return:
+	"""
+	# パス解析
+	path = settings.environ.get('PATH_INFO')
+
+	# path, ext\
+	x = os.path.splitext(path)
+	path = x[0]
+	ext = x[1]
+	ext = ext if ext != '' else '.html'
+
+	# コマンド解析
+	class_name = 'Top' if path == '/' else 'Data'  # PENDING TOPは無くして"/"のデータにトップページの内容入れる形式にする？
 	method_name = 'run'
 	ques = []
 	que = settings.environ.get('QUERY_STRING')
+
 	if que:
 		que2 = que.replace("=", "&")
 		ques = que2.split('&')
@@ -101,13 +117,13 @@ def _assemble_main_request_web() -> Request:
 			class_name = mmm[0]
 		if len(mmm) == 2:
 			method_name = mmm[1]
-
 	except (AttributeError, KeyError, IndexError):
 		pass
 
 	req = Request()
-	req.extension = 'html'  # PENDING 環境から取る
-	req.controller_class_name = class_name  # PENDING 環境から取る
+	req.path = path
+	req.extension = ext
+	req.controller_class_name = class_name
 	req.method_name = method_name
 	req.parameter = parse_qs(settings.environ.get('QUERY_STRING'))
 	return req

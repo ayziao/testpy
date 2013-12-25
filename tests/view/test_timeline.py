@@ -4,7 +4,7 @@ from myapp.common.request import Request
 from myapp.view.timeline import TimeLine
 
 
-class TestVewTimeline(unittest.TestCase):
+class TestVewTimeLine(unittest.TestCase):
 	def test_view(self):
 		req = Request()
 		view = TimeLine(req)
