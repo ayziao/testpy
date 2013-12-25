@@ -29,7 +29,6 @@ import unittest
 import sys
 import os
 
-
 path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(path.rstrip('/tests'))
 
@@ -42,13 +41,6 @@ from myapp.main import main
 from myapp import wsgiclient
 
 
-top_body = """('Content-Type', 'text/html; charset=utf-8')
-200 OK
-Hello world! top"""
-
-#	'Hello world!'  # PENDING パラメータなんもなしの時の表示考える
-
-
 class TestMyapp(unittest.TestCase):
 	# PENDING 引数や設定みてヘッダ出さないとか入れる
 	#python myapp/main.py
@@ -57,6 +49,8 @@ class TestMyapp(unittest.TestCase):
 	#コマンド（コマンドライン独自 webでHTTTPヘッダに出してる情報どうするかとか）
 
 	def test_main(self):
+		top_body = "('Content-Type', 'text/html; charset=utf-8')\n200 OK\nHello world! top"
+		#	'Hello world!'  # PENDING パラメータなんもなしの時の表示考える
 		ref = main()
 		self.assertEqual(ref, top_body)
 
