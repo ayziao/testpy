@@ -87,6 +87,7 @@ def _assemble_main_request() -> Request:
 	else:
 		return _assemble_main_request_cli()
 
+
 def _assemble_main_request_web() -> Request:
 	"""
 	メインリクエスト組み立て web版
@@ -96,7 +97,7 @@ def _assemble_main_request_web() -> Request:
 	path = settings.environ.get('PATH_INFO')
 
 	path, ext = os.path.splitext(path)
-	ext = ext if ext != '' else '.html'
+	ext = ext.lstrip('.') if ext != '' else 'html'
 
 	# コマンド解析
 	class_name = 'Top' if path == '/' else 'Data'  # PENDING TOPは無くして"/"のデータにトップページの内容入れる形式にする？

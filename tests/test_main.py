@@ -40,7 +40,6 @@ settings.setting_encode()
 from myapp.main import main
 from myapp import wsgiclient
 
-
 class TestMyapp(unittest.TestCase):
 	# PENDING 引数や設定みてヘッダ出さないとか入れる
 	#python myapp/main.py
@@ -62,8 +61,8 @@ class TestMyapp(unittest.TestCase):
 			test = [('Content-Type', 'text/html; charset=utf-8')]
 			self.assertEqual(b, test)
 
-		# tes_res = '<html>'
-		tes_res = 'Hello '
+		tes_res = '<html>'
+		# tes_res = 'Hello '
 
 		env = {'PATH_INFO': '/'}
 		res = wsgiclient.application(env, _callback)
