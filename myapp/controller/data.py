@@ -23,6 +23,7 @@ class Data():
 		"""
 		実行
 		"""
+		# TODO pathからデータ取る
 		res = Response()
 		return res
 
