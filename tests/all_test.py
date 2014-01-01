@@ -19,23 +19,23 @@ settings.set_config_path(path + '/config/')
 settings.setting_encode()
 
 
-def run():
+def run() -> None:
 	"""
 	実行
-	@return:
 	"""
 	suite = unittest.TestSuite()
 	loader = unittest.TestLoader()
 
+	#ディレクトリ内のtest_なんとか.pyをテストスイートに追加
 	def _add_test(path_):
 		file = os.path.basename(path_)
 		if file.startswith('test_') and file.endswith('.py'):
 			mod = imp.load_source(os.path.splitext(file)[0], path_)
 			suite.addTest(loader.loadTestsFromModule(mod))
 
-	utility.call_recursive_directory(_add_test, os.path.curdir)
+	utility.call_recursive_directory(_add_test, os.path.curdir) #ディレクトリ内(サブディレクトリ含む)のファイルに実行
 
-	unittest.TextTestRunner(verbosity=2).run(suite)
+	unittest.TextTestRunner(verbosity=2).run(suite) #テスト実行
 
 
 if __name__ == "__main__":
