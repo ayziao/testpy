@@ -1,6 +1,3 @@
-"""
-データコントローラ単体テスト
-"""
 import unittest
 from unittest import mock
 
@@ -9,6 +6,10 @@ from myapp.controller.data import Data
 
 
 class TestData(unittest.TestCase):
+	"""
+	データコントローラ単体テスト
+	"""
+
 	def test_init(self):
 		req = Request()
 		data = Data(req)
