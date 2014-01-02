@@ -16,7 +16,7 @@ class Data():
 	# データコントローラ
 	"""
 
-	def __init__(self, req:Request):
+	def __init__(self, req: Request):
 		self.request = req
 
 	def run(self):
