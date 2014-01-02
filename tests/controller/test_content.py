@@ -6,8 +6,8 @@ import unittest
 from myapp.controller.content import Content
 
 
-class MyTestCase(unittest.TestCase):
-	def test_something(self):
+class TestContent(unittest.TestCase):
+	def test_init(self):
 		obj = Content()
 		self.assertEqual(type(obj), Content)
 
