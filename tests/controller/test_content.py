@@ -27,6 +27,33 @@ class TestContent(unittest.TestCase):
 
 		self.assertTrue(obj.run())
 
+	def test_run_title(self):
+		req = Request()
+		req.path = 'title'
+		obj = Content(req)
+
+		#分岐調べるだけなので分岐先すげ替える
+		def get_title():
+			return True
+
+		obj.get_title = get_title
+
+		self.assertTrue(obj.run())
+
+
+	def test_run_top(self):
+		req = Request()
+		req.path = ''
+		obj = Content(req)
+
+		#分岐調べるだけなので分岐先すげ替える
+		def moc():
+			return True
+
+		obj.get_top = moc
+
+		self.assertTrue(obj.run())
+
 
 	def test_aaaa(self):
 		# print('-1:', '-1'.isdecimal())
