@@ -40,7 +40,6 @@ class TestContent(unittest.TestCase):
 
 		self.assertTrue(obj.run())
 
-
 	def test_run_top(self):
 		req = Request()
 		req.path = ''
@@ -53,22 +52,6 @@ class TestContent(unittest.TestCase):
 		obj.get_top = moc
 
 		self.assertTrue(obj.run())
-
-
-	def test_aaaa(self):
-		# print('-1:', '-1'.isdecimal())
-		# print('−１:', '−１'.isdecimal())
-		# print('-一:','一'.isdecimal())
-		# print('1:', '1'.isdecimal())
-		# print('１:', '１'.isdecimal())
-		# print('一:','一'.isdecimal())
-		# print('1:', '1'.isnumeric())
-		# print('１:', '１'.isnumeric())
-		# print('一:','一'.isnumeric())
-		# print('1:', '1'.isnumeric())
-		# print('１:', '１'.isnumeric())
-		# print('一:','一'.isnumeric())
-		pass
 
 
 if __name__ == '__main__':

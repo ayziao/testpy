@@ -2,6 +2,26 @@
 test
 """
 
+
+def test_aaaa():
+	print('-1:', '-1'.isdecimal())
+	print('−１:', '−１'.isdecimal())
+	print('-一:', '一'.isdecimal())
+	print('1:', '1'.isdecimal())
+	print('１:', '１'.isdecimal())
+	print('一:', '一'.isdecimal())
+	print('1:', '1'.isnumeric())
+	print('１:', '１'.isnumeric())
+	print('一:', '一'.isnumeric())
+	print('1:', '1'.isnumeric())
+	print('１:', '１'.isnumeric())
+	print('一:', '一'.isnumeric())
+	pass
+
+
+test_aaaa()
+exit()
+
 import random
 
 print('ccccddd')
