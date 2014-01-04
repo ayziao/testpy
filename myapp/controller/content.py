@@ -4,6 +4,7 @@
 from myapp.controller.content import Content
 """
 from myapp.common.request import Request
+from myapp.common.response import Response
 
 
 class Content():
@@ -23,7 +24,7 @@ class Content():
 		path = self.request.path
 		if path.isdecimal(): # 数値 ID指定  # TODO 半角数値だけ対象にする（ユニコード数字引っかかる）
 			if len(path) == 20: # フルID
-				return self.get_id()
+				return self._get_id()
 			else:
 				#TODO ID途中までの場合(年リスト 月リスト 日リスト 時リスト 分リスト？ 秒リスト？)
 				pass
@@ -31,20 +32,32 @@ class Content():
 		#PENDING データ見るまでわからん どうする タイトルツリーのツリー部分の場合
 
 		if len(path) > 0: # 数値以外
-			return self.get_title()
+			return self._get_title()
 
-		return self.get_top() # パス指定がなければトップ
+		return self._get_top() # パス指定がなければトップ
 
 
-	def get_id(self):  # PENDING なんかいいメソッド名考える
-		# IDフル指定の場合
-		pass
+	def _get_id(self):  # PENDING なんかいいメソッド名考える
+		"""
+		IDフル指定の場合
+		"""
+		print('jhoge')
 
-	def get_title(self):
+		#data = BaseData(self.request.path)  # ベースデータ取得
+		res = Response()
+		res.body = 'id' # data.body
+
+		return res  # FIXME
+
+	#		view = TimeLine(self.request)
+	#		return view.view(array)
+
+
+	def _get_title(self):
 		# タイトルの場合
 		pass
 
-	def get_top(self):
+	def _get_top(self):
 		# トップ
 		pass
 

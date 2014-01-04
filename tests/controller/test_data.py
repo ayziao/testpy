@@ -19,7 +19,7 @@ class TestData(unittest.TestCase):
 		req = Request()
 		data = Data(req)
 		data.run()
-		self.assertTrue(True)  # PENDING アサート
+		self.assertTrue(True)  # PENDING アサ
 
 	@mock.patch('myapp.controller.data.BaseData')
 	def test_post(self, moc):
@@ -30,7 +30,7 @@ class TestData(unittest.TestCase):
 		moc.commit = method
 
 		req = Request()
-		req.parameter = {'title': ['test title'], 'tag': ['test tag'], 'body': ['test body']}
+		req.parameter = {'title':['test title'], 'tag':['test tag'], 'body':['test body']}
 		data = Data(req)
 
 		res = data.post()
