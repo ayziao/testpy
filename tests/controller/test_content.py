@@ -2,7 +2,7 @@
 コンテンツコントローラ単体テスト
 """
 import unittest
-from unittest import mock
+from unittest.mock import patch
 
 from myapp.controller.content import Content
 from myapp.common.request import Request
@@ -55,23 +55,28 @@ class TestContent(unittest.TestCase):
 		self.assertTrue(obj.run())
 
 
-	@mock.patch('myapp.model.basedata.BaseData')
-	def test_get_id(self, moc):
-		moc = dummy
+	@patch('myapp.controller.content.BaseData')
+	def test_get_id(self, BaseDataMock):
+		instance = BaseDataMock.return_value
+		instance.body = 'the result'
+
 		req = Request()
 		req.path = '20121231235959123456'
+
 		obj = Content(req)
 		res = obj._get_id()
 
-	#self.assertEqual(res.body, '')
+		BaseDataMock.assert_called_with('20121231235959123456')
+		self.assertEqual(res.body, 'the result')
 
 
 class dummy():
-	def __init__(self, id):
+	def __init__(self):
 		self.body = 'dummy'
-		print('jhoge')
+		print('hoge')
 
 	def load(self, id):
+		print('piyo' + id)
 		pass
 
 

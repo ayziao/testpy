@@ -6,6 +6,8 @@ from myapp.controller.content import Content
 from myapp.common.request import Request
 from myapp.common.response import Response
 
+from myapp.model.basedata import BaseData
+
 
 class Content():
 	"""
@@ -41,11 +43,12 @@ class Content():
 		"""
 		IDフル指定の場合
 		"""
-		print('jhoge')
+		print('_get_id')
 
-		#data = BaseData(self.request.path)  # ベースデータ取得
+		data = BaseData(self.request.path)  # ベースデータ取得
 		res = Response()
-		res.body = 'id' # data.body
+		res.body = data.body
+		# 'id'  # data.body
 
 		return res  # FIXME
 
