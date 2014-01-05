@@ -31,6 +31,15 @@
 	無視？＞jsonとか？ jsonの場合はコンテンツのツリーと操作に対応するオブジェクトのツリーを持たしたらいい？
 	コンテンツを表示して操作Windowを出す？＞htmlの時くらい？
 
+/タイムライン
+/timeline
+	予約語？＞No
+	タイトルとしてデータを読んでデータにData.timeline呼び出しを書いておく？
+	タイトルとしてデータ探してみてなかったら予約語扱い？
+/?Data.timeline
+	＞仮実装済み（現状sqlite格納 text直出し）
+/hogehoge?Data.timeline
+	hogehogeデータを読んで表示した上にフローティングDivでタイムライン表示？ hogehogeを含むタイムライン？
 
 
 ●エンティティ
