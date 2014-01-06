@@ -56,9 +56,14 @@ class TestContent(unittest.TestCase):
 
 
 	@patch('myapp.controller.content.BaseData')
+	#@patch('myapp.common.database.select')
 	def test_get_id(self, BaseDataMock):
 		instance = BaseDataMock.return_value
 		instance.body = 'the result'
+
+		#hoge = mock.Mock()
+		#hoge.body = 'the result'
+		#BaseDataMock.return_value = hoge.body
 
 		req = Request()
 		req.path = '20121231235959123456'
