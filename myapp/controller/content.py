@@ -43,17 +43,13 @@ class Content():
 		"""
 		IDフル指定の場合
 		"""
-		print('_get_id')
-
 		data = BaseData(self.request.path)  # ベースデータ取得
 		res = Response()
 		res.body = data.body
-		# 'id'  # data.body
-
-		return res  # FIXME
 
 	#		view = TimeLine(self.request)
 	#		return view.view(array)
+		return res  # FIXME
 
 
 	def _get_title(self):
