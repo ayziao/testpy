@@ -33,7 +33,7 @@ class Content():
 
 		#PENDING データ見るまでわからん どうする タイトルツリーのツリー部分の場合
 
-		if len(path) > 0: # 数値以外
+		if len(path) > 0:  # 数値以外
 			return self._get_title()
 
 		return self._get_top() # パス指定がなければトップ
