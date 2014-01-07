@@ -45,7 +45,8 @@ class TimeLine:
 		for num, model in enumerate(model_list):
 			if num > 0: # 2件以上あるとき改行
 				mmm += '<br/>'
-			mmm += str(num) + ' ' + model.id + ' ' + model.title + ' ' + model.tag + ' ' + model.body + ' ' + model.datetime
+			mmm += str(
+				num) + ' <a href="/' + model.id + '">' + model.id + '</a> ' + model.title + ' ' + model.tag + ' ' + model.body + ' ' + model.datetime
 		# mmm += str(num) + ' ' + model.id + ' ' + model.title + ' ' + model.tag + ' ' + model.body
 		mmm += '</div>'
 

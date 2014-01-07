@@ -43,9 +43,10 @@ class Content():
 		"""
 		IDフル指定の場合
 		"""
-		data = BaseData(self.request.path)  # ベースデータ取得
+		model = BaseData(self.request.path)  # ベースデータ取得
 		res = Response()
-		res.body = data.body
+
+		res.body = model.id + ' ' + model.title + ' ' + model.tag + '<br>' + model.body + '<br>' + model.datetime
 
 		#		view = TimeLine(self.request)
 		#		return view.view(array)
