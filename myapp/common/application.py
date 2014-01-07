@@ -100,7 +100,7 @@ def _assemble_main_request_web() -> Request:
 	ext = ext.lstrip('.') if ext != '' else 'html'
 
 	# コマンド解析
-	class_name = 'Top' if path == '/' else 'Data'  # PENDING TOPは無くして"/"のデータにトップページの内容入れる形式にする？
+	class_name = 'Top' if path == '/' else 'Content'  # PENDING TOPは無くして"/"のデータにトップページの内容入れる形式にする？
 	method_name = 'run'
 	ques = []
 	que = settings.environ.get('QUERY_STRING')
@@ -119,7 +119,7 @@ def _assemble_main_request_web() -> Request:
 		pass
 
 	req = Request()
-	req.path = path
+	req.path = path.lstrip('/')
 	req.extension = ext
 	req.controller_class_name = class_name
 	req.method_name = method_name
