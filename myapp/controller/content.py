@@ -24,8 +24,8 @@ class Content():
 		@return:
 		"""
 		path = self.request.path
-		if path.isdecimal(): # 数値 ID指定  # TODO 半角数値だけ対象にする（ユニコード数字引っかかる）
-			if len(path) == 20: # フルID
+		if path.isdecimal():  # 数値 ID指定  # TODO 半角数値だけ対象にする（ユニコード数字引っかかる）
+			if len(path) == 20:  # フルID
 				return self._get_id()
 			else:
 				#TODO ID途中までの場合(年リスト 月リスト 日リスト 時リスト 分リスト？ 秒リスト？)
@@ -36,19 +36,20 @@ class Content():
 		if len(path) > 0:  # 数値以外
 			return self._get_title()
 
-		return self._get_top() # パス指定がなければトップ
+		return self._get_top()  # パス指定がなければトップ
 
 
 	def _get_id(self):  # PENDING なんかいいメソッド名考える
 		"""
 		IDフル指定の場合
 		"""
-		data = BaseData(self.request.path)  # ベースデータ取得
+		model = BaseData(self.request.path)  # ベースデータ取得
 		res = Response()
-		res.body = data.body
 
-	#		view = TimeLine(self.request)
-	#		return view.view(array)
+		res.body = model.id + ' ' + model.title + ' ' + model.tag + '<br>' + model.body + '<br>' + model.datetime
+
+		#		view = TimeLine(self.request)
+		#		return view.view(array)
 		return res  # FIXME
 
 
@@ -60,4 +61,4 @@ class Content():
 		# トップ
 		pass
 
-		#PENDING 閲覧制限 自分だけ(下書きとかログイン時だけ見れる) 許可したノードのみ(鍵でも渡すか) 全公開(デフォルト)
+	#PENDING 閲覧制限 自分だけ(下書きとかログイン時だけ見れる) 許可したノードのみ(鍵でも渡すか) 全公開(デフォルト)

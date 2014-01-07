@@ -48,6 +48,9 @@ class TimeLine:
 			mmm += str(num) + ' ' + model.id + ' ' + model.title + ' ' + model.tag + ' ' + model.body
 			if model.datetime is not None: # FIXME テストで作るデータに日時が入らない臭いので
 				mmm += ' ' + model.datetime
+			mmm += str(
+				num) + ' <a href="/' + model.id + '">' + model.id + '</a> ' + model.title + ' ' + model.tag + ' ' + model.body + ' ' + model.datetime
+		# mmm += str(num) + ' ' + model.id + ' ' + model.title + ' ' + model.tag + ' ' + model.body
 		mmm += '</div>'
 
 		return mmm
