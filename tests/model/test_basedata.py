@@ -17,6 +17,7 @@ class TestBaseData(unittest.TestCase):
 
 	@classmethod
 	def tearDownClass(cls):
+		BaseData.commit()
 		database.connection.close()
 
 	@classmethod
