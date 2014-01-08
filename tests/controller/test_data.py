@@ -23,10 +23,12 @@ class TestData(unittest.TestCase):
 
 	@mock.patch('myapp.controller.data.BaseData')
 	def test_post(self, moc):
+		instance = moc.return_value # mockのreturn_valueはデフォルトでモックのインスタンスになってるので受け取ってごにょごにょする
+
 		def method():
 			self.assertTrue(True)
 
-		#moc.save_as = method #PENDING インスタンスのモックどうやんのか調べる
+		instance.save_as = method
 		moc.commit = method
 
 		req = Request()
@@ -35,8 +37,7 @@ class TestData(unittest.TestCase):
 
 		res = data.post()
 
-		#print(res.__dict__)
-		self.assertTrue(True)  # PENDING アサート
+		self.assertEqual(res.body, 'post')
 
 
 	@mock.patch('myapp.controller.data.BaseData')

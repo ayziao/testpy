@@ -45,13 +45,11 @@ class Content():
 		"""
 		model = BaseData(self.request.path)  # ベースデータ取得
 		res = Response()
-
 		res.body = model.id + ' ' + model.title + ' ' + model.tag + '<br>' + model.body + '<br>' + model.datetime
 
 		#		view = TimeLine(self.request)
 		#		return view.view(array)
 		return res  # FIXME
-
 
 	def _get_title(self):
 		# タイトルの場合

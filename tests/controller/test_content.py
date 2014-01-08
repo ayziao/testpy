@@ -58,7 +58,11 @@ class TestContent(unittest.TestCase):
 	@patch('myapp.controller.content.BaseData')
 	def test_get_id(self, BaseDataMock):
 		instance = BaseDataMock.return_value
+		instance.id = '20121231235959123456'
+		instance.title = 'title'
+		instance.tag = 'tag'
 		instance.body = 'the result'
+		instance.datetime = 'datetime'
 
 		req = Request()
 		req.path = '20121231235959123456'
@@ -67,16 +71,15 @@ class TestContent(unittest.TestCase):
 		res = obj._get_id()
 
 		BaseDataMock.assert_called_with('20121231235959123456')
-		self.assertEqual(res.body, 'the result')
+		self.assertEqual(res.body, '20121231235959123456 title tag<br>the result<br>datetime')
 
 
 class dummy():
-	def __init__(self):
+	def __init__(self, id):
 		self.body = 'dummy'
-		print('hoge')
+		print('jhoge')
 
 	def load(self, id):
-		print('piyo' + id)
 		pass
 
 
