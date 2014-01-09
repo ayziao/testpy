@@ -43,7 +43,7 @@ class TestSettings(unittest.TestCase):
 		tstr = aaa.strftime('%Y%m%d%H%M%S%f')
 
 	#PENDING どうしましょう
-	#print(tstr)
+	# print(tstr)
 
 
 if __name__ == '__main__':
