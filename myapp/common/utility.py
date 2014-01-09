@@ -27,8 +27,8 @@ def import_(module_name: str) -> "module":
 def call_recursive_directory(func: FunctionType, dir_: str) -> None:
 	"""
 	再帰的にディレクトリ内のファイルに処理を行う
-	@param dir_: ディレクトリパス文字列
 	@param func: function(file_path: str) ファイルパス文字列を引数に持つ関数オブジェクト
+	@param dir_: ディレクトリパス文字列
 	"""
 	#translationME クラス説明英語化
 	for basename in os.listdir(dir_):
