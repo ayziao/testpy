@@ -46,7 +46,7 @@ class TestSettings(unittest.TestCase):
 		settings._read_ini(settings._get_ini_path() + '.sample')
 
 	#PENDING どうしましょう
-	#print(tstr)
+	# print(tstr)
 
 
 if __name__ == '__main__':
