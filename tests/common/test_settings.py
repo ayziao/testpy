@@ -28,6 +28,8 @@ class TestSettings(unittest.TestCase):
 		conf = settings.get_ini('nothing_section')
 		self.assertIsNone(conf)
 
+	#TODO method分ける
+
 	def test_get_ini_path(self):
 		path_ = settings._get_ini_path()
 		self.assertTrue(path_.find('setting.ini') > 0)
@@ -42,8 +44,23 @@ class TestSettings(unittest.TestCase):
 		aaa = datetime.utcnow()
 		tstr = aaa.strftime('%Y%m%d%H%M%S%f')
 
+	#TODO アサート
+
 	def test_read_ini(self):
 		settings._read_ini(settings._get_ini_path() + '.sample')
+
+	#TODO アサート
+
+	def test_get_ini_path(self):
+		bk = settings._config_path
+
+		settings._config_path = None
+		settings._get_ini_path()
+
+		settings._config_path = bk
+
+	#TODO アサート
+
 
 	#PENDING どうしましょう
 	# print(tstr)
