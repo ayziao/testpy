@@ -13,6 +13,7 @@ import os
 from configparser import ConfigParser
 from datetime import datetime
 
+# PENDING propertyにする？ゲッターセッター作る？
 environ = None  # WSGIサーバから渡される情報
 start_time = datetime.utcnow()  # 処理開始日時
 wsgi_load_time = None  # WSGIクライアントモジュールの読み込み日時
@@ -20,7 +21,7 @@ arg = sys.argv  # コマンドライン引数
 
 _config_path = None  # 設定ディレクトリパス
 _ini = None  # 初期設定
-_encode_set = False  # 文字encode
+_encode_set = False  # 文字エンコードセット済みか
 
 
 def set_config_path(config_path: str):
@@ -39,16 +40,10 @@ def get_ini(section: str=None) -> ConfigParser:
 	# 初期設定取得(セクション別取得)
 	@param section: セクション名
 	"""
-	#PENDING section指定必須にしてini全体取るのはプロバティに分ける
+	#PENDING section指定必須にしてini全体取るのはプロバティに分ける？
 	#PENDING ConfigParserクラスだるいので辞書に変換しとく？
-	global _ini
 	if _ini is None:
-		_ini = ConfigParser()
-
-		if os.path.exists(_get_ini_path()):
-			_ini.read(_get_ini_path())
-		else:
-			_ini.read(_get_ini_path() + '.sample')
+		_read_ini()
 	if section is None:
 		return _ini
 	else:
@@ -56,6 +51,16 @@ def get_ini(section: str=None) -> ConfigParser:
 			return _ini[section]
 		except KeyError:
 			return None
+
+
+def _read_ini():
+	global _ini
+	_ini = ConfigParser()
+
+	if os.path.exists(_get_ini_path()):
+		_ini.read(_get_ini_path())
+	else:
+		_ini.read(_get_ini_path() + '.sample')
 
 
 def setting_encode():
