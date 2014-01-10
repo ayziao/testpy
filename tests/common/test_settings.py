@@ -42,6 +42,9 @@ class TestSettings(unittest.TestCase):
 		aaa = datetime.utcnow()
 		tstr = aaa.strftime('%Y%m%d%H%M%S%f')
 
+	def test_read_ini(self):
+		settings._read_ini(settings._get_ini_path() + '.sample')
+
 	#PENDING どうしましょう
 	#print(tstr)
 

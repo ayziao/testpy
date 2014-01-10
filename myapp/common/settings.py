@@ -43,7 +43,7 @@ def get_ini(section: str=None) -> ConfigParser:
 	#PENDING section指定必須にしてini全体取るのはプロバティに分ける？
 	#PENDING ConfigParserクラスだるいので辞書に変換しとく？
 	if _ini is None:
-		_read_ini()
+		_read_ini(_get_ini_path())
 	if section is None:
 		return _ini
 	else:
@@ -52,15 +52,6 @@ def get_ini(section: str=None) -> ConfigParser:
 		except KeyError:
 			return None
 
-
-def _read_ini():
-	global _ini
-	_ini = ConfigParser()
-
-	if os.path.exists(_get_ini_path()):
-		_ini.read(_get_ini_path())
-	else:
-		_ini.read(_get_ini_path() + '.sample')
 
 
 def setting_encode():
@@ -83,6 +74,17 @@ def setting_encode():
 
 
 #プライベート
+
+def _read_ini(path):
+	global _ini
+	_ini = ConfigParser()
+
+	if os.path.exists(path):
+		_ini.read(path)
+	else:
+		_ini.read(path + '.sample')
+
+
 def _get_ini_path() -> str:
 	if _config_path is None:
 		return _default_path()
