@@ -84,13 +84,15 @@ def _assemble_main_request() -> Request:
 	メインリクエスト組み立て
 	@return:
 	"""
+	req = Request()
+	req.datetime = settings.datetime
 	if settings.environ:
-		return _assemble_main_request_web()
+		return _assemble_main_request_web(req)
 	else:
-		return _assemble_main_request_cli()
+		return _assemble_main_request_cli(req)
 
 
-def _assemble_main_request_web() -> Request:
+def _assemble_main_request_web(req: Request) -> Request:
 	"""
 	メインリクエスト組み立て web版
 	@return:
@@ -120,7 +122,6 @@ def _assemble_main_request_web() -> Request:
 	except (AttributeError, KeyError, IndexError):
 		pass
 
-	req = Request()
 	req.path = path.lstrip('/')
 	req.extension = ext
 	req.controller_class_name = class_name
@@ -129,8 +130,7 @@ def _assemble_main_request_web() -> Request:
 	return req
 
 
-def _assemble_main_request_cli() -> Request:
-	req = Request()
+def _assemble_main_request_cli(req: Request) -> Request:
 	req.extension = 'raw'  # PENDING 環境から取る
 	req.controller_class_name = 'Top'  # PENDING 環境から取る
 	req.method_name = 'run'

@@ -23,3 +23,4 @@ class Request():
 		self.paging = None  # ページングクラス入れ
 		self.controller_class_name = ''  # コントローラクラス名
 		self.method_name = ''  # メソッド名
+		self.datetime = None

@@ -2,8 +2,6 @@
 # myapp.controller.data
 """
 
-from datetime import datetime
-
 from myapp.common.request import Request
 from myapp.common.response import Response
 from myapp.model.basedata import BaseData
@@ -31,13 +29,13 @@ class Data():
 		data = BaseData()
 		prm = self.request.parameter
 
-		time = datetime.utcnow()
+		time = self.request.datetime
 
 		data.id = time.strftime('%Y%m%d%H%M%S%f') #TODO セッティングのスタートタイムからID作ってどっかにとっといてそれつかう
 		data.title = prm['title'][0]
 		data.tag = prm['tag'][0]
 		data.body = prm['body'][0]
-		data.datetime = time.strftime('%Y-%m-%d %H:%M:%S.%f') #TODO セッティングのスタートタイムとっといてそれつかう
+		data.datetime = time.strftime('%Y-%m-%d %H:%M:%S.%f')
 		data.save_as()
 		BaseData.commit()
 

@@ -51,12 +51,14 @@ class TestApplication(unittest.TestCase):
 		bk = settings.environ
 
 		settings.environ = {'QUERY_STRING': "data.time_line={'hoge':'piyo'}", 'PATH_INFO': '/'}
-		req = application._assemble_main_request_web()
+		req = Request()
+		req = application._assemble_main_request_web(req)
 		self.assertEqual(req.controller_class_name, 'data')
 		self.assertEqual(req.method_name, 'time_line')
 
 		settings.environ = {'QUERY_STRING': "", 'PATH_INFO': '/'}
-		req = application._assemble_main_request_web()
+		req = Request()
+		req = application._assemble_main_request_web(req)
 		self.assertEqual(req.controller_class_name, 'Top')
 		self.assertEqual(req.method_name, 'run')
 

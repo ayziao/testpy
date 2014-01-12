@@ -1,5 +1,6 @@
 import unittest
 from unittest import mock
+from datetime import datetime
 
 from myapp.common.request import Request
 from myapp.controller.data import Data
@@ -33,6 +34,8 @@ class TestData(unittest.TestCase):
 
 		req = Request()
 		req.parameter = {'title':['test title'], 'tag':['test tag'], 'body':['test body']}
+		req.datetime = datetime.utcnow()
+
 		data = Data(req)
 
 		res = data.post()
@@ -61,6 +64,7 @@ class TestData(unittest.TestCase):
 
 		req = Request()
 		req.extension = 'html'
+		req.datetime = datetime.utcnow()
 		data = Data(req)
 
 		res = data.time_line()
