@@ -17,21 +17,13 @@ class Data():
 	def __init__(self, req: Request):
 		self.request = req
 
-	def run(self):
-		"""
-		実行
-		"""
-		# TODO pathからデータ取る
-		res = Response()
-		return res
-
 	def post(self):
 		data = BaseData()
 		prm = self.request.parameter
 
 		time = self.request.datetime
 
-		data.id = time.strftime('%Y%m%d%H%M%S%f') #TODO セッティングのスタートタイムからID作ってどっかにとっといてそれつかう
+		data.id = time.strftime('%Y%m%d%H%M%S%f')
 		data.title = prm['title'][0]
 		data.tag = prm['tag'][0]
 		data.body = prm['body'][0]
