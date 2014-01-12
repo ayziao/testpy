@@ -36,6 +36,8 @@ def main_run() -> Response:
 	debug_message('req', req.__dict__)
 	_debug_print(res)
 
+	# PENDING web前提でコマンドラインもみたいな作りだけどいいのか
+
 	return res
 
 
