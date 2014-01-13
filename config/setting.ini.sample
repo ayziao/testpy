@@ -3,11 +3,14 @@ text_encoding = utf-8
 
 [application]
 debug = false
+;debug = false #デバッグ機能無し
+;debug = session  # TODO セッション変数にデバッグ表示種類を設定
 ;debug = head  #HTTPHeader
 ;debug = body  #ボディ内
 ;debug = std  # TODO 標準出力
-;debug = log  # TODO ログファイル
-;debug = session  # TODO セッション変数にデバッグ表示種類を設定
+;debug = err  # TODO エラー出力
+;debug = file  # TODO ファイル
+;debug = db  # TODO database
 
 [count]
 to_time_str = 1970-01-01 00:00:00
