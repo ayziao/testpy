@@ -41,18 +41,18 @@ class TestSettings(unittest.TestCase):
 
 	def test_read_ini(self):
 		settings._read_ini(settings._get_ini_path() + '.sample')
+		ini = settings.get_ini('application')
+		self.assertEqual('false', ini.get('debug'))
 
-	#TODO アサート
-
-	def test_get_ini_path(self):
+	def test_get_ini_path_none(self):
 		bk = settings._config_path
 
 		settings._config_path = None
-		settings._get_ini_path()
+		path = settings._get_ini_path()
 
 		settings._config_path = bk
 
-	#TODO アサート
+		self.assertTrue(path.endswith('testpy/config/setting.ini'))
 
 
 	#PENDING どうしましょう
