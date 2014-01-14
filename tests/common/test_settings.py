@@ -3,7 +3,6 @@
 """
 import unittest
 import os
-from datetime import datetime
 
 path = os.path.dirname(os.path.abspath(__file__))
 
@@ -39,12 +38,6 @@ class TestSettings(unittest.TestCase):
 		test = str(path.replace('tests/common', '')) + 'config/setting.ini'
 		defpath = settings._default_path()
 		self.assertEqual(test, defpath)
-
-	def test_time(self):
-		aaa = datetime.utcnow()
-		tstr = aaa.strftime('%Y%m%d%H%M%S%f')
-
-	#TODO アサート
 
 	def test_read_ini(self):
 		settings._read_ini(settings._get_ini_path() + '.sample')

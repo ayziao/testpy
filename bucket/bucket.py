@@ -1,6 +1,16 @@
 """
 test
 """
+import sys
+
+from datetime import datetime
+
+aaa = datetime.utcnow()
+tstr = aaa.strftime('%Y%m%d%H%M%S%f')
+
+print(tstr)
+
+sys.exit()
 
 
 def test_aaaa():
