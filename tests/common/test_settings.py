@@ -55,9 +55,5 @@ class TestSettings(unittest.TestCase):
 		self.assertTrue(path.endswith('testpy/config/setting.ini'))
 
 
-	#PENDING どうしましょう
-	# print(tstr)
-
-
 if __name__ == '__main__':
 	unittest.main()
