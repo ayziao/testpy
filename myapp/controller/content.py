@@ -3,6 +3,8 @@
 
 from myapp.controller.content import Content
 """
+import re
+
 from myapp.common.request import Request
 from myapp.common.response import Response
 
@@ -24,7 +26,9 @@ class Content():
 		@return:
 		"""
 		path = self.request.path
-		if path.isdecimal():  # 数値 ID指定  # TODO 半角数値だけ対象にする（ユニコード数字引っかかる）
+		regexp = re.compile(r'^[0-9]+$')
+		result = regexp.search(path)
+		if result != None:  # 数値 ID指定  # TODO 半角数値だけ対象にする（ユニコード数字引っかかる）
 			if len(path) == 20:  # フルID
 				return self._get_id()
 			else:
