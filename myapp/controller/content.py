@@ -28,7 +28,7 @@ class Content():
 		path = self.request.path
 		regexp = re.compile(r'^[0-9]+$')
 		result = regexp.search(path)
-		if result != None:  # 数値 ID指定  # TODO 半角数値だけ対象にする（ユニコード数字引っかかる）
+		if result != None:  # 数値 ID指定
 			if len(path) == 20:  # フルID
 				return self._get_id()
 			else:
@@ -57,6 +57,7 @@ class Content():
 
 	def _get_title(self):
 		# タイトルの場合
+		# TODO タイトルでデータ取得作る
 		pass
 
 	def _get_top(self):
