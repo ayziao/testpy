@@ -74,6 +74,25 @@ class TestContent(unittest.TestCase):
 		instance.load_by_id.assert_called_with('20121231235959123456')
 		self.assertEqual(res.body, '20121231235959123456 title tag<br>the result<br>datetime')
 
+	@patch('myapp.controller.content.BaseData')
+	def test_get_title(self, BaseDataMock):
+		instance = BaseDataMock.return_value
+		instance.id = '20121231235959123456'
+		instance.title = 'title'
+		instance.tag = 'tag'
+		instance.body = 'the result'
+		instance.datetime = 'datetime'
+
+		req = Request()
+		req.path = 'title'
+
+		obj = Content(req)
+		res = obj._get_title()
+
+		BaseDataMock.assert_called_with()
+		instance.load_by_title.assert_called_with('title')
+		self.assertEqual(res.body, '20121231235959123456 title tag<br>the result<br>datetime')
+
 
 class dummy():
 	def __init__(self, id):
