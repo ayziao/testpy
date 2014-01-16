@@ -56,13 +56,13 @@ class Content():
 		else:
 			res.body = model.id + ' ' + model.title + ' ' + model.tag + '<br>' + model.body + '<br>' + model.datetime
 
+		#TODO View作る
 		#		view = TimeLine(self.request)
 		#		return view.view(array)
 		return res  # FIXME
 
 	def _get_title(self):
 		# タイトルの場合
-		# TODO タイトルでデータ取得作る
 		model = BaseData()  # ベースデータ取得
 		model.load_by_title(self.request.path)
 		res = Response()
@@ -72,10 +72,10 @@ class Content():
 		else:
 			res.body = model.id + ' ' + model.title + ' ' + model.tag + '<br>' + model.body + '<br>' + model.datetime
 
+		#TODO View作る
 		#		view = TimeLine(self.request)
 		#		return view.view(array)
 		return res  # FIXME
-		pass
 
 	def _get_top(self):
 		# トップ
