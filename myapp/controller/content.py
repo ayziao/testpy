@@ -47,9 +47,14 @@ class Content():
 		"""
 		IDフル指定の場合
 		"""
-		model = BaseData(self.request.path)  # ベースデータ取得
+		model = BaseData()  # ベースデータ取得
+		model.load_by_id(self.request.path)
 		res = Response()
-		res.body = model.id + ' ' + model.title + ' ' + model.tag + '<br>' + model.body + '<br>' + model.datetime
+		if model.id == '':
+			res.status_code = 404
+			res.body = '404 NotFound'
+		else:
+			res.body = model.id + ' ' + model.title + ' ' + model.tag + '<br>' + model.body + '<br>' + model.datetime
 
 		#		view = TimeLine(self.request)
 		#		return view.view(array)
@@ -58,6 +63,18 @@ class Content():
 	def _get_title(self):
 		# タイトルの場合
 		# TODO タイトルでデータ取得作る
+		model = BaseData()  # ベースデータ取得
+		model.load_by_title(self.request.path)
+		res = Response()
+		if model.id == '':
+			res.status_code = 404
+			res.body = '404 NotFound'
+		else:
+			res.body = model.id + ' ' + model.title + ' ' + model.tag + '<br>' + model.body + '<br>' + model.datetime
+
+		#		view = TimeLine(self.request)
+		#		return view.view(array)
+		return res  # FIXME
 		pass
 
 	def _get_top(self):

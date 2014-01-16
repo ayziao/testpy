@@ -70,7 +70,8 @@ class TestContent(unittest.TestCase):
 		obj = Content(req)
 		res = obj._get_id()
 
-		BaseDataMock.assert_called_with('20121231235959123456')
+		BaseDataMock.assert_called_with()
+		instance.load_by_id.assert_called_with('20121231235959123456')
 		self.assertEqual(res.body, '20121231235959123456 title tag<br>the result<br>datetime')
 
 
