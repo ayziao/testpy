@@ -26,7 +26,7 @@ _encode_set = False  # 文字エンコードセット済みか
 
 def set_config_path(config_path: str):
 	"""
-	# 設定ファイルの位置変えるなら一番最初に呼ばれるpyファイルでこれ実行しておこう
+	# 設定ファイルの位置変えるなら__main__でこれ実行しておこう
 	@param config_path: str
 	"""
 	global _config_path

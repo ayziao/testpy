@@ -22,11 +22,14 @@ class Data():
 		prm = self.request.parameter
 
 		time = self.request.datetime
+		from datetime import datetime
+
+		time = datetime.utcnow()
 
 		data.id = time.strftime('%Y%m%d%H%M%S%f')
-		data.title = prm['title'][0]
-		data.tag = prm['tag'][0]
-		data.body = prm['body'][0]
+		data.title = prm.get('title')[0]
+		data.tag = prm.get('tag')[0]
+		data.body = prm.get('body')[0]
 		data.datetime = time.strftime('%Y-%m-%d %H:%M:%S.%f')
 		data.save_as()
 		BaseData.commit()
