@@ -22,9 +22,6 @@ class Data():
 		prm = self.request.parameter
 
 		time = self.request.datetime
-		from datetime import datetime
-
-		time = datetime.utcnow()
 
 		data.id = time.strftime('%Y%m%d%H%M%S%f')
 		data.title = prm.get('title')[0]

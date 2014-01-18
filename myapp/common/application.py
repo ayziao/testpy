@@ -85,7 +85,7 @@ def _assemble_main_request() -> Request:
 	@return:
 	"""
 	req = Request()
-	req.datetime = settings.datetime
+	req.datetime = settings.start_time
 	if settings.environ:
 		return _assemble_main_request_web(req)
 	else:
