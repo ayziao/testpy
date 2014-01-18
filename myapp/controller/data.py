@@ -20,13 +20,12 @@ class Data():
 	def post(self):
 		data = BaseData()
 		prm = self.request.parameter
-
 		time = self.request.datetime
 
 		data.id = time.strftime('%Y%m%d%H%M%S%f')
-		data.title = prm.get('title')[0]
-		data.tag = prm.get('tag')[0]
-		data.body = prm.get('body')[0]
+		data.title = prm.get('title')[0]  # PENDING どうにかならんか
+		data.tag = prm.get('tag')[0]  # PENDING どうにかならんか
+		data.body = prm.get('body')[0]  # PENDING どうにかならんか
 		data.datetime = time.strftime('%Y-%m-%d %H:%M:%S.%f')
 		data.save_as()
 		BaseData.commit()
