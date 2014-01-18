@@ -38,3 +38,20 @@ def call_recursive_directory(func: FunctionType, dir_: str) -> None:
 				call_recursive_directory(func, path)
 			elif os.path.isfile(path):
 				func(path)
+
+
+def utf8binary_str_decode(string:str) -> str:
+	"""
+	str型にUTF-8バイナリが入っちゃったのUnicodeにデコードしなおす
+	@param string: UTF-8
+	@return:
+	"""
+	# PENDING wsgiref.simple_server 以外でも起こるのかわからんのでどうしたもんか
+	# PENDING ループなくせね？
+
+	codes = list(map(hex, map(ord, string)))
+	result = b''
+	for i in codes:
+		result += bytes.fromhex(i[2:])
+
+	return result.decode('utf-8')

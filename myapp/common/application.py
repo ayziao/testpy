@@ -98,7 +98,7 @@ def _assemble_main_request_web(req: Request) -> Request:
 	@return:
 	"""
 	# パス解析
-	path = settings.environ.get('PATH_INFO')
+	path = utility.utf8binary_str_decode(settings.environ.get('PATH_INFO'))  #str型にUTF8バイナリはいってるの直す
 
 	path, ext = os.path.splitext(path)
 	ext = ext.lstrip('.') if ext != '' else 'html'
