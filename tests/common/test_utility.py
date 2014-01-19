@@ -20,12 +20,31 @@ class TestUtility(unittest.TestCase):
 			if file.startswith('test_') and file.endswith('.py'):
 				list_.append(file)
 
-		path = os.path.dirname(os.path.abspath(__file__))
+		path = os.path.dirname(os.path.abspath(__file__)).rstrip('/common')
 
-		utility.call_recursive_directory(_add_test, path.rstrip('/common')) #ディレクトリ内(サブディレクトリ含む)のファイルに実行
+		utility.call_recursive_directory(_add_test, path) #ディレクトリ内(サブディレクトリ含む)のファイルに実行
 
-		self.assertEqual(list_.__str__(),
-		                 "['test_application.py', 'test_database.py', 'test_debug.py', 'test_request.py', 'test_response.py', 'test_settings.py', 'test_utility.py', 'test_account.py', 'test_content.py', 'test_data.py', 'test_top.py', 'test_basedata.py', 'test_main.py', 'test_timeline.py', 'test_top.py']")
+		list_.sort()
+
+		assertlist = []
+		assertlist.append('test_application.py')
+		assertlist.append('test_database.py')
+		assertlist.append('test_debug.py')
+		assertlist.append('test_request.py')
+		assertlist.append('test_response.py')
+		assertlist.append('test_settings.py')
+		assertlist.append('test_utility.py')
+		assertlist.append('test_account.py')
+		assertlist.append('test_content.py')
+		assertlist.append('test_data.py')
+		assertlist.append('test_top.py')
+		assertlist.append('test_basedata.py')
+		assertlist.append('test_main.py')
+		assertlist.append('test_timeline.py')
+		assertlist.append('test_top.py')
+		assertlist.sort()
+
+		self.assertEqual(list_.__str__(), assertlist.__str__())
 
 
 if __name__ == '__main__':
