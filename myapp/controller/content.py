@@ -15,6 +15,7 @@ class Content():
 	"""
 	コンテンツ コントローラ
 	リクエストのpathに該当するデータを取って返す
+	ログイン不要
 	"""
 
 	def __init__(self, req: Request):

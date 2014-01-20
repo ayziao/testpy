@@ -12,6 +12,7 @@ from myapp.view.timeline import TimeLine
 class Data():
 	"""
 	# データコントローラ
+	基本ログイン必要
 	"""
 
 	def __init__(self, req: Request):
@@ -38,6 +39,8 @@ class Data():
 		"""
 		タイムライン
 		"""
+		#PENDING ログイン必須でもないような気がするけどコンテンツの方にも作る？
+		#PENDING コンテンツ内コマンドはどうしようか
 
 		array = BaseData.load_list()  # ベースデータ取得
 
