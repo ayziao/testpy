@@ -54,3 +54,8 @@ class UserAccount():
 	@classmethod
 	def commit(cls):
 		database.connection.commit()
+
+#TODO メールとパスワードで取得
+#TODO パスワードをハッシュに
+#TODO ハッシュを作るソルトどうにか
+
