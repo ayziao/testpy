@@ -15,15 +15,9 @@ class TestUserAccount(unittest.TestCase):
 		database.connection.executemany("insert into UserAccount values (?, ?, ?, ?, ?)", [
 			("test", 'hoge@piyo.com', 'aaaa', '2012-12-31 23:59:59.123456', '2012-12-31 23:59:59.123456')])
 
-
 	@classmethod
 	def tearDownClass(cls):
 		UserAccount.commit()
-		database.connection.close()
-
-	@classmethod
-	def tearDownClass(cls):
-		database.connection.commit()
 		database.connection.close()
 
 	def setUp(self):
