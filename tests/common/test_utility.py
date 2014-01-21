@@ -42,6 +42,7 @@ class TestUtility(unittest.TestCase):
 		assertlist.append('test_main.py')
 		assertlist.append('test_timeline.py')
 		assertlist.append('test_top.py')
+		assertlist.append('test_useraccount.py')
 		assertlist.sort()
 
 		self.assertEqual(list_.__str__(), assertlist.__str__())

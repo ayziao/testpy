@@ -109,7 +109,8 @@ class TestDebug(unittest.TestCase):
 		res = response.Response()
 		debug.set_print_mode('head')
 		debug.output_message(res)
-		test = ('X-DEBUG-debug', "'head'")
+		# test = ('X-DEBUG-debug', "'head'")  # TODO ヘッダ出力時_messageの中身をエンコードする
+		test = ('X-DEBUG-debug', '%27head%27')
 		self.assertEqual(res.headers[1], test)
 
 	def test_output_message_body(self):

@@ -124,12 +124,14 @@ def _collect() -> None:
 def _debug_print_head(res_: Response) -> None:
 	#from pprint import pprint
 	#pprint(res_)
+	import urllib.parse
+
 	order_dic = _message_to_http_head('X-DEBUG')
 	if not hasattr(res_, 'headers'):
 		res_.headers = []
 	if order_dic:
 		for key_, item_ in order_dic.items():
-			res_.headers.append((key_, item_))
+			res_.headers.append((key_, urllib.parse.quote(item_)))
 
 
 def _debug_print_body(res_: Response) -> None:
