@@ -75,6 +75,25 @@ class TestContent(unittest.TestCase):
 		self.assertEqual(res.body, '20121231235959123456 title tag<br>the result<br>datetime')
 
 	@patch('myapp.controller.content.BaseData')
+	def test_get_id_404(self, BaseDataMock):
+		instance = BaseDataMock.return_value
+		instance.id = ''
+		instance.title = ''
+		instance.tag = ''
+		instance.body = ''
+		instance.datetime = ''
+
+		req = Request()
+		req.path = '90121231235959123456'
+
+		obj = Content(req)
+		res = obj._get_id()
+
+		BaseDataMock.assert_called_with()
+		#		instance.load_by_id.assert_called_with('90121231235959123456')
+		self.assertEqual(res.body, '404 NotFound')
+
+	@patch('myapp.controller.content.BaseData')
 	def test_get_title(self, BaseDataMock):
 		instance = BaseDataMock.return_value
 		instance.id = '20121231235959123456'
@@ -94,13 +113,24 @@ class TestContent(unittest.TestCase):
 		self.assertEqual(res.body, '20121231235959123456 title tag<br>the result<br>datetime')
 
 
-class dummy():
-	def __init__(self, id):
-		self.body = 'dummy'
-		print('jhoge')
+	@patch('myapp.controller.content.BaseData')
+	def test_get_title_404(self, BaseDataMock):
+		instance = BaseDataMock.return_value
+		instance.id = ''
+		instance.title = ''
+		instance.tag = ''
+		instance.body = ''
+		instance.datetime = ''
 
-	def load(self, id):
-		pass
+		req = Request()
+		req.path = 'none title'
+
+		obj = Content(req)
+		res = obj._get_title()
+
+		BaseDataMock.assert_called_with()
+		#		instance.load_by_title.assert_called_with('title')
+		self.assertEqual(res.body, '404 NotFound')
 
 
 if __name__ == '__main__':
