@@ -109,7 +109,7 @@ class TestDebug(unittest.TestCase):
 		res = response.Response()
 		debug.set_print_mode('head')
 		debug.output_message(res)
-		# test = ('X-DEBUG-debug', "'head'")  # TODO ヘッダ出力時_messageの中身をエンコードする
+		# test = ('X-DEBUG-debug', "'head'")  # TODO ヘッダ出力時_messageの中身をエンコードする RFC 2231？ http://www.studyinghttp.net/rfc_ja/rfc5987#Sec4
 		test = ('X-DEBUG-debug', '%27head%27')
 		self.assertEqual(res.headers[1], test)
 

@@ -22,7 +22,7 @@ class TestUtility(unittest.TestCase):
 
 		path = os.path.dirname(os.path.abspath(__file__)).rstrip('/common')
 
-		utility.call_recursive_directory(_add_test, path) #ディレクトリ内(サブディレクトリ含む)のファイルに実行
+		utility.call_recursive_directory(_add_test, path)  # ディレクトリ内(サブディレクトリ含む)のファイルに実行
 
 		list_.sort()
 
