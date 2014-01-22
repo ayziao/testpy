@@ -28,8 +28,8 @@ class UserAccount():
 		sql = """
 		create table UserAccount (
 			identifier varchar(20) PRIMARY KEY,
-			mail varchar(500),
-			password varchar(500),
+			mail_address varchar(500),
+			password_hash varchar(500),
 			signup text,
 			last_login text
 		);
@@ -48,6 +48,11 @@ class UserAccount():
 
 	def load_by_identifier(self, identifier: str) -> None:
 		prm = [('identifier', identifier)]
+		database.select(self, prm)
+		return self.identifier
+
+	def load_by_mail_and_password_hash(self, mail_address: str, password_hash: str) -> None:
+		prm = [('mail_address', mail_address), ('password_hash', password_hash)]
 		database.select(self, prm)
 		return self.identifier
 

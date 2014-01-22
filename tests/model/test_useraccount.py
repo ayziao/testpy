@@ -13,7 +13,7 @@ class TestUserAccount(unittest.TestCase):
 
 		#テストデータインサート
 		database.connection.executemany("insert into UserAccount values (?, ?, ?, ?, ?)", [
-			("test", 'hoge@piyo.com', 'aaaa', '2012-12-31 23:59:59.123456', '2012-12-31 23:59:59.123456')])
+			("test", 'hoge@piyo.com', 'hash_text', '2012-12-31 23:59:59.123456', '2012-12-31 23:59:59.123456')])
 
 	@classmethod
 	def tearDownClass(cls):
@@ -24,9 +24,13 @@ class TestUserAccount(unittest.TestCase):
 		self.obj = UserAccount()
 
 	def test_init(self):
-		obj = UserAccount()
-		self.assertIsInstance(obj, UserAccount)
-		self.assertEqual(obj.identifier, '')
+		self.assertIsInstance(self.obj, UserAccount)
+		self.assertEqual(self.obj.identifier, '')
 
 		obj = UserAccount('test')
+		self.assertEqual(obj.identifier, 'test')
+
+	def test_load_by_mail_and_password_hash(self):
+		obj = UserAccount()
+		obj.load_by_mail_and_password_hash('hoge@piyo.com', 'hash_text')
 		self.assertEqual(obj.identifier, 'test')

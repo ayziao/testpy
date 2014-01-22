@@ -101,12 +101,12 @@ def select(entity, parameter: list):
 	val_list = []
 	for item in parameter:
 		if item[0][0] != '_':
-			where += '`' + item[0] + '` = ? AND ,'
+			where += '`' + item[0] + '` = ? AND '
 			val_list.append(item[1])
 
 	name = entity.__class__.__name__
 	sql = "SELECT * FROM `{table_name}` WHERE {where} LIMIT 1"
-	sql = sql.format(table_name=name, where=where[0:-5])
+	sql = sql.format(table_name=name, where=where[0:-4])
 	connection.row_factory = sqlite3.Row
 	cursor = connection.execute(sql, tuple(val_list))
 	row = cursor.fetchone()
